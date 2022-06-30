@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -10,6 +12,12 @@ module.exports = {
       center: true,
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      },
+      boxShadow: {
+        "3xl": "0px 0px 50px 0px #66668F",
+      },
       colors: {
         // generated using tailwindshades.com
         ghostindigo: {
