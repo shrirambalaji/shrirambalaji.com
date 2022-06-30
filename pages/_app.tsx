@@ -1,25 +1,15 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import { ThemeSwitch } from "../components/ThemeSwitch";
-import { Navbar } from "../components/Navbar";
-import { PropsWithChildren } from "react";
+import type { AppProps } from "next/app";
+import { Layout } from "../components/Layout";
+import "../styles/globals.css";
 
-const Container = ({ children }: PropsWithChildren<{}>) => {
-  return (
-    <div className="container mx-auto px-4">
-      <Navbar />
-      {children}
-    </div>
-  );
-};
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
-      <div className="bg-white dark:bg-ghostindigo-900">
-        <Container>
+      <div className="bg-gray-100 dark:bg-ghostindigo-900">
+        <Layout>
           <Component {...pageProps} />
-        </Container>
+        </Layout>
       </div>
     </ThemeProvider>
   );
