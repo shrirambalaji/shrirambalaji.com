@@ -1,0 +1,8 @@
+**/.next
+**/.idea
+**/.swc
+**/.vscode
+
+components/**/*.js
+*.lock
+pnpm-lock.yaml
