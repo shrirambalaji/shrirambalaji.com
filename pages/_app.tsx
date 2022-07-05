@@ -6,7 +6,7 @@ import "../styles/globals.css";
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
-      <div className="bg-gray-100 dark:bg-ghostindigo-900">
+      <div className="bg-white dark:bg-ghostindigo-900">
         <Layout>
           <Component {...pageProps} />
         </Layout>
