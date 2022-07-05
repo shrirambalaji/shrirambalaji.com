@@ -6,8 +6,8 @@ export const Avatar = ({ className }: { className: string }) => {
     <Image
       priority
       alt="Shriram Balaji"
-      height={180}
-      width={180}
+      height={200}
+      width={200}
       src="/images/avatar.jpg"
       className={cn("rounded-full", className)}
     />
