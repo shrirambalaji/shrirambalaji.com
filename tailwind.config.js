@@ -14,6 +14,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
       },
       boxShadow: {
         "3xl": "0px 0px 50px 0px #66668F",
@@ -36,5 +37,24 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase, theme }) {
+      function extractColorVars(colorObj, colorGroup = "") {
+        return Object.keys(colorObj).reduce((vars, colorKey) => {
+          const value = colorObj[colorKey];
+
+          const newVars =
+            typeof value === "string"
+              ? { [`--color${colorGroup}-${colorKey}`]: value }
+              : extractColorVars(value, `-${colorKey}`);
+
+          return { ...vars, ...newVars };
+        }, {});
+      }
+
+      addBase({
+        ":root": extractColorVars(theme("colors")),
+      });
+    },
+  ],
 };
