@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/future/image";
 import { Avatar } from "../components/Avatar";
-import { GradientShadow } from "../components/GradientShadow";
+import { GradientDropShadow } from "../components/GradientDropShadow";
 import { MicrosoftLogo } from "../components/icons";
 import { readMDXFrontmatter } from "../lib/mdx";
 
@@ -26,7 +26,7 @@ const Home: NextPage<HomePageProps> = (props) => {
     <main className="mx-auto flex max-w-3xl flex-col justify-center gap-10 p-0 md:pl-4">
       <div className="flex flex-col-reverse items-start md:flex-row">
         <section className="flex w-full flex-col gap-2.5 pr-8">
-          <h1 className="ml-[-0.25rem] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
+          <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
             Shriram Balaji
           </h1>
           <h2 className="inline-flex items-center tracking-wide text-gray-800 dark:text-gray-300 md:text-xl">
@@ -61,11 +61,11 @@ const Home: NextPage<HomePageProps> = (props) => {
             }) => {
               const size = 32;
               return (
-                <div className="group relative cursor-pointer">
-                  <GradientShadow />
-                  <li className="relative flex flex-col items-center rounded-lg border bg-white px-3 py-1  shadow-sm dark:border-ghostindigo-800 dark:bg-ghostindigo-900 md:flex-row">
+                <li key={company} className="group relative cursor-pointer">
+                  <GradientDropShadow />
+                  <div className="relative flex flex-col items-center rounded-lg border bg-white px-3 py-1 shadow-sm dark:border-ghostindigo-800 dark:bg-ghostindigo-900 md:flex-row">
                     <Image
-                      className={`w-50 my-6 mx-2 self-start object-cover ${
+                      className={`w-50 mx-4 mb-2 mt-5 self-start object-cover md:my-6 md:mx-2 ${
                         darkModeInvert ? "dark:invert" : "filter-none"
                       }`}
                       src={image as string}
@@ -85,12 +85,12 @@ const Home: NextPage<HomePageProps> = (props) => {
                       <h6 className="mb-2 text-sm text-ghostindigo-800 dark:text-ghostindigo-400">
                         {title}
                       </h6>
-                      <p className="mb-3 font-normal text-ghostindigo-700 dark:text-gray-400">
+                      <p className="mb-3 font-normal leading-7 text-ghostindigo-700 dark:text-gray-400">
                         {description}
                       </p>
                     </div>
-                  </li>
-                </div>
+                  </div>
+                </li>
               );
             }
           )}
