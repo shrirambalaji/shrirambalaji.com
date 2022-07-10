@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.light *::selection {
+  background-color: var(--color-indigo-500);
+  color: var(--color-gray-50);
+}
+
+.dark *::selection {
+  background-color: var(--color-indigo-200);
+  color: var(--color-ghostindigo-900);
+}
