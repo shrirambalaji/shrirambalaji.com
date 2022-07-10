@@ -27,4 +27,4 @@ $ pnpm dev
 
 ## Inspiration
 
-The revamp of my portfolio is heavily inspired by [leerob.io](leerob.io), [sreetamdas.com](sreetamdas.com) and many others.
+The revamp of my portfolio is heavily inspired by [leerob.io](https://leerob.io), [sreetamdas.com](https://sreetamdas.com) and many others.
