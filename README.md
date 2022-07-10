@@ -1,23 +1,30 @@
-# Next.js + Tailwind CSS Example
+# shrirambalaji.com
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Deployment**: [Vercel](https://vercel.com)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Content**: Markdown using [MDX](https://mdxjs.com/) and [Next-MDX-Remote](https://github.com/hashicorp/next-mdx-remote)
 
-## Deploy your own
+## Overview
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+- `lib/*` - helpful utilities or code for external services.
+- `pages/api/*` - [API Routes](https://nextjs.org/docs/api-routes/introduction) powering /opengraph endpoint.
+- `content/*` - Markdown / MDX content powering the site.
+- `pages/*` - All other static pages.
+- `public/*` - Static assets including fonts and images.
+- `styles/*` - Some global styles.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Running Locally
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+This application requires Node.js v16.13+.
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
+$ git clone https://github.com/shrirambalaji/shrirambalaji.com.git
+$ cd shrirambalaji.com
+$ pnpm
+$ pnpm dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Inspiration
+
+The revamp of my portfolio is heavily inspired by [leerob.io](leerob.io), [sreetamdas.com](sreetamdas.com) and many others.
