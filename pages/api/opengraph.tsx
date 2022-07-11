@@ -2,9 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { ScreenshotOptions } from "puppeteer-core";
 import { parse } from "url";
 import { getScreenshot } from "./_lib/chromium";
-
 const isDev = !process.env.AWS_REGION;
-
 const HOST = isDev ? "http://localhost:3000" : "https://shrirambalaji.com";
 
 export default async function handler(
@@ -21,8 +19,7 @@ export default async function handler(
     const fileType: ScreenshotOptions["type"] = url.query.fileType || "png";
     const file = await getScreenshot(
       `${HOST}/opengraph?${queryString}`,
-      fileType,
-      isDev
+      fileType
     );
     res.statusCode = 200;
     res.setHeader("Content-Type", `image/${fileType}`);

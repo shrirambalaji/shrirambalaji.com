@@ -23,24 +23,30 @@ const OgImage: React.FC<ImageProps> = ({
 
   const titleFontStyle = isCode ? `font-mono` : `font-sans`;
   const shouldHighlightTitle = highlight === "true";
-  const titleFontSize = title.length >= 40 ? "text-5xl" : "text-7xl";
+  const titleFontSize =
+    title.length >= 40 ? "text-5xl leading-normal" : "text-7xl leading-tight";
 
   return (
-    <div className="text-fg flex min-h-screen w-full items-center justify-center">
+    <div className="bg:ghostindigo-700 text-fg flex min-h-screen w-full items-center justify-center">
       <div
         id="preview relative"
-        className="bg:ghostindigo-700 flex h-full flex-col items-start justify-center p-[80px]"
+        className=" flex h-full flex-col items-start justify-between p-[80px]"
         style={{
           backgroundImage: `${graphPaper}`,
           width: imageWidth,
           height: imageHeight,
         }}
       >
+        {date && (
+          <p className="font-regular font-sans text-lg text-ghostindigo-700">
+            {date}
+          </p>
+        )}
         <div className="flex flex-col justify-center">
           <h1
             className={cn(
               `${titleFontStyle} ${titleFontSize}
-            font-semibold leading-relaxed text-white`,
+            font-semibold  text-white`,
               {
                 [`w-fit rounded-xl bg-indigo-400 px-[15px] text-center`]:
                   shouldHighlightTitle,
@@ -55,15 +61,10 @@ const OgImage: React.FC<ImageProps> = ({
             </p>
           )}
         </div>
-        <footer className="absolute bottom-24">
+        <footer className="bottom-24">
           <p className="font-regular font-sans text-2xl text-ghostindigo-500">
             @shrirambalaji
           </p>
-          {date && (
-            <p className="font-regular font-sans text-lg text-ghostindigo-700">
-              {date}
-            </p>
-          )}
         </footer>
       </div>
     </div>

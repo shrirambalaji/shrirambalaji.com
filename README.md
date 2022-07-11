@@ -7,7 +7,7 @@
 
 ## Overview
 
-- `lib/*` - helpful utilities or code for external services.
+- `util/*` - helpful utilities or code for external services.
 - `pages/api/*` - [API Routes](https://nextjs.org/docs/api-routes/introduction) powering /opengraph endpoint.
 - `content/*` - Markdown / MDX content powering the site.
 - `pages/*` - All other static pages.

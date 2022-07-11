@@ -3,7 +3,7 @@ import Image from "next/future/image";
 import { Avatar } from "../components/Avatar";
 import { GradientDropShadow } from "../components/GradientDropShadow";
 import { MicrosoftLogo } from "../components/icons";
-import { readMDXFrontmatter } from "../lib/mdx";
+import { readMDXFrontmatter } from "../util/mdx";
 
 type Work = {
   company: string;
