@@ -32,11 +32,7 @@ export default async function handler(
     res.statusCode = 500;
     res.setHeader("Content-Type", "text/html");
     res.end(
-      `<div style='display: grid; place-content: center; height: 100vh;  
-        <h1 style='font-weight: 300;'>
-          <strong>${res.statusCode}</strong>&nbsp;&nbsp;|&nbsp;&nbsp;<span>Sorry, there was an unexpected error.</span>
-        </h1>
-      </div>`
+      `<div style='display: grid; place-content: center; height: 100vh; <h1 style='font-weight: 300;'> <strong>${res.statusCode}</strong>&nbsp;&nbsp;|&nbsp;&nbsp;<span>Sorry, there was an unexpected error.</span> </h1> </div>`
     );
     console.error(e);
   }

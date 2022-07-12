@@ -1,6 +1,5 @@
 import chrome from "chrome-aws-lambda";
 import puppeteer, { ScreenshotOptions } from "puppeteer-core";
-
 const isProd = !!process.env.AWS_REGION;
 export async function getScreenshot(
   url: string,
