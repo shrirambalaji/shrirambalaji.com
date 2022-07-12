@@ -101,7 +101,7 @@ const Home: NextPage<HomePageProps> = (props) => {
 };
 
 export async function getStaticProps() {
-  const work = await readMDXFrontmatter<Work[]>("content/work.mdx");
+  const work = await readMDXFrontmatter<Work[]>("src/content/work.mdx");
 
   return {
     props: {
