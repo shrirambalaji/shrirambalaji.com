@@ -9,3 +9,11 @@ export const readMDXFrontmatter = async <T>(filePath: string) => {
   const { frontmatter } = await serialize(source, { parseFrontmatter: true });
   return frontmatter as unknown as T;
 };
+
+export const readMDXFile = async (filePath: string) => {
+  const source = fs
+    .readFileSync(path.resolve(process.cwd(), filePath), "utf8")
+    .toString();
+
+  return await serialize(source, { parseFrontmatter: true });
+};

@@ -7,7 +7,7 @@
     "prettier": "npx prettier --write . '!**/*.{js,jsx,ts, tsx}'"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^10.1.0",
+    "@tailwindcss/typography": "^0.5.4",
     "classnames": "^2.3.1",
     "install": "^0.13.0",
     "next": "latest",
