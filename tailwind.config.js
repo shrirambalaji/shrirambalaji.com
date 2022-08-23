@@ -56,5 +56,6 @@ module.exports = {
         ":root": extractColorVars(theme("colors")),
       });
     },
+    require("@tailwindcss/typography"),
   ],
 };
