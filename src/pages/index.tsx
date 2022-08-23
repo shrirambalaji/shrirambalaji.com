@@ -3,6 +3,7 @@ import Image from "next/future/image";
 import { Avatar } from "../components/Avatar";
 import { GradientDropShadow } from "../components/GradientDropShadow";
 import { MicrosoftLogo } from "../components/icons";
+import { PageContainer } from "../components/PageContainer";
 import { readMDXFrontmatter } from "../util/mdx";
 
 type Work = {
@@ -23,7 +24,7 @@ const Home: NextPage<HomePageProps> = (props) => {
   const { work } = props;
 
   return (
-    <main className="mx-auto flex max-w-3xl flex-col justify-center gap-10 p-0 md:pl-4">
+    <PageContainer>
       <div className="flex flex-col-reverse items-start md:flex-row">
         <section className="flex w-full flex-col gap-2.5 pr-8">
           <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
@@ -96,7 +97,7 @@ const Home: NextPage<HomePageProps> = (props) => {
           )}
         </ul>
       </div>
-    </main>
+    </PageContainer>
   );
 };
 
