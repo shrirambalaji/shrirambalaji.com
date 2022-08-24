@@ -11,3 +11,15 @@
   background-color: var(--color-indigo-200);
   color: var(--color-ghostindigo-900);
 }
+
+.youtube-embed {
+  width: auto;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .youtube-embed {
+    width: 560px;
+    height: 315px;
+  }
+}
