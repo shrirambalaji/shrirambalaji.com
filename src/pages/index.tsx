@@ -78,7 +78,7 @@ const Home: NextPage<HomePageProps> = (props) => {
   return (
     <PageContainer>
       <div className="flex  flex-col-reverse items-start md:flex-row">
-        <section className="flex w-full flex-col gap-3 md:placeholder:pr-8">
+        <section className="mt-7 flex w-full flex-col gap-3 md:placeholder:pr-8">
           <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
             {bio.name}
           </h1>
@@ -92,7 +92,7 @@ const Home: NextPage<HomePageProps> = (props) => {
             {bio.about}
           </p>
         </section>
-        <section className=" my-10 md:my-0">
+        <section className="mt-7">
           <Avatar className="w-[125px] shadow-3xl shadow-ghostindigo-100 dark:shadow-ghostindigo-700 md:w-[150px]" />
         </section>
       </div>
