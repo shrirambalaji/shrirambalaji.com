@@ -6,118 +6,137 @@ import { Linkedin } from "./icons/Linkedin";
 import { MenuButton } from "./MenuButton";
 import { Twitter } from "./icons/Twitter";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { useMenuStore } from "../state";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 
-type NavItemProps = {
+type NavLinkProps = {
   href: string;
   text: string;
   className?: string;
   onClick?: any;
 };
 
-const NavItem = ({ href, text, className, onClick }: NavItemProps) => {
+const NavLink = ({ href, text, className, onClick }: NavLinkProps) => {
   const router = useRouter();
   const isActive = router.asPath === href;
 
   return (
+    <NextLink href={href}>
+      <a
+        className={cn(
+          isActive
+            ? "font-medium text-ghostindigo-800  dark:text-white"
+            : "font-normal text-ghostindigo-400 dark:text-ghostindigo-300",
+          className,
+          "w-full rounded-lg p-4 text-center transition-all hover:bg-gray-100 hover:backdrop-blur-xl dark:hover:bg-ghostindigo-800 sm:px-3 sm:py-2 md:w-20"
+        )}
+        onClick={onClick}
+      >
+        <span className="capsize">{text}</span>
+      </a>
+    </NextLink>
+  );
+};
+
+const NavItem = (props: NavLinkProps) => {
+  return (
     <li>
-      <NextLink href={href}>
-        <a
-          className={cn(
-            isActive
-              ? "font-bold text-ghostindigo-700  dark:text-white"
-              : "font-normal text-ghostindigo-500 dark:text-ghostindigo-200",
-            className,
-            "w-full rounded-lg p-1 text-center transition-all hover:bg-gray-100 hover:backdrop-blur-xl dark:hover:bg-ghostindigo-800 sm:px-2 sm:py-1.5 md:w-20"
-          )}
-          onClick={onClick}
-        >
-          <span className="capsize">{text}</span>
-        </a>
-      </NextLink>
+      <NavLink {...props} />
     </li>
   );
 };
 
-const MobileNavItem = (props: NavItemProps & { onHide: any }) => {
-  return (
-    <NavItem
-      {...props}
-      className="inline-flex items-center justify-start pl-3 text-lg"
-      onClick={() => props.onHide(true)}
-    />
-  );
-};
+const MobileNavItem = (props: NavLinkProps) => {
+  const { isMenuOpen, hideMenu } = useMenuStore((state) => state);
+  const router = useRouter();
+  const isActive = router.asPath === props.href;
 
-// TODO: animate entry and exit
-export const MobileMenu = ({
-  hidden,
-  onHide,
-}: {
-  hidden: boolean;
-  onHide: any;
-}) => {
   return (
-    <nav
-      aria-labelledby="mobile sidebar menu"
-      className={cn(
-        hidden ? "hidden" : "flex",
-        "backdrop-blur-50 opacity-1 absolute top-0  left-0 z-[11] h-full min-h-full w-full flex-col gap-5 overflow-visible bg-white px-8 pt-28 dark:bg-ghostindigo-900 md:hidden"
+    <>
+      {isMenuOpen && (
+        <motion.li
+          animate={{ x: 0, opacity: 1 }}
+          initial={{ x: "-1%", opacity: 0 }}
+          exit={{ x: "-1%", opacity: 0 }}
+        >
+          <NavLink
+            {...props}
+            className={cn(
+              isActive && "bg-gray-100 dark:bg-ghostindigo-800",
+              "inline-flex items-center justify-start pl-3 text-xl"
+            )}
+            onClick={(e: any) => {
+              e.preventDefault();
+              router.push(props.href).then(() => {
+                hideMenu();
+              });
+            }}
+          />
+        </motion.li>
       )}
-    >
-      <ul className="flex w-full flex-col gap-2">
-        <MobileNavItem href="/" text="Home" onHide={onHide} />
-        <MobileNavItem href="/talks" text="Talks" onHide={onHide} />
-        <MobileNavItem href="/uses" text="Uses" onHide={onHide} />
-        <MobileNavItem
-          href="https://blog.shrirambalaji.dev"
-          text="Blog"
-          onHide={onHide}
-        />
-      </ul>
-      <ul>
-        <GitHub
-          width={20}
-          height={20}
-          className="mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300"
-          href="https://github.com/shrirambalaji"
-        />
-        <Twitter
-          width={20}
-          height={20}
-          className="mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300"
-          href="https://twitter.com/shrirambalaji"
-        />
-        <Linkedin
-          width={20}
-          height={20}
-          className="mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400"
-          href="https://linkedin.com/in/shrirambalaji"
-        />
-      </ul>
-    </nav>
+    </>
   );
 };
 
-type NavbarProps = {
-  isMobileMenuHidden: boolean;
-  onHideMobileMenu: any;
+export const Menu = () => {
+  const { isMenuOpen } = useMenuStore((state) => state);
+
+  return (
+    <AnimatePresence>
+      {isMenuOpen && (
+        <motion.nav
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          aria-labelledby="mobile sidebar menu"
+          className={cn(
+            "backdrop-blur-50 opacity-1 absolute top-0  left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-visible bg-white px-8 pt-28 dark:bg-ghostindigo-900 md:hidden"
+          )}
+        >
+          <motion.ul className={cn("flex w-full flex-col gap-2")}>
+            <MobileNavItem href="/" text="Home" />
+            <MobileNavItem href="/talks" text="Talks" />
+            <MobileNavItem href="/uses" text="Uses" />
+            <MobileNavItem href="https://blog.shrirambalaji.dev" text="Blog" />
+          </motion.ul>
+          <motion.ul className="absolute bottom-5 flex gap-5">
+            <GitHub
+              width={30}
+              height={30}
+              className="mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300"
+              href="https://github.com/shrirambalaji"
+            />
+            <Twitter
+              width={30}
+              height={30}
+              className="mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300"
+              href="https://twitter.com/shrirambalaji"
+            />
+            <Linkedin
+              width={30}
+              height={30}
+              className="mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400"
+              href="https://linkedin.com/in/shrirambalaji"
+            />
+          </motion.ul>
+        </motion.nav>
+      )}
+    </AnimatePresence>
+  );
 };
 
-export const Navbar = ({
-  isMobileMenuHidden,
-  onHideMobileMenu,
-}: NavbarProps) => {
+export const Navbar = () => {
+  const { toggleMenu } = useMenuStore((state) => state);
   return (
     <nav
-      className="mx-u relative z-20 mx-auto flex w-full max-w-3xl items-center justify-between border-gray-200 bg-opacity-60 pt-8 pb-8 text-gray-900 dark:border-gray-700 dark:bg-ghostindigo-900  dark:text-gray-100 md:items-center"
+      className="mx-u relative z-50 mx-auto flex w-full max-w-3xl items-center justify-between border-gray-200 bg-opacity-60 pt-8 pb-8 text-gray-900 dark:border-gray-700 dark:bg-ghostindigo-900  dark:text-gray-100 md:items-center"
       aria-labelledby="main navigation bar"
     >
       <MenuButton
-        onClick={() => onHideMobileMenu(!isMobileMenuHidden)}
+        onClick={() => toggleMenu()}
         iconProps={{ width: 20, height: 20 }}
-        className="mr-auto mt-[-0.5px]  inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
+        className="mr-auto mt-[-0.5px] ml-[-10px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
       />
-      <ul className="md:opacity-1 hidden opacity-0 md:flex">
+      <ul className="hidden gap-3 md:flex">
         <NavItem href="/" text="Home" />
         <NavItem href="/talks" text="Talks" />
         <NavItem href="/uses" text="Uses" />
