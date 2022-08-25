@@ -1,16 +1,21 @@
-import { PropsWithChildren, useState } from "react";
-import { Navbar, MobileMenu } from "./Navbar";
+import { PropsWithChildren } from "react";
+import { useMenuStore } from "../state";
+import { Menu, Navbar } from "./Navbar";
+import cn from "classnames";
 
 export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
-  const [hidden, setHiddenMobileMenu] = useState(true);
+  const { isMenuOpen } = useMenuStore((state) => state);
+
   return (
     <>
-      <div className="container mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8 md:px-4">
-        <Navbar
-          isMobileMenuHidden={hidden}
-          onHideMobileMenu={setHiddenMobileMenu}
-        />
-        <MobileMenu hidden={hidden} onHide={setHiddenMobileMenu} />
+      <div
+        className={cn(
+          isMenuOpen && "fixed max-h-full overflow-y-hidden",
+          "container mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8 md:px-4"
+        )}
+      >
+        <Navbar />
+        <Menu />
         {children}
       </div>
     </>
