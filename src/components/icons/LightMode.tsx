@@ -3,8 +3,8 @@ export const LightMode = () => {
     <svg
       fill="none"
       viewBox="0 0 24 24"
-      width="24"
-      height="24"
+      width="22"
+      height="22"
       stroke="currentColor"
     >
       <path
