@@ -23,7 +23,7 @@ export const ThemeSwitch = (
       role="button"
       aria-label="Toggle Dark Mode"
       className={cn(
-        "cursor-pointer rounded-lg p-2 text-center text-current hover:bg-ghostindigo-50 hover:dark:bg-ghostindigo-800",
+        "cursor-pointer rounded-lg p-2 text-center text-current hover:bg-gray-100 hover:dark:bg-ghostindigo-800",
         className
       )}
       tabIndex={0}

@@ -17,7 +17,7 @@ module.exports = {
         mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
       },
       boxShadow: {
-        "3xl": "0px 0px 50px 0px #66668F",
+        "3xl": "0px 0px 30px 0px #111118",
       },
       colors: {
         // generated using tailwindshades.com
