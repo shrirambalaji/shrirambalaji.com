@@ -18,27 +18,30 @@ type Work = {
 
 type HomePageProps = {
   work: Work[];
+  bio: {
+    name: string;
+    about: string;
+  };
 };
 
 const Home: NextPage<HomePageProps> = (props) => {
-  const { work } = props;
-
+  const { work, bio } = props;
+  const currentJob = work[0];
   return (
     <PageContainer>
       <div className="flex flex-col-reverse items-start md:flex-row">
-        <section className="flex w-full flex-col gap-2.5 pr-8">
+        <section className="flex w-full flex-col gap-3 md:placeholder:pr-8">
           <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
-            Shriram Balaji
+            {bio.name}
           </h1>
-          <h2 className="inline-flex items-center tracking-wide text-gray-800 dark:text-gray-300 md:text-xl">
-            Software Engineer II at
+          <h2 className="inline-flex items-center text-[16px] tracking-wide text-gray-800 dark:text-gray-300 md:text-xl">
+            {currentJob.title} at
             <span className="ml-2 inline-flex items-center gap-1.5 font-bold tracking-wide text-gray-800 dark:text-gray-300">
-              <MicrosoftLogo />
+              {currentJob.company === "Microsoft" && <MicrosoftLogo />}
             </span>
           </h2>
           <p className="tracking-wide text-gray-500 dark:text-gray-400">
-            Dabbling with things on the interwebs and striving for software
-            craftsmanship.
+            {bio.about}
           </p>
         </section>
         <section className="z-10 my-7 md:my-0">
@@ -107,6 +110,11 @@ export async function getStaticProps() {
   return {
     props: {
       work,
+      bio: {
+        name: "Shriram Balaji",
+        about:
+          "Dabbling with things on the interwebs and striving for software craftsmanship.",
+      },
     },
   };
 }
