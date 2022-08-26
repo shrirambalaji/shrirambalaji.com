@@ -42,6 +42,7 @@ const ExperienceList = ({ items }: { items: Experience[] }) => {
               <GradientDropShadow />
               <div className="relative flex flex-col items-center rounded-lg border bg-white px-3 py-1 shadow-sm dark:border-ghostindigo-800 dark:bg-ghostindigo-900 md:flex-row md:py-4 md:px-6">
                 <Image
+                  priority={true}
                   className={`w-50 mx-4 mb-2 mt-5 self-start object-cover md:my-6 md:mx-2 ${
                     darkModeInvert ? "dark:invert" : "filter-none"
                   }`}
