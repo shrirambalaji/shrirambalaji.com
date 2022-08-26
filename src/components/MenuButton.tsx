@@ -7,13 +7,14 @@ export const MenuButton = (
     ClassAttributes<HTMLButtonElement> &
     ButtonHTMLAttributes<HTMLButtonElement> & { iconProps: IconProps }
 ) => {
+  const { iconProps, ...buttonProps } = props;
   return (
     <button
-      {...props}
+      {...buttonProps}
       aria-label="Menu Button"
       className={cn(
         "group inline-flex cursor-pointer items-center rounded-lg p-2 px-3  text-center text-current hover:bg-gray-100 hover:dark:bg-ghostindigo-800",
-        props.className
+        buttonProps.className
       )}
       tabIndex={0}
     >
@@ -28,7 +29,7 @@ export const MenuButton = (
         strokeLinecap="round"
         strokeLinejoin="round"
         className="feather feather-menu"
-        {...props.iconProps}
+        {...iconProps}
       >
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="6" x2="21" y2="6"></line>
