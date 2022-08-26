@@ -2,6 +2,7 @@ import { MDXRemote, MDXRemoteProps } from "next-mdx-remote";
 import { PageContainer } from "../components/PageContainer";
 import { readMDXFile } from "../util/mdx";
 
+// TODO: preload youtube embed iframe
 export default function Talks({ ...props }: MDXRemoteProps) {
   return (
     <PageContainer>
