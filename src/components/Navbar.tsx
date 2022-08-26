@@ -38,6 +38,41 @@ const NavLink = ({ href, text, className, onClick }: NavLinkProps) => {
   );
 };
 
+const SocialLinks = (props: { iconSize: number; className?: string }) => {
+  const { iconSize, className } = props;
+  return (
+    <>
+      <GitHub
+        width={iconSize}
+        height={iconSize}
+        className={cn(
+          "mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300",
+          className
+        )}
+        href="https://github.com/shrirambalaji"
+      />
+      <Twitter
+        width={iconSize}
+        height={iconSize}
+        className={cn(
+          "mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300",
+          className
+        )}
+        href="https://twitter.com/shrirambalaji"
+      />
+      <Linkedin
+        width={iconSize}
+        height={iconSize}
+        className={cn(
+          "mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400",
+          className
+        )}
+        href="https://linkedin.com/in/shrirambalaji"
+      />
+    </>
+  );
+};
+
 const NavItem = (props: NavLinkProps) => {
   return (
     <li>
@@ -67,9 +102,14 @@ const MobileNavItem = (props: NavLinkProps) => {
             )}
             onClick={(e: any) => {
               e.preventDefault();
-              router.push(props.href).then(() => {
+              // avoid route transition when already on current page
+              if (!isActive) {
+                router.push(props.href).then(() => {
+                  hideMenu();
+                });
+              } else {
                 hideMenu();
-              });
+              }
             }}
           />
         </motion.li>
@@ -78,6 +118,7 @@ const MobileNavItem = (props: NavLinkProps) => {
   );
 };
 
+// mobile-only fullscreen menu
 export const Menu = () => {
   const { isMenuOpen } = useMenuStore((state) => state);
 
@@ -89,7 +130,7 @@ export const Menu = () => {
           exit={{ opacity: 0 }}
           aria-labelledby="mobile sidebar menu"
           className={cn(
-            "backdrop-blur-50 opacity-1 absolute top-0  left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-visible bg-white px-8 pt-28 dark:bg-ghostindigo-900 md:hidden"
+            "backdrop-blur-50 opacity-1 absolute top-0  left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-visible bg-white px-6 pt-28 dark:bg-ghostindigo-900 md:hidden"
           )}
         >
           <motion.ul className={cn("flex w-full flex-col gap-2")}>
@@ -99,24 +140,7 @@ export const Menu = () => {
             <MobileNavItem href="https://blog.shrirambalaji.dev" text="Blog" />
           </motion.ul>
           <motion.ul className="absolute bottom-5 flex gap-5">
-            <GitHub
-              width={30}
-              height={30}
-              className="mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300"
-              href="https://github.com/shrirambalaji"
-            />
-            <Twitter
-              width={30}
-              height={30}
-              className="mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300"
-              href="https://twitter.com/shrirambalaji"
-            />
-            <Linkedin
-              width={30}
-              height={30}
-              className="mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400"
-              href="https://linkedin.com/in/shrirambalaji"
-            />
+            <SocialLinks iconSize={30} />
           </motion.ul>
         </motion.nav>
       )}
@@ -136,31 +160,14 @@ export const Navbar = () => {
         iconProps={{ width: 20, height: 20 }}
         className="mr-auto mt-[-0.5px] ml-[-10px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
       />
-      <ul className="hidden gap-3 md:flex">
+      <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">
         <NavItem href="/" text="Home" />
         <NavItem href="/talks" text="Talks" />
         <NavItem href="/uses" text="Uses" />
         <NavItem href="https://blog.shrirambalaji.dev" text="Blog" />
       </ul>
       <ul className="flex items-center justify-center gap-4">
-        <GitHub
-          width={20}
-          height={20}
-          className="mr-0 hidden fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300 md:inline-block"
-          href="https://github.com/shrirambalaji"
-        />
-        <Twitter
-          width={20}
-          height={20}
-          className="mr-0 mt-[-0.5px] hidden fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300 md:inline-block"
-          href="https://twitter.com/shrirambalaji"
-        />
-        <Linkedin
-          width={20}
-          height={20}
-          className="mr-0 mt-[-0.75px] hidden fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400 md:inline-block"
-          href="https://linkedin.com/in/shrirambalaji"
-        />
+        <SocialLinks className="hidden md:inline-block" iconSize={20} />
         <ThemeSwitch className="ml-auto mr-0 md:mr-[2.65rem]" />
       </ul>
     </nav>
