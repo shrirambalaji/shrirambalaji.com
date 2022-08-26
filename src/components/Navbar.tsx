@@ -75,7 +75,7 @@ const SocialLinks = (props: { iconSize: number; className?: string }) => {
 
 const NavItem = (props: NavLinkProps) => {
   return (
-    <li>
+    <li tabIndex={0}>
       <NavLink {...props} />
     </li>
   );

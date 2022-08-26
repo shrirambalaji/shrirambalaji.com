@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes, ClassAttributes, SVGProps } from "react";
 import cn from "classnames";
-import NextLink from "next/link";
 
 type IconProps = JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>;
 export const MenuButton = (

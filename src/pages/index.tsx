@@ -38,7 +38,11 @@ const ExperienceList = ({ items }: { items: Experience[] }) => {
           darkModeInvert,
         }) => {
           return (
-            <li key={company} className="group relative cursor-pointer">
+            <li
+              key={company}
+              className="group relative cursor-pointer"
+              tabIndex={0}
+            >
               <GradientDropShadow />
               <div className="relative flex flex-col items-center rounded-lg border bg-white px-3 py-1 shadow-sm dark:border-ghostindigo-800 dark:bg-ghostindigo-900 md:flex-row md:py-4 md:px-6">
                 <Image
@@ -79,17 +83,20 @@ const Home: NextPage<HomePageProps> = (props) => {
   return (
     <PageContainer>
       <div className="flex  flex-col-reverse items-start md:flex-row">
-        <section className="mt-7 flex w-full flex-col gap-3 md:placeholder:pr-8">
+        <section
+          className="mt-7 flex w-full flex-col gap-3 md:placeholder:pr-8"
+          role={"contentinfo"}
+        >
           <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
             {bio.name}
           </h1>
-          <h2 className="inline-flex items-center text-lg tracking-wide text-gray-800 dark:text-gray-300 md:text-xl">
+          <h2 className="text-md inline-flex items-center tracking-wide text-gray-800 dark:text-gray-300 md:text-xl">
             {currentWorkplace.title} at
             <span className="ml-2 inline-flex items-center gap-1.5 font-bold tracking-wide text-gray-800 dark:text-gray-300">
               {currentWorkplace.company === "Microsoft" && <MicrosoftLogo />}
             </span>
           </h2>
-          <p className="text-lg tracking-wide text-gray-500 dark:text-gray-400 md:text-sm">
+          <p className="text-md tracking-wide text-gray-500 dark:text-gray-400 md:text-sm">
             {bio.about}
           </p>
         </section>
