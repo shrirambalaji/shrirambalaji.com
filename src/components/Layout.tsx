@@ -10,8 +10,8 @@ export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
     <>
       <div
         className={cn(
-          isMenuOpen && "absolute max-h-full overflow-y-hidden",
-          "container mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8 md:px-4"
+          isMenuOpen && "fixed max-h-screen overflow-y-hidden",
+          "container relative mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8 md:px-4"
         )}
       >
         <Navbar />
