@@ -130,7 +130,7 @@ export const Menu = () => {
           exit={{ opacity: 0 }}
           aria-labelledby="mobile sidebar menu"
           className={cn(
-            "backdrop-blur-50 opacity-1 absolute top-0  left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-visible bg-white px-6 pt-28 dark:bg-ghostindigo-900 md:hidden"
+            "backdrop-blur-50 opacity-1 absolute top-0  left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-y-hidden bg-white px-6 pt-28 dark:bg-ghostindigo-900 md:hidden"
           )}
         >
           <motion.ul className={cn("flex w-full flex-col gap-2")}>
@@ -139,7 +139,7 @@ export const Menu = () => {
             <MobileNavItem href="/uses" text="Uses" />
             <MobileNavItem href="https://blog.shrirambalaji.dev" text="Blog" />
           </motion.ul>
-          <motion.ul className="absolute bottom-5 flex gap-5">
+          <motion.ul className="absolute bottom-5 flex gap-3">
             <SocialLinks iconSize={30} />
           </motion.ul>
         </motion.nav>
