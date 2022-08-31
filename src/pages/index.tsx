@@ -44,10 +44,10 @@ const ExperienceList = ({ items }: { items: Experience[] }) => {
               tabIndex={0}
             >
               <GradientDropShadow />
-              <div className="relative flex flex-col items-center rounded-lg border bg-white px-3 py-1 shadow-sm dark:border-ghostindigo-800 dark:bg-ghostindigo-900 md:flex-row md:py-4 md:px-6">
+              <div className="relative flex flex-col items-center rounded-lg border bg-white px-2 py-1 shadow-sm dark:border-ghostindigo-800 dark:bg-ghostindigo-900 md:flex-row md:py-4 md:px-6">
                 <Image
                   priority={true}
-                  className={`w-50 mx-4 mb-2 mt-5 self-start object-cover md:my-6 md:mx-2 ${
+                  className={`w-30 mx-4 mb-2 mt-5 self-start object-cover md:my-6 md:mx-2 ${
                     darkModeInvert ? "dark:invert" : "filter-none"
                   }`}
                   src={image as string}
@@ -57,14 +57,14 @@ const ExperienceList = ({ items }: { items: Experience[] }) => {
                 />
                 <div className="flex flex-col justify-between p-4 leading-normal">
                   <a href={link} className="underline-offset-2 hover:underline">
-                    <h5 className="text-2xl font-semibold text-ghostindigo-900 dark:text-white">
+                    <h5 className="text-xl font-semibold text-ghostindigo-900 dark:text-white md:text-2xl">
                       {company}
                     </h5>
                   </a>
-                  <h6 className="text-md mb-2 text-ghostindigo-800 dark:text-ghostindigo-400 md:text-sm">
+                  <h6 className="mb mb-2 text-sm text-ghostindigo-800 dark:text-ghostindigo-400 md:text-base">
                     {title}
                   </h6>
-                  <p className="mb-3 font-normal leading-8 text-ghostindigo-700 dark:text-gray-400">
+                  <p className="mb-3 text-sm font-normal leading-7 text-ghostindigo-700 dark:text-gray-400 md:text-base md:leading-8 ">
                     {description}
                   </p>
                 </div>
@@ -96,7 +96,7 @@ const Home: NextPage<HomePageProps> = (props) => {
               {currentWorkplace.company === "Microsoft" && <MicrosoftLogo />}
             </span>
           </h2>
-          <p className="text-md tracking-wide text-gray-500 dark:text-gray-400 md:text-sm">
+          <p className="text-md font-light leading-7 tracking-wide text-gray-500 dark:text-gray-400 md:text-sm">
             {bio.about}
           </p>
         </section>
