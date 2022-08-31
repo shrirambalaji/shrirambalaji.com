@@ -12,10 +12,22 @@
   color: var(--color-ghostindigo-900);
 }
 
+.youtube-embed.lyt-activated {
+  @apply transition-shadow duration-300;
+}
+
 .youtube-embed.border-orange {
-  @apply rounded-md border-2 border-orange-100 shadow-[0_0px_30px_-10px_rgba(0,0,0,0.3)] shadow-orange-300;
+  @apply rounded-md border-2 border-orange-100;
+}
+
+.youtube-embed.lyt-activated.border-orange {
+  @apply shadow-2.5xl shadow-orange-300;
 }
 
 .youtube-embed.border-teal {
-  @apply rounded-md border-2 border-teal-100 shadow-[0_0px_30px_-10px_rgba(0,0,0,0.3)] shadow-teal-200;
+  @apply rounded-md border-2 border-teal-100;
+}
+
+.youtube-embed.lyt-activated.border-teal {
+  @apply shadow-2.5xl shadow-teal-300;
 }

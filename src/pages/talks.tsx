@@ -8,7 +8,6 @@ const components = {
   YoutubeEmbed: LiteYouTubeEmbed,
 };
 
-// TODO: preload youtube embed iframe
 export default function Talks({ ...props }: MDXRemoteProps) {
   return (
     <PageContainer>

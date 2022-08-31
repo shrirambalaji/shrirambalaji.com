@@ -17,6 +17,7 @@ module.exports = {
         mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
       },
       boxShadow: {
+        "2.5xl": "0px 0px 30px -10px #111118",
         "3xl": "0px 0px 30px 0px #111118",
       },
       colors: {
