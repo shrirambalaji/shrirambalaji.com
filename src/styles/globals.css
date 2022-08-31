@@ -12,14 +12,10 @@
   color: var(--color-ghostindigo-900);
 }
 
-.youtube-embed {
-  width: auto;
-  height: auto;
+.youtube-embed.border-orange {
+  @apply rounded-md border-2 border-orange-100 shadow-[0_0px_30px_-10px_rgba(0,0,0,0.3)] shadow-orange-300;
 }
 
-@media (min-width: 768px) {
-  .youtube-embed {
-    width: 560px;
-    height: 315px;
-  }
+.youtube-embed.border-teal {
+  @apply rounded-md border-2 border-teal-100 shadow-[0_0px_30px_-10px_rgba(0,0,0,0.3)] shadow-teal-200;
 }

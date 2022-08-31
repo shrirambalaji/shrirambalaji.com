@@ -17,6 +17,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.1.11
   react: 18.1.0
   react-dom: 18.1.0
+  react-lite-youtube-embed: ^2.3.1
   tailwindcss: ^3.1.2
   typescript: 4.7.2
   zustand: ^4.1.1
@@ -31,6 +32,7 @@ dependencies:
   next-themes: 0.2.0_vkp7qrl6hflonk2z5d53f5zgmq
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
+  react-lite-youtube-embed: 2.3.1_ef5jwxihqo6n7gxfmzogljlgcm
   zustand: 4.1.1_react@18.1.0
 
 devDependencies:
@@ -1552,6 +1554,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.1.0
       scheduler: 0.22.0
+    dev: false
+
+  /react-lite-youtube-embed/2.3.1_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-14YlE6iZPHwqaQqSmwfI614qumdVAICU9PFmk34vcGnOfiixFjaATGkOfUd2TA6pFpVMP8DT2/l9ebu5/aKeag==}
+    peerDependencies:
+      react: '>=16.0.8'
+      react-dom: '>=16.0.8'
+    dependencies:
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
     dev: false
 
   /react/18.1.0:
