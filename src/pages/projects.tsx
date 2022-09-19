@@ -24,6 +24,7 @@ export default function Projects(props: ProjectPageProps) {
               >
                 <div className=" flex h-full flex-col bg-white dark:bg-ghostindigo-900 ">
                   <Image
+                    alt={item.title}
                     className="w-full"
                     src={item.image as string}
                     height={127}
