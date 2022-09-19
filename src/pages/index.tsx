@@ -34,8 +34,8 @@ const Home: NextPage<HomePageProps> = (props) => {
             {bio.about}
           </p>
         </section>
-        <section className="">
-          <Avatar className="w-[125px] shadow-3xl shadow-ghostindigo-100 dark:shadow-ghostindigo-700 md:w-[150px]" />
+        <section className="mb-8 md:mb-0">
+          <Avatar className="w-[100px] shadow-3xl shadow-ghostindigo-100 dark:shadow-ghostindigo-700 md:w-[150px]" />
         </section>
       </div>
       <div>
