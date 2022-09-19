@@ -166,7 +166,7 @@ export const Navbar = () => {
         iconProps={{ width: 20, height: 20 }}
         className="mt-[-0.5px] ml-[-10px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
       />
-      <h1 className="mr-auto flex text-lg font-medium tracking-wide text-gray-400 dark:text-gray-200 md:hidden">
+      <h1 className="mr-auto ml-3 flex text-lg font-medium tracking-wide text-black dark:text-gray-200 md:hidden">
         {pageHeading}
       </h1>
       <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">

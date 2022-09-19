@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import { useMenuStore } from "../state";
 import { Menu, Navbar } from "./Navbar";
 import cn from "classnames";
+import Footer from "./Footer";
 
 export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
   const { isMenuOpen } = useMenuStore((state) => state);
@@ -17,6 +18,7 @@ export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
         <Navbar />
         <Menu />
         {children}
+        <Footer />
       </div>
     </>
   );

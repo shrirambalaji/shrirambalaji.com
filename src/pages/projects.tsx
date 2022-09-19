@@ -46,7 +46,7 @@ export default function Projects(props: ProjectPageProps) {
           projects.map((item) => {
             return (
               <a
-                className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-ghostindigo-300/50 shadow-sm transition duration-300 hover:border-indigo-300  hover:shadow-2.5xl hover:shadow-indigo-300/50  dark:border-ghostindigo-700 hover:dark:border-indigo-300 dark:hover:shadow-ghostindigo-500"
+                className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-ghostindigo-300/50 shadow-sm transition duration-300 hover:border-indigo-300  hover:shadow-2.5xl hover:shadow-indigo-300/50  dark:border-ghostindigo-800 hover:dark:border-indigo-300 dark:hover:shadow-ghostindigo-500"
                 href={item.link}
                 key={item.link}
                 tabIndex={0}
