@@ -25,6 +25,11 @@ $ pnpm
 $ pnpm dev
 ```
 
+
+## License
+
+Licensed under the [MIT License](./LICENSE.md). Feel free to use in your own projects, with attribution.
+
 ## Inspiration
 
 The revamp of my portfolio is inspired from the work by:
