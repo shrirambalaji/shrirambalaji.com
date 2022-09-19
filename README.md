@@ -7,12 +7,12 @@
 
 ## Overview
 
-- `util/*` - helpful utilities or code for external services.
-- `pages/api/*` - [API Routes](https://nextjs.org/docs/api-routes/introduction) powering /opengraph endpoint.
-- `content/*` - Markdown / MDX content powering the site.
-- `pages/*` - All other static pages.
-- `public/*` - Static assets including fonts and images.
-- `styles/*` - Some global styles.
+- `public/*` - static assets like images and favicons.
+- `src/util/*` - helpful utilities or code for external services
+- `src/content/*` - static markdown / MDX content powering the site
+- `src/pages/*` - static pages
+- `src/data/*` - data sources & fetcher functions for the site
+- `src/styles/*` - some global styles.
 
 ## Running Locally
 
