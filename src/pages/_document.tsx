@@ -14,14 +14,23 @@ export default function Document() {
           content="#fff"
           media="(prefers-color-scheme: light)"
         />
+        <meta property="og:url" content="https://www.shrirambalaji.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Github" />
+        <meta property="og:description" content="Shriram Balaji's Portfolio" />
         <meta
           property="og:image"
           content="https://og.shrirambalaji.com/api/images?title=shrirambalaji.com&hideUsername=true&center=true&backgroundImageURL=https://www.raycast.com/uploads/wallpapers/moonrise-preview.png&backgroundOverlayOpacity=0.1"
-        ></meta>
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="shrirambalaji.com" />
+        <meta property="twitter:url" content="https://www.shrirambalaji.com/" />
+        <meta name="twitter:title" content="Github" />
+        <meta name="twitter:description" content="Shriram Balaji's Portfolio" />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://og.shrirambalaji.com/api/images?title=shrirambalaji.com&hideUsername=true&center=true&backgroundImageURL=https://www.raycast.com/uploads/wallpapers/moonrise-preview.png&backgroundOverlayOpacity=0.1"
-        ></meta>
+        />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
