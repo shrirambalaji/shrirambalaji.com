@@ -16,9 +16,4 @@ module.exports = withBundleAnalyzer({
       "shrirambalaji.com",
     ],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
 });
