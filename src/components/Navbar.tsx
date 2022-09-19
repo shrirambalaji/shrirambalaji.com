@@ -149,7 +149,12 @@ export const Menu = () => {
   );
 };
 
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
 export const Navbar = () => {
+  const router = useRouter();
+  const path = router.asPath === "/" ? "home" : router.asPath.slice(1).trim();
+  const pageHeading = capitalize(path) ?? "Home";
   const { toggleMenu } = useMenuStore((state) => state);
   return (
     <nav
@@ -159,8 +164,11 @@ export const Navbar = () => {
       <MenuButton
         onClick={() => toggleMenu()}
         iconProps={{ width: 20, height: 20 }}
-        className="mr-auto mt-[-0.5px] ml-[-10px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
+        className="mt-[-0.5px] ml-[-10px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
       />
+      <h1 className="mr-auto flex text-lg font-medium tracking-wide text-gray-400 dark:text-gray-200 md:hidden">
+        {pageHeading}
+      </h1>
       <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">
         <NavItem href="/" text="Home" />
         <NavItem href="/talks" text="Talks" />
