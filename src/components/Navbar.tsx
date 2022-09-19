@@ -75,7 +75,7 @@ const SocialLinks = (props: { iconSize: number; className?: string }) => {
 
 const NavItem = (props: NavLinkProps) => {
   return (
-    <li tabIndex={0}>
+    <li>
       <NavLink {...props} />
     </li>
   );
@@ -137,6 +137,7 @@ export const Menu = () => {
             <MobileNavItem href="/" text="Home" />
             <MobileNavItem href="/talks" text="Talks" />
             <MobileNavItem href="/uses" text="Uses" />
+            <MobileNavItem href="/projects" text="Projects" />
             <MobileNavItem href="https://blog.shrirambalaji.dev" text="Blog" />
           </motion.ul>
           <motion.ul className="absolute bottom-5 flex gap-3">
@@ -152,7 +153,7 @@ export const Navbar = () => {
   const { toggleMenu } = useMenuStore((state) => state);
   return (
     <nav
-      className="mx-u relative z-50 mx-auto flex w-full max-w-3xl items-center justify-between border-gray-200 bg-opacity-60 pt-8 pb-8 text-gray-900 dark:border-gray-700 dark:bg-ghostindigo-900  dark:text-gray-100 md:items-center"
+      className="mx-u relative z-50 mx-auto flex w-full max-w-3xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 pt-8 pb-8 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
       aria-labelledby="main navigation bar"
     >
       <MenuButton
@@ -164,11 +165,12 @@ export const Navbar = () => {
         <NavItem href="/" text="Home" />
         <NavItem href="/talks" text="Talks" />
         <NavItem href="/uses" text="Uses" />
+        <NavItem href="/projects" text="Projects" />
         <NavItem href="https://blog.shrirambalaji.dev" text="Blog" />
       </ul>
       <ul className="flex items-center justify-center gap-4">
         <SocialLinks className="hidden md:inline-block" iconSize={20} />
-        <ThemeSwitch className="ml-auto mr-0 md:mr-[2.65rem]" />
+        <ThemeSwitch className="ml-auto mr-0" />
       </ul>
     </nav>
   );
