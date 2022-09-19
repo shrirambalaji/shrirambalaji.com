@@ -14,6 +14,14 @@ export default function Document() {
           content="#fff"
           media="(prefers-color-scheme: light)"
         />
+        <meta
+          property="og:image"
+          content="https://og.shrirambalaji.com/api/images?title=shrirambalaji.com&hideUsername=true&center=true&backgroundImageURL=https://www.raycast.com/uploads/wallpapers/moonrise-preview.png&backgroundOverlayOpacity=0.1"
+        ></meta>
+        <meta
+          property="twitter:image"
+          content="https://og.shrirambalaji.com/api/images?title=shrirambalaji.com&hideUsername=true&center=true&backgroundImageURL=https://www.raycast.com/uploads/wallpapers/moonrise-preview.png&backgroundOverlayOpacity=0.1"
+        ></meta>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
