@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .light *::selection {
-  background-color: var(--color-indigo-500);
+  background-color: var(--color-indigo-400);
   color: var(--color-gray-50);
 }
 
