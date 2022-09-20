@@ -11,7 +11,7 @@ export const Linkedin = (
         role="link"
         aria-label="Shriram's Linkedin profile"
         className={cn(
-          "group inline-flex cursor-pointer items-center p-2 px-3 text-center text-current",
+          "group inline-flex cursor-pointer items-center rounded-lg p-2 px-3 text-center text-current",
           props.className
         )}
         tabIndex={0}
