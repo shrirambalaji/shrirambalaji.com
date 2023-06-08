@@ -1,7 +1,7 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote";
 import { PageContainer } from "../components/PageContainer";
 import { readMDXFile } from "../util/mdx";
-import Image from "next/future/image";
+import Image from "next/image";
 import { getPlaiceholder, IGetPlaiceholderReturn } from "plaiceholder";
 
 interface ImageProps extends Partial<IGetPlaiceholderReturn> {

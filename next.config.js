@@ -9,6 +9,7 @@ module.exports = withBundleAnalyzer({
     domains: [
       "avatars.githubusercontent.com",
       "beta.reactjs.org",
+      "react.dev",
       "excalidraw.com",
       "og.shrirambalaji.com",
       "opengraph.githubassets.com",

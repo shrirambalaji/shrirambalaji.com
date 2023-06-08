@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import cn from "classnames";
 
 export const Avatar = ({ className }: { className: string }) => {

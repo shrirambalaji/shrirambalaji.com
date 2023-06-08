@@ -6,7 +6,7 @@ export const Linkedin = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement> & { href: string }
 ) => {
   return (
-    <NextLink href={props.href}>
+    <NextLink href={props.href} legacyBehavior>
       <span
         role="link"
         aria-label="Shriram's Linkedin profile"

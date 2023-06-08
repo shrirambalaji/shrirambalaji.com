@@ -21,20 +21,26 @@ export default function Footer() {
       <hr className="border-1 mb-6 w-full border-ghostindigo-200/20 dark:border-ghostindigo-800/20" />
       <div className="mx-auto grid w-full grid-cols-1 items-start justify-center gap-4 pb-8 sm:grid-cols-3">
         <div className="flex flex-col space-y-5">
-          <Link href="/">
-            <a className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+          <Link
+            href="/"
+            className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+            
               Home
-            </a>
+            
           </Link>
-          <Link href="/talks">
-            <a className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+          <Link
+            href="/talks"
+            className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+            
               Talks
-            </a>
+            
           </Link>
-          <Link href="/projects">
-            <a className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+          <Link
+            href="/projects"
+            className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+            
               Projects
-            </a>
+            
           </Link>
         </div>
         <div className="flex flex-col space-y-5">
@@ -49,10 +55,12 @@ export default function Footer() {
           </ExternalLink>
         </div>
         <div className="flex flex-col space-y-5">
-          <Link href="/uses">
-            <a className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+          <Link
+            href="/uses"
+            className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
+            
               Uses
-            </a>
+            
           </Link>
           <ExternalLink href="https://timeline.shrirambalaji.com">
             Timeline
