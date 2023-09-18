@@ -137,7 +137,7 @@ export const Menu = () => {
             <MobileNavItem href="/talks" text="Talks" />
             <MobileNavItem href="/uses" text="Uses" />
             <MobileNavItem href="/projects" text="Projects" />
-            <MobileNavItem href="https://blog.shrirambalaji.dev" text="Blog" />
+            <MobileNavItem href="https://blog.shrirambalaji.com" text="Blog" />
           </motion.ul>
           <motion.ul className="absolute bottom-5 flex gap-3">
             <SocialLinks iconSize={30} />
@@ -173,7 +173,7 @@ export const Navbar = () => {
         <NavItem href="/talks" text="Talks" />
         <NavItem href="/uses" text="Uses" />
         <NavItem href="/projects" text="Projects" />
-        <NavItem href="https://blog.shrirambalaji.dev" text="Blog" />
+        <NavItem href="https://blog.shrirambalaji.com" text="Blog" />
       </ul>
       <ul className="flex items-center justify-center gap-4">
         <SocialLinks className="hidden md:inline-block" iconSize={20} />
