@@ -24,23 +24,23 @@ export default function Footer() {
           <Link
             href="/"
             className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
-            
-              Home
-            
+
+            Home
+
           </Link>
           <Link
             href="/talks"
             className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
-            
-              Talks
-            
+
+            Talks
+
           </Link>
           <Link
             href="/projects"
             className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
-            
-              Projects
-            
+
+            Projects
+
           </Link>
         </div>
         <div className="flex flex-col space-y-5">
@@ -58,14 +58,14 @@ export default function Footer() {
           <Link
             href="/uses"
             className="text-sm text-gray-500 transition hover:text-gray-600 dark:text-ghostindigo-300 dark:hover:text-ghostindigo-500">
-            
-              Uses
-            
+
+            Uses
+
           </Link>
           <ExternalLink href="https://timeline.shrirambalaji.com">
             Timeline
           </ExternalLink>
-          <ExternalLink href="https://blog.shrirambalaji.dev">
+          <ExternalLink href="https://blog.shrirambalaji.com">
             Blog
           </ExternalLink>
         </div>
