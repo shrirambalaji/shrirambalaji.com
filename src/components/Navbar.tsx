@@ -8,6 +8,7 @@ import { Twitter } from "./icons/Twitter";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { useMenuStore } from "../state";
 import { AnimatePresence, motion, Variants } from "framer-motion";
+import { capitalize } from "../util/capitalize";
 
 type NavLinkProps = {
   href: string;
@@ -41,33 +42,39 @@ const SocialLinks = (props: { iconSize: number; className?: string }) => {
   const { iconSize, className } = props;
   return (
     <>
-      <GitHub
-        width={iconSize}
-        height={iconSize}
-        className={cn(
-          "mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300",
-          className
-        )}
-        href="https://github.com/shrirambalaji"
-      />
-      <Twitter
-        width={iconSize}
-        height={iconSize}
-        className={cn(
-          "mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300",
-          className
-        )}
-        href="https://twitter.com/shrirambalaji"
-      />
-      <Linkedin
-        width={iconSize}
-        height={iconSize}
-        className={cn(
-          "mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400",
-          className
-        )}
-        href="https://linkedin.com/in/shrirambalaji"
-      />
+      <li>
+        <GitHub
+          width={iconSize}
+          height={iconSize}
+          className={cn(
+            "mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300",
+            className
+          )}
+          href="https://github.com/shrirambalaji"
+        />
+      </li>
+      <li>
+        <Twitter
+          width={iconSize}
+          height={iconSize}
+          className={cn(
+            "mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300",
+            className
+          )}
+          href="https://twitter.com/shrirambalaji"
+        />
+      </li>
+      <li>
+        <Linkedin
+          width={iconSize}
+          height={iconSize}
+          className={cn(
+            "mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400",
+            className
+          )}
+          href="https://linkedin.com/in/shrirambalaji"
+        />
+      </li>
     </>
   );
 };
@@ -148,7 +155,6 @@ export const Menu = () => {
   );
 };
 
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export const Navbar = () => {
   const router = useRouter();

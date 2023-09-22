@@ -19,8 +19,7 @@ export const ThemeSwitch = (
   const isDarkMode = mounted && (theme === "dark" || resolvedTheme === "dark");
 
   return (
-    <span
-      role="button"
+    <li
       aria-label="Toggle Dark Mode"
       className={cn(
         "cursor-pointer rounded-lg p-2 text-center text-current hover:bg-gray-100 hover:dark:bg-ghostindigo-800",
@@ -32,7 +31,9 @@ export const ThemeSwitch = (
         if (e.key === "Enter") toggleTheme();
       }}
     >
-      {isDarkMode ? <LightMode /> : <DarkMode />}
-    </span>
+      <span>
+        {isDarkMode ? <LightMode /> : <DarkMode />}
+      </span>
+    </li>
   );
 };

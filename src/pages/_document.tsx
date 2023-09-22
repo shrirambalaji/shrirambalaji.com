@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="en">
       <Head>
         <meta
           name="theme-color"
@@ -17,19 +17,19 @@ export default function Document() {
         <meta property="og:url" content="https://www.shrirambalaji.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Github" />
-        <meta property="og:description" content="Shriram Balaji's Portfolio" />
+        <meta property="og:description" content="Shriram Balaji" />
         <meta
           property="og:image"
-          content="https://og.shrirambalaji.com/api/images?title=shrirambalaji.com&hideUsername=true&center=true&backgroundImageURL=https://www.raycast.com/uploads/wallpapers/moonrise-preview.png&backgroundOverlayOpacity=0.1"
+          content="/og-image.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="shrirambalaji.com" />
         <meta property="twitter:url" content="https://www.shrirambalaji.com/" />
         <meta name="twitter:title" content="Github" />
-        <meta name="twitter:description" content="Shriram Balaji's Portfolio" />
+        <meta name="twitter:description" content="Shriram Balaji" />
         <meta
           name="twitter:image"
-          content="https://og.shrirambalaji.com/api/images?title=shrirambalaji.com&hideUsername=true&center=true&backgroundImageURL=https://www.raycast.com/uploads/wallpapers/moonrise-preview.png&backgroundOverlayOpacity=0.1"
+          content="/og-image.png"
         />
         <link
           rel="apple-touch-icon"
@@ -48,6 +48,7 @@ export default function Document() {
           sizes="16x16"
           href="/favicons/favicon-16x16.png"
         />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
           rel="stylesheet"

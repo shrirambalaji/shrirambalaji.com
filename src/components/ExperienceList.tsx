@@ -34,13 +34,13 @@ export const ExperienceList = ({ items }: { items: Experience[] }) => {
                 />
                 <div className="flex flex-col justify-between p-4 leading-normal">
                   <a href={link} className="underline-offset-2 hover:underline">
-                    <h5 className="text-xl font-semibold text-ghostindigo-900 dark:text-white md:text-2xl">
+                    <p className="text-xl font-semibold text-ghostindigo-900 dark:text-white md:text-2xl">
                       {company}
-                    </h5>
+                    </p>
                   </a>
-                  <h6 className="mb mb-2 text-sm text-ghostindigo-800 dark:text-ghostindigo-400 md:text-base">
+                  <p className="mb mb-2 text-sm text-ghostindigo-800 dark:text-ghostindigo-400 md:text-base">
                     {title}
-                  </h6>
+                  </p>
                   <p className="mb-3 text-sm font-normal leading-7 text-gray-700 dark:text-ghostindigo-200 md:text-base md:leading-8 ">
                     {description}
                   </p>
