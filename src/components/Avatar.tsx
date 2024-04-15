@@ -8,7 +8,7 @@ export const Avatar = ({ className }: { className: string }) => {
       alt="Shriram Balaji"
       height={200}
       width={200}
-      src="/images/avatar.jpg"
+      src="/images/avatar.jpeg"
       className={cn("rounded-full", className)}
     />
   );
