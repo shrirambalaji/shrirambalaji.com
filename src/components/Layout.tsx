@@ -18,7 +18,7 @@ export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
     <>
       <Head>
         <title>{title}</title>
-        <meta name="description" content="Software Engineer at Microsoft, dabbling with things on the interwebs and striving for software craftsmanship." />
+        <meta name="description" content="Software Engineer at Microsoft" />
       </Head>
       <div
         className={cn(

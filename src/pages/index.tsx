@@ -30,12 +30,9 @@ const Home: NextPage<HomePageProps> = (props) => {
               {currentWorkplace.company === "Microsoft" && <MicrosoftLogo />}
             </span>
           </h2>
-          <p className="text-md font-normal leading-7 tracking-wide text-gray-500 dark:text-gray-400 md:text-sm">
-            {bio.about}
-          </p>
         </section>
         <section className="mb-8 md:mb-0">
-          <Avatar className="w-[100px] shadow-3xl shadow-ghostindigo-100 dark:shadow-ghostindigo-700 md:w-[150px]" />
+          <Avatar className="w-[100px] md:w-[150px]" />
         </section>
       </div>
       <div>
