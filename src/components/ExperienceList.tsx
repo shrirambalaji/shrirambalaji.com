@@ -1,5 +1,4 @@
 import { Experience } from "../data";
-import { GradientDropShadow } from "./GradientDropShadow";
 import Image from "next/image";
 
 export const ExperienceList = ({ items }: { items: Experience[] }) => {
