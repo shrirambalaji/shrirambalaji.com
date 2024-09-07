@@ -3,13 +3,11 @@
 @tailwind utilities;
 
 .light *::selection {
-  background-color: var(--color-indigo-400);
-  color: var(--color-gray-50);
+  background-color: hsl(234, 100%, 90%);
 }
 
 .dark *::selection {
-  background-color: var(--color-indigo-200);
-  color: var(--color-ghostindigo-900);
+  background-color: hsl(234, 30%, 30%) !important;
 }
 
 .youtube-embed.lyt-activated {
@@ -22,6 +20,14 @@
 
 .youtube-embed.lyt-activated.border-orange {
   @apply shadow-2.5xl shadow-orange-300;
+}
+
+.youtube-embed.border-amber {
+  @apply rounded-md border-2 border-amber-200;
+}
+
+.youtube-embed.lyt-activated.border-amber {
+  @apply shadow-2.5xl shadow-amber-300;
 }
 
 .youtube-embed.border-teal {
