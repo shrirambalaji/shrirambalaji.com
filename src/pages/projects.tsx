@@ -40,21 +40,25 @@ const Tags = ({ items }: { items: string[] }) => {
 export default function Projects(props: ProjectPageProps) {
   const { projects } = props;
   return (
-    <PageContainer>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <PageContainer description="Here are some of my projects and open-source contributions">
+      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {projects &&
           projects.map((item) => {
             return (
-              <a
+              <li
                 className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-ghostindigo-300/50 shadow-sm transition duration-300 hover:border-indigo-300  hover:shadow-2.5xl hover:shadow-indigo-300/50  dark:border-ghostindigo-800 hover:dark:border-indigo-300 dark:hover:shadow-ghostindigo-500"
-                href={item.link}
+                onClick={() => window.open(item.link, "_blank")}
                 key={item.link}
                 tabIndex={0}
+                suppressHydrationWarning={true}
               >
-                <div className="flex h-full w-full flex-col bg-white dark:bg-ghostindigo-900">
+                <div
+                  className="flex h-full w-full flex-col bg-white dark:bg-ghostindigo-900"
+                  suppressHydrationWarning={true}
+                >
                   <Image
                     alt={item.title}
-                    className="w-full"
+                    className="h-[200px] w-full object-cover"
                     src={item.image as string}
                     height={150}
                     width={300}
@@ -75,10 +79,10 @@ export default function Projects(props: ProjectPageProps) {
                     </ul>
                   </div>
                 </div>
-              </a>
+              </li>
             );
           })}
-      </div>
+      </ul>
     </PageContainer>
   );
 }
