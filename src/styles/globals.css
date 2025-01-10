@@ -37,3 +37,11 @@
 .youtube-embed.lyt-activated.border-teal {
   @apply shadow-2.5xl shadow-teal-300;
 }
+
+.youtube-embed.border-indigo {
+  @apply rounded-md border-2 border-indigo-300;
+}
+
+.youtube-embed.lyt-activated.border-indigo {
+  @apply shadow-2.5xl shadow-indigo-300;
+}
