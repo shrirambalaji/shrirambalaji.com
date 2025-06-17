@@ -37,52 +37,111 @@ const Tags = ({ items }: { items: string[] }) => {
   );
 };
 
+const Description = ({ text }: { text: string }) => {
+  const parts = text.split('`');
+
+  return (
+    <p className="pt-3 text-sm leading-7 text-ghostindigo-500 dark:text-ghostindigo-100">
+      {parts.map((part, index) => {
+        // Every odd index is content that was within backticks
+        if (index % 2 === 1) {
+          return (
+            <code
+              key={index}
+              className="px-1 py-0.5 rounded text-sm font-mono"
+            >
+              {part}
+            </code>
+          );
+        }
+        return part;
+      })}
+    </p>
+  );
+};
+
+const ProjectCard = ({ item }: { item: Project }) => {
+  return (
+    <li
+      className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-ghostindigo-300/50 shadow-sm transition duration-300 hover:border-indigo-300  hover:shadow-2.5xl hover:shadow-indigo-300/50  dark:border-ghostindigo-800 hover:dark:border-indigo-300 dark:hover:shadow-ghostindigo-500"
+      onClick={() => window.open(item.link, "_blank")}
+      key={item.link}
+      tabIndex={0}
+      suppressHydrationWarning={true}
+    >
+      <div
+        className="flex h-full w-full flex-col bg-white dark:bg-ghostindigo-900"
+        suppressHydrationWarning={true}
+      >
+        <Image
+          alt={item.title}
+          className="h-[200px] w-full object-cover"
+          src={item.image as string}
+          height={150}
+          width={300}
+          priority
+        />
+        <div className="flex-1 px-5 py-5">
+          <a
+            href={item.link}
+            className="inline-block text-xl font-semibold leading-tight no-underline dark:text-ghostindigo-100 "
+          >
+            <span className="leading-5">{item.title}</span>
+          </a>
+          <Description text={item.description} />
+          <ul className="sticky mt-4 mb-2 flex gap-1">
+            {item.tags?.length && <Tags items={item.tags} />}
+          </ul>
+        </div>
+      </div>
+    </li>
+  );
+};
+
 export default function Projects(props: ProjectPageProps) {
   const { projects } = props;
+
+  const { oss: oss, sideProjects: sideProjects } = projects.reduce(
+    (acc, project) => {
+      if (project.tags?.includes('oss')) {
+        acc.oss.push(project);
+      } else {
+        acc.sideProjects.push(project);
+      }
+      return acc;
+    },
+    { oss: [] as Project[], sideProjects: [] as Project[] }
+  );
+
   return (
-    <PageContainer description="Here are some of my projects and open-source contributions">
-      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {projects &&
-          projects.map((item) => {
-            return (
-              <li
-                className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-ghostindigo-300/50 shadow-sm transition duration-300 hover:border-indigo-300  hover:shadow-2.5xl hover:shadow-indigo-300/50  dark:border-ghostindigo-800 hover:dark:border-indigo-300 dark:hover:shadow-ghostindigo-500"
-                onClick={() => window.open(item.link, "_blank")}
-                key={item.link}
-                tabIndex={0}
-                suppressHydrationWarning={true}
-              >
-                <div
-                  className="flex h-full w-full flex-col bg-white dark:bg-ghostindigo-900"
-                  suppressHydrationWarning={true}
-                >
-                  <Image
-                    alt={item.title}
-                    className="h-[200px] w-full object-cover"
-                    src={item.image as string}
-                    height={150}
-                    width={300}
-                    priority
-                  />
-                  <div className="flex-1 px-5 py-5">
-                    <a
-                      href={item.link}
-                      className="inline-block text-xl font-semibold leading-tight no-underline dark:text-ghostindigo-100 "
-                    >
-                      <span className="leading-5">{item.title}</span>
-                    </a>
-                    <p className="pt-3 text-sm leading-7 text-ghostindigo-500 dark:text-ghostindigo-100">
-                      {item.description}
-                    </p>
-                    <ul className="sticky mt-4 mb-2 flex gap-1">
-                      {item.tags?.length && <Tags items={item.tags} />}
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-      </ul>
+    <PageContainer>
+      {sideProjects.length > 0 && (
+        <section>
+          <h2 className="mb-6 text-xl font-bold text-ghostindigo-900 dark:text-white">
+            Projects
+          </h2>
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {sideProjects.map((item) => (
+              <ProjectCard key={item.link} item={item} />
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {oss.length > 0 && (
+        <section className="mb-12">
+          <h2 className="mb-6 text-xl font-bold text-ghostindigo-900 dark:text-white">
+            Open Source Contributions
+          </h2>
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {oss.map((item) => (
+              <ProjectCard key={item.link} item={item} />
+            ))}
+          </ul>
+        </section>
+      )}
+
+
     </PageContainer>
   );
 }
