@@ -47,7 +47,7 @@ const SocialLinks = (props: { iconSize: number; className?: string }) => {
           width={iconSize}
           height={iconSize}
           className={cn(
-            "mr-0 fill-black group-hover:fill-indigo-500 dark:fill-white dark:group-hover:fill-indigo-300",
+            "mr-0 fill-ghostindigo-300 hover:fill-ghostindigo-800 dark:fill-ghostindigo-300 dark:hover:fill-ghostindigo-100 transition-all duration-75 ease-in-out",
             className
           )}
           href="https://github.com/shrirambalaji"
@@ -58,10 +58,10 @@ const SocialLinks = (props: { iconSize: number; className?: string }) => {
           width={iconSize}
           height={iconSize}
           className={cn(
-            "mr-0 mt-[-0.5px] fill-black group-hover:fill-sky-400 dark:fill-white dark:group-hover:fill-sky-300",
+            "mr-0 mt-[-0.5px] fill-ghostindigo-300 hover:fill-ghostindigo-800 dark:fill-ghostindigo-300 dark:hover:fill-ghostindigo-100 transition-all duration-75 ease-in-out",
             className
           )}
-          href="https://twitter.com/shrirambalaji"
+          href="https://x.com/shrirambalaji"
         />
       </li>
       <li>
@@ -69,7 +69,7 @@ const SocialLinks = (props: { iconSize: number; className?: string }) => {
           width={iconSize}
           height={iconSize}
           className={cn(
-            "mr-0 mt-[-0.75px] fill-black group-hover:fill-blue-700 dark:fill-white dark:group-hover:fill-blue-400",
+            "mr-0 mt-[-0.75px] fill-ghostindigo-300 hover:fill-ghostindigo-800 dark:fill-ghostindigo-300 dark:hover:fill-ghostindigo-100 transition-all duration-75 ease-in-out",
             className
           )}
           href="https://linkedin.com/in/shrirambalaji"
@@ -140,11 +140,11 @@ export const Menu = () => {
           )}
         >
           <motion.ul className={cn("flex w-full flex-col gap-2")}>
-            <MobileNavItem href="/" text="Home" />
+            <MobileNavItem href="/" text="About" />
             <MobileNavItem href="/talks" text="Talks" />
             <MobileNavItem href="/uses" text="Uses" />
             <MobileNavItem href="/projects" text="Projects" />
-            <MobileNavItem href="https://blog.shrirambalaji.com" text="Blog" />
+            <MobileNavItem href="https://blog.shrirambalaji.com/posts" text="Blog" />
           </motion.ul>
           <motion.ul className="absolute bottom-5 flex gap-3">
             <SocialLinks iconSize={30} />
@@ -158,33 +158,35 @@ export const Menu = () => {
 
 export const Navbar = () => {
   const router = useRouter();
-  const path = router.asPath === "/" ? "home" : router.asPath.slice(1).trim();
-  const pageHeading = capitalize(path) ?? "Home";
+  const path = router.asPath === "/" ? "about" : router.asPath.slice(1).trim();
+  const pageHeading = capitalize(path) ?? "About";
   const { toggleMenu } = useMenuStore((state) => state);
   return (
-    <nav
-      className="mx-u relative z-50 mx-auto flex w-full max-w-3xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 pt-8 pb-8 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
-      aria-labelledby="main navigation bar"
-    >
-      <MenuButton
-        onClick={() => toggleMenu()}
-        iconProps={{ width: 20, height: 20 }}
-        className="mt-[-0.5px] ml-[-10px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
-      />
-      <h1 className="mr-auto ml-3 flex text-lg font-medium tracking-wide text-black dark:text-gray-200 md:hidden">
-        {pageHeading}
-      </h1>
-      <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">
-        <NavItem href="/" text="Home" />
-        <NavItem href="/talks" text="Talks" />
-        <NavItem href="/uses" text="Uses" />
-        <NavItem href="/projects" text="Projects" />
-        <NavItem href="https://blog.shrirambalaji.com" text="Blog" />
-      </ul>
-      <ul className="flex items-center justify-center gap-4">
-        <SocialLinks className="hidden md:inline-block" iconSize={20} />
-        <ThemeSwitch className="ml-auto mr-0" />
-      </ul>
-    </nav>
+    <header className="fixed inset-x-0 top-0 z-20 h-[60px] bg-white/80 dark:bg-ghostindigo-900/90 backdrop-blur-sm">
+      <nav
+        className="mx-auto flex w-full h-full max-w-5xl dpr35:max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 text-gray-900 dark:border-gray-700 dark:text-gray-100 py-2 px-4 md:px-0 dpr35:px-8 dpr4:max-w-3xl md:items-center"
+        aria-labelledby="main navigation bar"
+      >
+        <MenuButton
+          onClick={() => toggleMenu()}
+          iconProps={{ width: 20, height: 20 }}
+          className="mt-[-0.5px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
+        />
+        <h1 className="mr-auto ml-3 flex text-lg font-medium tracking-wide text-ghostindigo-800 dark:text-gray-200 md:hidden">
+          {pageHeading}
+        </h1>
+        <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">
+          <NavItem href="/" text="About" />
+          <NavItem href="/talks" text="Talks" />
+          <NavItem href="/uses" text="Uses" />
+          <NavItem href="/projects" text="Projects" />
+          <NavItem href="https://blog.shrirambalaji.com/posts" text="Blog" />
+        </ul>
+        <ul className="flex items-center justify-center gap-4">
+          <SocialLinks className="hidden md:inline-block" iconSize={20} />
+          <ThemeSwitch className="ml-auto mr-0" />
+        </ul>
+      </nav>
+    </header>
   );
 };
