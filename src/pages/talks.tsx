@@ -11,7 +11,7 @@ const components = {
 export default function Talks({ ...props }: MDXRemoteProps) {
   return (
     <PageContainer>
-      <div className="prose prose-slate prose-h2:mb-1 prose-h2:font-bold prose-h2:leading-10 prose-h2:tracking-normal prose-h2:text-black prose-a:text-ghostindigo-400 dark:prose-invert  dark:prose-h2:text-indigo-200  dark:prose-a:text-indigo-300 prose-h2:md:mb-4 prose-h2:md:text-2xl">
+      <div className="prose prose-slate prose-h2:mb-1  prose-h2:text-xl prose-h2:tracking-wide prose-h2:font-bold prose-h2:leading-10 prose-h3:text-ghostindigo-800 prose-a:text-ghostindigo-400 dark:prose-invert  dark:prose-h3:text-indigo-200  dark:prose-a:text-indigo-300 prose-h2:md:mb-4 prose-h2:md:text-xl prose-h3:md:text-lg">
         <MDXRemote
           compiledSource={props.compiledSource}
           components={components}
