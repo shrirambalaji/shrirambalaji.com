@@ -1,59 +1,42 @@
 import type { NextPage } from "next";
 import { Avatar } from "../components/Avatar";
-import { MicrosoftLogo } from "../components/icons";
 import { PageContainer } from "../components/PageContainer";
-import type { Bio, Experience } from "../data";
-import { fetchBio, fetchExperience } from "../data";
-import { ExperienceList } from "./../components/ExperienceList";
 
-type HomePageProps = {
-  experience: Experience[];
-  bio: Bio;
-};
 
-const Home: NextPage<HomePageProps> = (props) => {
-  const { experience, bio } = props;
-  const [currentWorkplace] = experience;
+const Home: NextPage = () => {
   return (
-    <PageContainer>
-      <div className="flex  flex-col-reverse items-start md:flex-row">
+    <PageContainer className="md:mb-24">
+      <div className="flex flex-col gap-x-10 gap-y-0 items-start md:flex-row">
+        <section className="mb-8 md:mb-0">
+          <Avatar className="w-[150px]" />
+        </section>
         <section
-          className="flex w-full flex-col gap-3 md:placeholder:pr-8"
+          className="flex flex-col gap-3 md:placeholder:pr-8"
           role={"contentinfo"}
         >
-          <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-900 dark:text-white md:text-5xl">
-            {bio.name}
+          <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-800 dark:text-white md:text-5xl mt-[-2px]">
+            Shriram Balaji
           </h1>
-          <h2 className="text-md inline-flex items-center tracking-wide text-gray-800 dark:text-gray-300 md:text-xl">
-            {currentWorkplace.title} at
-            <span className="ml-2 inline-flex items-center gap-1.5 font-bold tracking-wide text-gray-800 dark:text-gray-300">
-              {currentWorkplace.company === "Microsoft" && <MicrosoftLogo />}
-            </span>
+          <h2 className="text-md inline-flex items-center tracking-wide text-gray-800 dark:text-ghostindigo-100 md:text-xl mt-[-2px]">
+            Senior Software Engineer at <strong>&nbsp;Microsoft</strong>
           </h2>
-        </section>
-        <section className="mb-8 md:mb-0">
-          <Avatar className="w-[100px] md:w-[150px]" />
+          <p className="text-ghostindigo-800 dark:text-ghostindigo-300 tracking-wide leading-8 text-lg">
+            Hello! At Microsoft, I work on an event-driven orchestration layer for the M365 Data & Compute Platform. Previously, I built sizing tools at NetApp & TeamOne messaging systems at Cisco.
+          </p>
         </section>
       </div>
       <div>
-        <h3 className="mb-3 text-lg font-semibold uppercase tracking-widest dark:text-ghostindigo-400">
-          Experience
-        </h3>
-        <ExperienceList items={experience} />
+        <p className="text-ghostindigo-800 dark:text-ghostindigo-200 tracking-wide leading-8 text-lg">
+          I enjoy reading about systems engineering, databases, linkers, distributed systems and more. I occasionally write about my learnings on <a href="https://blog.shrirambalaji.com" className="underline underline-offset-4" target="_blank">the blog</a>. I've given a few <a href="/talks">talks</a> on topics that intrigue me. Recently I'm liking Rust a lot, and try to contribute to open source or build some&nbsp;<a href="/projects" className="underline underline-offset-4" target="_blank">projects</a> that interest me. I really like visual diagramming tools, and spend a lot of time obsessing over tiny details.
+        </p>
+        <br />
+        <p className="text-ghostindigo-800 dark:text-ghostindigo-200 tracking-wide leading-8 text-lg">
+          Reach out to me on <a href="https://twitter.com/shrirambalaji" className="underline underline-offset-4" target="_blank">X</a>, <a href="https://www.linkedin.com/in/shrirambalaji/" className="underline underline-offset-4" target="_blank">LinkedIn</a> or send me an email at <a href="mailto:hello@shrirambalaji.com" className="underline underline-offset-4">hello@shrirambalaji.com</a>. I'm always happy to chat about tech :)
+        </p>
       </div>
     </PageContainer>
   );
 };
 
-export async function getStaticProps() {
-  const experience = await fetchExperience();
-  const bio = await fetchBio();
-  return {
-    props: {
-      experience,
-      bio,
-    },
-  };
-}
 
 export default Home;

@@ -10,8 +10,8 @@ import { capitalize } from "../util/capitalize";
 export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
   const { isMenuOpen } = useMenuStore((state) => state);
   const router = useRouter();
-  const path = router.asPath === "/" ? "home" : router.asPath.slice(1).trim();
-  const pageHeading = capitalize(path) ?? "Home";
+  const path = router.asPath === "/" ? "about" : router.asPath.slice(1).trim();
+  const pageHeading = capitalize(path) ?? "About";
   const title = `${pageHeading} • Shriram Balaji`;
 
   return (
@@ -23,7 +23,7 @@ export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
       <div
         className={cn(
           isMenuOpen && "fixed max-h-screen overflow-y-hidden",
-          "container relative mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8 md:px-4"
+          "container relative mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8"
         )}
       >
         <Navbar />

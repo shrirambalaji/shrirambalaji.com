@@ -36,6 +36,13 @@ module.exports = {
           900: "#111118",
         },
       },
+      screens: {
+        /* High‑DPI breakpoints (useful for detecting browser zoom on Retina) */
+        retina: { raw: "(min-resolution: 2dppx)" }, // ≈125 %–149 % zoom
+        dpr3: { raw: "(min-resolution: 3dppx)" }, // ≈150 %–174 % zoom
+        dpr35: { raw: "(min-resolution: 3.5dppx)" }, // ≥175 % zoom
+        dpr4: { raw: "(min-resolution: 4dppx)" }, // >199 % zoom on Retina (~4× DPR)
+      },
     },
   },
   plugins: [

@@ -3,13 +3,14 @@ import cn from "classnames";
 
 export const Avatar = ({ className }: { className: string }) => {
   return (
-    <Image
-      priority
-      alt="Shriram Balaji"
-      height={200}
-      width={200}
-      src="/images/avatar.jpeg"
-      className={cn("rounded-full", className)}
-    />
+    <div className={cn("relative h-full aspect-square", className)}>
+      <Image
+        priority
+        alt="Shriram Balaji"
+        src="/images/avatar.jpeg"
+        fill
+        className="rounded-lg object-cover"
+      />
+    </div>
   );
 };
