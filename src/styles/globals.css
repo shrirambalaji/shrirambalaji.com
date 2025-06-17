@@ -10,6 +10,10 @@
   background-color: hsl(234, 30%, 30%) !important;
 }
 
+.yt-lite {
+  @apply w-8/12;
+}
+
 .youtube-embed.lyt-activated {
   @apply transition-shadow duration-300;
 }
