@@ -20,14 +20,7 @@ export default function Footer() {
     <footer className="mx-auto my-0 flex max-w-5xl flex-col justify-center p-0 md:my-4">
       <hr className="border-1 mb-6 w-full border-ghostindigo-200/20 dark:border-ghostindigo-800/20" />
       <p className="text-center text-xs leading-6 text-gray-500 dark:text-ghostindigo-400">
-        <span>Made with&nbsp;</span>
-        <a
-          href="https://nextjs.org"
-          className="text-indigo-400 underline-offset-2 hover:underline dark:text-indigo-300"
-        >
-          Next.js
-        </a>
-        <span>&nbsp;&bull;&nbsp;View source on&nbsp;</span>
+        <span>&nbsp;View source on&nbsp;</span>
         <a
           href="https://github.com/shrirambalaji/shrirambalaji.com"
           className="text-indigo-400 underline-offset-2 hover:underline dark:text-indigo-300"
