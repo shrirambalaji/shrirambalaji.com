@@ -14,11 +14,6 @@
   @apply w-8/12;
 }
 
-.hyphens-auto {
-  hyphens: manual; /* standard */
-  -webkit-hyphens: manual; /* Chrome/Safari */
-}
-
 .youtube-embed.lyt-activated {
   @apply transition-shadow duration-300;
 }
