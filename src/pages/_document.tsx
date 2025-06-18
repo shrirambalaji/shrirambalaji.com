@@ -18,19 +18,19 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Github" />
         <meta property="og:description" content="Shriram Balaji" />
-        <meta
+        {/* <meta
           property="og:image"
           content="/og-image.png"
-        />
+        /> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="shrirambalaji.com" />
         <meta property="twitter:url" content="https://www.shrirambalaji.com/" />
         <meta name="twitter:title" content="Github" />
         <meta name="twitter:description" content="Shriram Balaji" />
-        <meta
+        {/* <meta
           name="twitter:image"
           content="/og-image.png"
-        />
+        /> */}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
