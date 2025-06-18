@@ -20,17 +20,17 @@ const Home: NextPage = () => {
           <h2 className="text-md inline-flex items-center tracking-wide text-gray-800 dark:text-ghostindigo-100 md:text-xl mt-[-2px]">
             Senior Software Engineer at <strong>&nbsp;Microsoft</strong>
           </h2>
-          <p className="text-ghostindigo-800 dark:text-ghostindigo-300 tracking-wide leading-8 text-lg">
-            Hello! At Microsoft, I work on an event-driven orchestration layer for the M365 Data & Compute Platform. Previously, I built sizing tools at NetApp & TeamOne messaging systems at Cisco.
+          <p className="hyphens-auto text-ghostindigo-800 dark:text-ghostindigo-300 tracking-wide leading-7 md:leading-8 md:text-lg">
+            At Microsoft, I work on an event-driven orchestration layer for the M365 Data & Compute Platform. Previously, I built sizing tools at NetApp & TeamOne messaging systems at Cisco.
           </p>
         </section>
       </div>
       <div>
-        <p className="text-ghostindigo-800 dark:text-ghostindigo-200 tracking-wide leading-8 text-lg">
-          I enjoy reading about systems engineering, databases, linkers, distributed systems and more. I occasionally write about my learnings on <a href="https://blog.shrirambalaji.com" className="underline underline-offset-4" target="_blank">the blog</a>. I've given a few <a href="/talks">talks</a> on topics that intrigue me. Recently I'm liking Rust a lot, and try to contribute to open source or build some&nbsp;<a href="/projects" className="underline underline-offset-4" target="_blank">projects</a> that interest me. I really like visual diagramming tools, and spend a lot of time obsessing over tiny details.
+        <p className="hyphens-auto text-ghostindigo-800 dark:text-ghostindigo-200 tracking-wide leading-7 md:leading-8 md:text-lg">
+          I enjoy reading about systems engineering, databases, linkers, distributed systems and more. I occasionally write about my learnings on <a href="https://blog.shrirambalaji.com" className="underline underline-offset-4" target="_blank">the blog</a>. Recently I'm enjoying Rust a lot, and try to contribute to open source or build some&nbsp;<a href="/projects" className="underline underline-offset-4" target="_blank">projects</a> that interest me. I really like visual diagramming tools, and spend a lot of time obsessing over tiny details.
         </p>
         <br />
-        <p className="text-ghostindigo-800 dark:text-ghostindigo-200 tracking-wide leading-8 text-lg">
+        <p className="hyphens-auto text-ghostindigo-800 dark:text-ghostindigo-200 tracking-wide leading-7 md:leading-8 md:text-lg">
           Reach out to me on <a href="https://twitter.com/shrirambalaji" className="underline underline-offset-4" target="_blank">X</a>, <a href="https://www.linkedin.com/in/shrirambalaji/" className="underline underline-offset-4" target="_blank">LinkedIn</a> or send me an email at <a href="mailto:hello@shrirambalaji.com" className="underline underline-offset-4">hello@shrirambalaji.com</a>. I'm always happy to chat about tech :)
         </p>
       </div>
