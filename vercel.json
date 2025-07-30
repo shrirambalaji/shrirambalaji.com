@@ -1,0 +1,3 @@
+{
+  "buildCommand": "corepack enable && pnpm build"
+}
