@@ -9,7 +9,7 @@ export const Avatar = ({ className }: { className: string }) => {
         alt="Shriram Balaji"
         src="/images/avatar.jpeg"
         fill
-        className="rounded-lg object-cover"
+        className="rounded-xl object-cover border-indigo-300 border"
       />
     </div>
   );
