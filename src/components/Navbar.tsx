@@ -174,12 +174,12 @@ export const Menu = () => {
     >
       <button
         onClick={hideMenu}
-        className="absolute top-6 left-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-ghostindigo-800 transition-colors flex items-center gap-2"
+        className="absolute top-[0.325rem] left-6 p-2 flex items-center gap-2"
         aria-label="Close menu"
       >
         <svg
-          width="20"
-          height="20"
+          width="22"
+          height="22"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
