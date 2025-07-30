@@ -17,9 +17,9 @@ export default function Uses(props: UsesPageProps) {
 
   return (
     <PageContainer>
-      <div className="prose prose-slate prose-h1:text-xl prose-h1:font-bold prose-h1:text-ghostindigo-800 prose-a:text-ghostindigo-800  prose-img:rounded-lg prose-img:border-2 prose-img:border-solid  prose-img:border-blue-500  prose-img:shadow-3xl prose-img:shadow-blue-400 dark:prose-invert dark:prose-h1:text-white dark:prose-a:text-indigo-300 dark:prose-img:border-blue-500   dark:prose-img:shadow-blue-900 prose-h1:tracking-wide">
+      <div className="prose prose-slate prose-h1:text-xl prose-h1:font-semibold prose-h1:font-sans prose-h1:tracking-normal prose-h1:text-ghostindigo-800 prose-a:text-ghostindigo-800  prose-img:rounded-lg prose-img:border-2 prose-img:border-solid  prose-img:border-blue-500  prose-img:shadow-3xl prose-img:shadow-blue-400 dark:prose-invert dark:prose-h1:text-white dark:prose-a:text-indigo-300 dark:prose-img:border-blue-500   dark:prose-img:shadow-blue-900">
         <MDXRemote
-          compiledSource={props.compiledSource}
+          {...props}
           components={components}
         />
       </div>
@@ -29,10 +29,10 @@ export default function Uses(props: UsesPageProps) {
 
 export async function getStaticProps() {
   const { base64, img } = await getPlaiceholder("/images/workstation.png");
-  const { compiledSource } = await readMDXFile("src/content/uses.mdx");
+  const mdxSource = await readMDXFile("src/content/uses.mdx");
   return {
     props: {
-      compiledSource,
+      ...mdxSource,
       imageProps: {
         ...img,
         blurDataURL: base64,

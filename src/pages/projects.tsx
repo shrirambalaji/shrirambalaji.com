@@ -117,7 +117,7 @@ export default function Projects(props: ProjectPageProps) {
     <PageContainer>
       {sideProjects.length > 0 && (
         <section>
-          <h2 className="mb-6 text-xl font-bold text-ghostindigo-900 dark:text-white">
+          <h2 className="mb-6 text-xl font-semibold tracking-normal text-ghostindigo-900 dark:text-white">
             Projects
           </h2>
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
