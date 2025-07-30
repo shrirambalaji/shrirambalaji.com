@@ -7,7 +7,7 @@
 }
 
 .dark *::selection {
-  background-color: hsl(234, 30%, 30%) !important;
+  background-color: rgba(54, 58, 99, 0.25) !important;
 }
 
 .yt-lite {
