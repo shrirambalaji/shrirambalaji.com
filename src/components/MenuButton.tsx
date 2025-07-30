@@ -13,7 +13,7 @@ export const MenuButton = (
       {...buttonProps}
       aria-label="Menu Button"
       className={cn(
-        "group inline-flex cursor-pointer items-center rounded-lg p-2 px-3  text-center text-current hover:bg-gray-100 hover:dark:bg-ghostindigo-800",
+        "group inline-flex cursor-pointer items-center rounded-lg p-2 px-3  text-center text-current hover:bg-gray-100 hover:dark:bg-ghostindigo-800 -ml-3.5",
         buttonProps.className
       )}
       tabIndex={0}
