@@ -216,7 +216,7 @@ export const Navbar = () => {
       <div className="fixed inset-x-0 top-0 z-10 h-[60px] bg-white/80 backdrop-blur-sm dark:bg-ghostindigo-900/90"></div>
       <header className="container sticky top-0 z-20">
         <nav
-          className="mx-auto flex w-full h-full max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 py-2 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
+          className="mx-auto flex w-full h-full max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 pb-2 pt-4 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
           aria-labelledby="main navigation bar"
         >
           <MenuButton
