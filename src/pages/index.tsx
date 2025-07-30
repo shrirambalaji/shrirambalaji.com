@@ -14,7 +14,7 @@ const Home: NextPage = () => {
           className="flex flex-col gap-2 md:placeholder:pr-8"
           role={"contentinfo"}
         >
-          <h1 className="ml-[-2px] text-3xl font-semibold md:font-bold text-ghostindigo-800 dark:text-white -tracking-[0.0125em] md:text-4xl mt-[-6px]">
+          <h1 className="ml-[-2px] text-3xl font-bold text-ghostindigo-800 dark:text-white -tracking-[0.0125em] md:text-4xl mt-[-6px]">
             Shriram Balaji
           </h1>
           <h2 className="text-md inline-flex items-center text-gray-800 dark:text-ghostindigo-100 md:text-xl">
@@ -27,7 +27,10 @@ const Home: NextPage = () => {
       </div>
       <div>
         <p className="min-w-full tracking-[0.0125em] text-ghostindigo-800 dark:text-ghostindigo-300 leading-8 font-normal text-pretty">
-          I enjoy reading about systems engineering, databases, linkers, distributed systems and more. I occasionally write about my learnings on <a href="https://blog.shrirambalaji.com" className="underline underline-offset-4" target="_blank">the blog</a>. I've been having fun with Rust lately and contribute to open source projects while building <a href="/projects" className="underline underline-offset-4" target="_blank">side projects</a> that interest me. I really like visual diagramming tools, and spend a lot of time obsessing over tiny details.
+          I enjoy reading about databases, linkers, compilers, distributed systems and more. I occasionally write about my learnings on <a href="https://blog.shrirambalaji.com" className="underline underline-offset-4" target="_blank">my blog</a>.
+          <span className="md:inline">
+            <span className="block mt-6 md:inline md:mt-0">I've been having fun with Rust lately and contribute to open source projects while building <a href="/projects" className="underline underline-offset-4" target="_blank">side projects</a> that interest me.</span>I really like visual diagramming tools, and spend a lot of time obsessing over tiny details.
+          </span>
         </p>
         <br />
         <p className="min-w-full text-ghostindigo-800 dark:text-ghostindigo-300 leading-7 tracking-[0.0125em]">
