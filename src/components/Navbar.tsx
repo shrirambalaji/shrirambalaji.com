@@ -168,7 +168,7 @@ export const Menu = () => {
       ref={navRef}
       aria-labelledby="mobile sidebar menu"
       className={cn(
-        "backdrop-blur-50 fixed top-0 left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-y-hidden bg-white px-6 pt-28 dark:bg-ghostindigo-900 md:hidden"
+        "backdrop-blur-50 fixed top-0 left-0 z-40 h-full min-h-full w-full flex-col gap-5 overflow-y-hidden bg-white px-6 pt-[4.4rem] dark:bg-ghostindigo-900 md:hidden"
       )}
       style={{ display: 'none', opacity: 0 }}
     >
@@ -193,7 +193,7 @@ export const Menu = () => {
         <span className="text-ghostindigo-800 dark:text-white font-medium text-lg">Back</span>
       </button>
 
-      <ul ref={navItemsRef} className={cn("flex w-full flex-col gap-2")}>
+      <ul ref={navItemsRef} className={cn("flex w-full flex-col gap-2 ml-1")}>
         <MobileNavItem href="/" text="About" />
         <MobileNavItem href="/talks" text="Talks" />
         <MobileNavItem href="/uses" text="Uses" />
