@@ -1,8 +1,7 @@
-import defaultTheme from "tailwindcss/defaultTheme";
-import typography from "@tailwindcss/typography";
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
