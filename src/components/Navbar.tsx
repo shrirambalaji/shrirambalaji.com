@@ -121,7 +121,7 @@ const MobileNavItem = (props: NavLinkProps) => {
 
 // mobile-only fullscreen menu
 export const Menu = () => {
-  const { isMenuOpen } = useMenuStore((state) => state);
+  const { isMenuOpen, hideMenu } = useMenuStore((state) => state);
   const navRef = useRef<HTMLElement>(null);
   const navItemsRef = useRef<HTMLUListElement>(null);
 
@@ -172,6 +172,27 @@ export const Menu = () => {
       )}
       style={{ display: 'none', opacity: 0 }}
     >
+      <button
+        onClick={hideMenu}
+        className="absolute top-6 left-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-ghostindigo-800 transition-colors flex items-center gap-2"
+        aria-label="Close menu"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-ghostindigo-800 dark:text-white"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+        <span className="text-ghostindigo-800 dark:text-white font-medium text-lg">Back</span>
+      </button>
+
       <ul ref={navItemsRef} className={cn("flex w-full flex-col gap-2")}>
         <MobileNavItem href="/" text="About" />
         <MobileNavItem href="/talks" text="Talks" />
@@ -185,39 +206,40 @@ export const Menu = () => {
     </nav>
   );
 };
-
-
 export const Navbar = () => {
   const router = useRouter();
   const path = router.asPath === "/" ? "about" : router.asPath.slice(1).trim();
   const pageHeading = capitalize(path) ?? "About";
   const { toggleMenu } = useMenuStore((state) => state);
   return (
-    <header className="fixed inset-x-0 top-0 z-20 h-[60px] bg-white/80 dark:bg-ghostindigo-900/90 backdrop-blur-sm">
-      <nav
-        className="mx-auto flex w-full h-full max-w-5xl dpr35:max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 text-gray-900 dark:border-gray-700 dark:text-gray-100 py-2 px-4 md:px-8 xl:px-0 dpr35:px-8 dpr4:max-w-3xl md:items-center"
-        aria-labelledby="main navigation bar"
-      >
-        <MenuButton
-          onClick={() => toggleMenu()}
-          iconProps={{ width: 20, height: 20 }}
-          className="mt-[-0.5px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
-        />
-        <h1 className="mr-auto ml-3 flex text-lg font-medium tracking-wide text-ghostindigo-800 dark:text-gray-200 md:hidden">
-          {pageHeading}
-        </h1>
-        <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">
-          <NavItem href="/" text="About" />
-          <NavItem href="/talks" text="Talks" />
-          <NavItem href="/uses" text="Uses" />
-          <NavItem href="/projects" text="Projects" />
-          <NavItem href="http://blog.shrirambalaji.com/" text="Blog" />
-        </ul>
-        <ul className="flex items-center justify-center gap-4 -mt-1">
-          <SocialLinks className="hidden md:inline-block" iconSize={20} />
-          <ThemeSwitch className="ml-auto mr-0" />
-        </ul>
-      </nav>
-    </header>
+    <>
+      <div className="fixed inset-x-0 top-0 z-10 h-[60px] bg-white/80 backdrop-blur-sm dark:bg-ghostindigo-900/90"></div>
+      <header className="container sticky top-0 z-20">
+        <nav
+          className="mx-auto flex w-full h-full max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 py-2 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
+          aria-labelledby="main navigation bar"
+        >
+          <MenuButton
+            onClick={() => toggleMenu()}
+            iconProps={{ width: 20, height: 20 }}
+            className="mt-[-0.5px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
+          />
+          <h1 className="mr-auto flex text-lg font-medium text-ghostindigo-800 dark:text-gray-200 md:hidden">
+            {pageHeading}
+          </h1>
+          <ul className="hidden gap-3 md:ml-[-.75rem] md:flex">
+            <NavItem href="/" text="About" />
+            <NavItem href="/talks" text="Talks" />
+            <NavItem href="/uses" text="Uses" />
+            <NavItem href="/projects" text="Projects" />
+            <NavItem href="https://blog.shrirambalaji.com/" text="Blog" />
+          </ul>
+          <ul className="flex items-center justify-center gap-4 -mt-1 md:mr-2.5">
+            <SocialLinks className="hidden md:inline-block " iconSize={20} />
+            <ThemeSwitch className="ml-auto mr-0" />
+          </ul>
+        </nav>
+      </header>
+    </>
   );
 };
