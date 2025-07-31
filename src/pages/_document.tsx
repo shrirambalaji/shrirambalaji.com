@@ -50,10 +50,6 @@ export default function Document() {
         />
         <link rel="manifest" href="/manifest.webmanifest" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
-          rel="stylesheet"
-        />
-        <link
           href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
           rel="stylesheet"
         />

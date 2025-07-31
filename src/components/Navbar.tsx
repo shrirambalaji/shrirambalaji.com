@@ -27,10 +27,10 @@ const NavLink = ({ href, text, className, onClick }: NavLinkProps) => {
       href={href}
       className={cn(
         isActive
-          ? "font-medium text-ghostindigo-800  dark:text-white"
+          ? "font-medium text-ghostindigo-800 dark:text-white"
           : "font-normal text-ghostindigo-400 dark:text-ghostindigo-300",
         className,
-        "w-full rounded-lg p-4 text-center transition-all hover:bg-gray-100 hover:backdrop-blur-xl dark:hover:bg-ghostindigo-800 sm:px-3 sm:py-2 md:w-20"
+        "w-full rounded-lg p-4 text-center font-sans tracking-normal transition-all hover:bg-gray-100 hover:backdrop-blur-xl dark:hover:bg-ghostindigo-800 sm:px-3 sm:py-2 md:w-20"
       )}
       onClick={onClick}
     >
