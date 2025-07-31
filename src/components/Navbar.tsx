@@ -216,13 +216,14 @@ export const Navbar = () => {
       <div className="fixed inset-x-0 top-0 z-10 h-[60px] bg-white/80 backdrop-blur-sm dark:bg-ghostindigo-900/90"></div>
       <header className="container sticky top-0 z-20">
         <nav
-          className="mx-auto flex w-full h-full max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 pb-2 md:pt-4 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
+          className="mx-auto flex w-full h-full max-w-5xl items-center justify-between border-gray-200 bg-transparent bg-opacity-60 pb-2 pt-2 md:pt-4 text-gray-900 dark:border-gray-700 dark:text-gray-100 md:items-center"
           aria-labelledby="main navigation bar"
         >
           <MenuButton
             onClick={() => toggleMenu()}
             iconProps={{ width: 20, height: 20 }}
-            className="mt-[-0.5px] inline-block stroke-black group-hover:stroke-indigo-400 dark:stroke-white dark:group-hover:stroke-indigo-300 md:hidden"
+            className="mt-[-0.5px] inline-block stroke-black  md:hidden"
+            disableHover={true}
           />
           <h1 className="mr-auto flex text-lg font-medium text-ghostindigo-800 dark:text-gray-200 md:hidden">
             {pageHeading}

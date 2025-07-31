@@ -5,15 +5,19 @@ type IconProps = JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>;
 export const MenuButton = (
   props: JSX.IntrinsicAttributes &
     ClassAttributes<HTMLButtonElement> &
-    ButtonHTMLAttributes<HTMLButtonElement> & { iconProps: IconProps }
+    ButtonHTMLAttributes<HTMLButtonElement> & {
+      iconProps: IconProps;
+      disableHover?: boolean;
+    }
 ) => {
-  const { iconProps, ...buttonProps } = props;
+  const { iconProps, disableHover = false, ...buttonProps } = props;
   return (
     <button
       {...buttonProps}
       aria-label="Menu Button"
       className={cn(
-        "group inline-flex cursor-pointer items-center rounded-lg p-2 px-3  text-center text-current hover:bg-gray-100 hover:dark:bg-ghostindigo-800 -ml-3.5",
+        "group inline-flex cursor-pointer items-center rounded-lg p-2 px-3 text-center text-current -ml-3.5",
+        !disableHover && "hover:bg-gray-100 hover:dark:bg-ghostindigo-800",
         buttonProps.className
       )}
       tabIndex={0}
