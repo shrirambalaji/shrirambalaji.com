@@ -23,7 +23,7 @@ export function Layout({ children }: PropsWithChildren<{}>): JSX.Element {
       <div
         className={cn(
           isMenuOpen && "fixed max-h-screen overflow-y-hidden",
-          "container relative mx-auto min-h-screen flex-col items-center justify-center px-8 pb-8"
+          "lg:container relative lg:mx-auto md:mx-0 min-h-screen flex-col items-center justify-center px-8 pb-8"
         )}
       >
         <Navbar />
