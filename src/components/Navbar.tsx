@@ -235,7 +235,7 @@ export const Navbar = () => {
             <NavItem href="/projects" text="Projects" />
             <NavItem href="https://blog.shrirambalaji.com/" text="Blog" />
           </ul>
-          <ul className="flex items-center justify-center gap-4 -mt-1 md:mr-2.5">
+          <ul className="flex items-center justify-center gap-4 md:mr-16">
             <SocialLinks className="hidden md:inline-block " iconSize={20} />
             <ThemeSwitch className="ml-auto mr-0" />
           </ul>
