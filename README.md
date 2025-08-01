@@ -28,12 +28,4 @@ $ pnpm dev
 
 ## License
 
-Licensed under the [MIT License](./LICENSE.md). Feel free to use in your own projects, with attribution.
-
-## Inspiration
-
-The revamp of my portfolio is inspired from the work by:
-- [leerob.io](https://leerob.io)
-- [sreetamdas.com](https://sreetamdas.com)
-- [hxrsh.in](https://hxrsh.in)
-- [omkarkulkarni.tech](https://omkarkulkarni.tech)
+Licensed under the [MIT License](./LICENSE.md). 
