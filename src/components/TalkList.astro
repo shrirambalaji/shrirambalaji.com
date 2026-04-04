@@ -8,32 +8,89 @@ type Props = {
 };
 
 const { items } = Astro.props;
+const listClasses = "detail-list m-0 list-none p-0";
+const itemClasses = "py-3";
+const headingRowClasses =
+  "grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-3 max-md:grid-cols-1 max-md:gap-y-[0.08rem]";
+const titleClasses =
+  "m-0 min-w-0 text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900";
+const descriptionClasses =
+  "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
+const eventClasses =
+  "justify-self-end text-right text-[0.72rem] font-[460] leading-[1.1rem] tracking-[-0.003rem] text-muted-soft max-md:justify-self-start max-md:text-left";
+const actionClasses =
+  "group grid grid-cols-[13px_auto_0.7rem] items-center gap-x-[0.45rem] text-[0.72rem] font-[460] leading-[1.1rem] tracking-[-0.003rem] text-muted";
+const actionLabelClasses =
+  "relative inline-block leading-[1.1rem] group-hover:text-ghostindigo-900 after:absolute after:left-0 after:right-0 after:bottom-[-0.08rem] after:h-px after:bg-transparent group-hover:after:bg-[rgba(17,17,24,0.45)]";
+const actionIconWrapClasses =
+  "flex h-[13px] w-[13px] items-center justify-center text-muted transition-colors duration-150 ease-out";
+const actionIconClasses = "block h-[13px] w-[13px] shrink-0";
+const watchIconWrapClasses = `${actionIconWrapClasses} group-hover:text-red-500`;
+const slidesIconWrapClasses = `${actionIconWrapClasses} group-hover:text-yellow-500`;
 ---
 
-<ul class="detail-list">
-  {items.map((talk, index) => (
-    <li style={`--item-index:${index};`}>
-      <div class="detail-link is-static talk-detail-link">
-        <div class="detail-copy">
-          <div class="talk-heading-row">
-            <h2>{talk.title}</h2>
-            <span class="talk-event">{talk.event}</span>
-          </div>
-          <p>{talk.description}</p>
-          <div class="talk-links">
-            <a class="talk-action" href={talk.href} target="_blank" rel="noreferrer">
-              <TvMinimalPlay class="talk-action-icon" aria-hidden="true" size={14} strokeWidth={1.9} color="currentColor" />
-              <span>Watch</span>
-            </a>
-            {talk.secondaryHref ? (
-              <a class="talk-action" href={talk.secondaryHref} target="_blank" rel="noreferrer">
-                <Presentation class="talk-action-icon" aria-hidden="true" size={14} strokeWidth={1.9} />
-                <span>{talk.secondaryLabel}</span>
+<ul class={listClasses}>
+  {
+    items.map((talk, index) => (
+      <li style={`--item-index:${index};`}>
+        <div class={itemClasses}>
+          <div class="min-w-0 w-full">
+            <div class={headingRowClasses}>
+              <h2 class={titleClasses}>{talk.title}</h2>
+              <span class={eventClasses}>{talk.event}</span>
+            </div>
+            <p class={descriptionClasses}>{talk.description}</p>
+            <div class="mt-[0.45rem] grid auto-cols-max grid-flow-col justify-start gap-x-[0.9rem] gap-y-2 max-md:mt-[0.38rem] max-md:gap-x-3">
+              <a
+                class={actionClasses}
+                href={talk.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class={watchIconWrapClasses} aria-hidden="true">
+                  <TvMinimalPlay
+                    aria-hidden="true"
+                    size={13}
+                    stroke-width={2}
+                    class={actionIconClasses}
+                  />
+                </span>
+                <span class={actionLabelClasses}>Watch</span>
+                <span
+                  class="inline-block w-[0.7rem] text-center text-[0.95em] leading-none text-ghostindigo-700 opacity-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
               </a>
-            ) : null}
+              {talk.secondaryHref ? (
+                <a
+                  class={actionClasses}
+                  href={talk.secondaryHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class={slidesIconWrapClasses} aria-hidden="true">
+                    <Presentation
+                      aria-hidden="true"
+                      size={13}
+                      stroke-width={2}
+                      class={actionIconClasses}
+                    />
+                  </span>
+                  <span class={actionLabelClasses}>{talk.secondaryLabel}</span>
+                  <span
+                    class="inline-block w-[0.7rem] text-center text-[0.95em] leading-none text-ghostindigo-700 opacity-0 group-hover:opacity-100"
+                    aria-hidden="true"
+                  >
+                    ↗
+                  </span>
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-  ))}
+      </li>
+    ))
+  }
 </ul>

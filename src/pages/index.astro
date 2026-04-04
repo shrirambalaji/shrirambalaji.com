@@ -14,12 +14,24 @@ import {
 const homepageProjects = featuredProjects
   .filter((project) => project.title !== "Advent of Code in Rust")
   .slice(0, 4);
+const sectionLabelClass =
+  "mb-[0.35rem] border-b border-rule pb-[0.35rem] text-[0.875rem] font-[460] tracking-[-0.00563rem] text-muted-soft";
+const bodyTextClass =
+  "m-0 text-[0.875rem] font-[460] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-800";
+const basicLinkClass =
+  "basic-link transition-colors duration-150 hover:text-ghostindigo-800";
+const detailLinkClass =
+  "group -mx-2 flex items-start justify-between gap-4 rounded-2xl px-2 py-3 transition-colors duration-150 max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0";
+const detailCopyHeadingClass =
+  "m-0 text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150 group-hover:text-ghostindigo-700";
+const detailCopyBodyClass =
+  "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
 ---
 
 <BaseLayout currentPath="/" title="Shriram Balaji">
-  <article class="article-stack">
+  <article id="about" class="grid max-w-[70ch] scroll-mt-24 gap-[0.85rem]">
     <img
-      class="avatar"
+      class="h-[5.75rem] w-[5.75rem] rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] object-cover shadow-soft"
       src="/images/avatar.jpeg"
       alt="Shriram Balaji"
       width="92"
@@ -28,79 +40,88 @@ const homepageProjects = featuredProjects
       decoding="async"
     />
 
-    <div class="intro-prose">
+    <div
+      class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:text-[0.875rem] [&_p]:font-[460] [&_p]:leading-[1.4rem] [&_p]:tracking-[-0.00563rem] [&_p]:text-ghostindigo-800"
+    >
       <Intro />
     </div>
 
-    <p>
+    <p class={bodyTextClass}>
       Reach out on{" "}
-      {socialLinks.map((link, index) => (
-        <>
-          <a
-            class="basic-link"
-            href={link.href}
-            target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-            rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-          >
-            {link.label}
-          </a>
-          {index < socialLinks.length - 1 ? <span>, </span> : <span>.</span>}
-        </>
-      ))}
+      {
+        socialLinks.map((link, index) => (
+          <>
+            <a
+              class={basicLinkClass}
+              href={link.href}
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+            >
+              {link.label}
+            </a>
+            {index < socialLinks.length - 1 ? <span>, </span> : <span>.</span>}
+          </>
+        ))
+      }
     </p>
   </article>
 
-  <section class="list-section">
-    <h2 class="section-label">Projects</h2>
+  <section id="projects" class="grid scroll-mt-24 gap-[0.35rem]">
+    <h2 class={sectionLabelClass}>Projects</h2>
     <ProjectList items={homepageProjects} compact />
-    <ul class="detail-list">
+    <ul class="detail-list m-0 list-none p-0">
       <li>
-        <a class="detail-link detail-link-more" href="/projects">
-          <div class="detail-copy">
-            <h2>All projects</h2>
-            <p>Browse the full archive of side projects and open source work.</p>
+        <a
+          class={detailLinkClass}
+          href="https://github.com/shrirambalaji?tab=repositories"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="min-w-0">
+            <h2 class={detailCopyHeadingClass}>All projects</h2>
+            <p class={detailCopyBodyClass}>
+              Browse the full archive on GitHub.
+            </p>
           </div>
-          <span aria-hidden="true">→</span>
+          <span class="text-ghostindigo-700" aria-hidden="true">↗</span>
         </a>
       </li>
     </ul>
   </section>
 
-  <section class="list-section">
-    <h2 class="section-label">Writing</h2>
-    <ul class="detail-list">
-      {writingLinks.map((item, index) => (
-        <li style={`--item-index:${index};`}>
-          <a class="detail-link" href={item.href} target="_blank" rel="noreferrer">
-            <div class="detail-copy">
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </li>
-      ))}
+  <section class="grid gap-[0.35rem]">
+    <h2 class={sectionLabelClass}>Writing</h2>
+    <ul class="detail-list m-0 list-none p-0">
+      {
+        writingLinks.map((item, index) => (
+          <li style={`--item-index:${index};`}>
+            <a
+              class={detailLinkClass}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div class="min-w-0">
+                <h2 class={detailCopyHeadingClass}>{item.title}</h2>
+                <p class={detailCopyBodyClass}>{item.description}</p>
+              </div>
+              <span class="text-ghostindigo-700" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </section>
 
-  <section class="list-section">
-    <h2 class="section-label">Recent Open Source Contributions</h2>
+  <section class="grid gap-[0.35rem]">
+    <h2 class={sectionLabelClass}>Recent Open Source Contributions</h2>
     <ProjectList items={openSourceContributions} compact />
   </section>
 
-  <section class="list-section">
-    <h2 class="section-label">Talks</h2>
+  <section id="talks" class="grid scroll-mt-24 gap-[0.35rem]">
+    <h2 class={sectionLabelClass}>Talks</h2>
     <TalkList items={recentTalks} />
-    <ul class="detail-list">
-      <li style={`--item-index:${recentTalks.length};`}>
-        <a class="detail-link detail-link-more" href="/uses">
-          <div class="detail-copy">
-            <h2>Uses</h2>
-            <p>Hardware, software, typography, and the setup behind the work.</p>
-          </div>
-          <span aria-hidden="true">→</span>
-        </a>
-      </li>
-    </ul>
   </section>
 </BaseLayout>

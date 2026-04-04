@@ -25,7 +25,6 @@ $ pnpm install
 $ pnpm dev
 ```
 
-
 ## License
 
-Licensed under the [MIT License](./LICENSE.md). 
+Licensed under the [MIT License](./LICENSE.md).

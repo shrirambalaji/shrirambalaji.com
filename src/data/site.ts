@@ -6,9 +6,9 @@ export const siteMeta = {
 };
 
 export const navItems = [
-  { href: "/", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/talks", label: "Talks" },
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#talks", label: "Talks" },
   { href: "/uses", label: "Uses" },
   { href: "https://blog.shrirambalaji.com", label: "Blog", external: true },
 ];
@@ -23,7 +23,8 @@ export const socialLinks = [
 export const writingLinks = [
   {
     title: "Blog",
-    description: "Notes and essays on software engineering, systems, and developer tools.",
+    description:
+      "Notes and essays on software engineering, systems, and developer tools.",
     href: "https://blog.shrirambalaji.com",
   },
 ];
@@ -41,7 +42,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "linkerland",
-    description: "a tiny workbench for parsing, visualizing & analyzing linker map files.",
+    description:
+      "a tiny workbench for parsing, visualizing & analyzing linker map files.",
     href: "https://github.com/shrirambalaji/linkerland",
     tags: ["Rust", "Linkers"],
     icon: "/images/projects/linkerland-mark.svg",
@@ -121,8 +123,12 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjects = projects.filter((project) => project.kind === "project");
-export const openSourceContributions = projects.filter((project) => project.kind === "oss");
+export const featuredProjects = projects.filter(
+  (project) => project.kind === "project"
+);
+export const openSourceContributions = projects.filter(
+  (project) => project.kind === "oss"
+);
 
 export type Talk = {
   title: string;
@@ -138,7 +144,7 @@ export const talks: Talk[] = [
     title: "Rust Unlinked",
     event: "Rust Tokyo 2024",
     description:
-      "A journey through rustc, symbol resolution, linkers, static libraries, and the ELF format.",
+      "A journey through the rust compiler, symbol resolution, linkers, static libraries, and the ELF format.",
     href: "https://www.youtube.com/watch?v=I0JvqbRCI2U",
     secondaryHref: "/slides/rust-unlinked.pdf",
     secondaryLabel: "Slides",
@@ -160,7 +166,8 @@ export const talks: Talk[] = [
 ];
 
 export const recentTalks = talks.filter(
-  (talk, index, allTalks) => index === allTalks.findIndex((entry) => entry.title === talk.title)
+  (talk, index, allTalks) =>
+    index === allTalks.findIndex((entry) => entry.title === talk.title)
 );
 
 export const uses = {
@@ -172,34 +179,33 @@ export const uses = {
     "Flowlyf wooden monitor arm",
     "Logitech Brio 500 webcam",
     "Logitech MX Master 3S",
-    'MacBook Pro 14-inch (M1 Pro, 16GB RAM, 512GB SSD)',
+    "MacBook Pro 14-inch (M1 Pro, 16GB RAM, 512GB SSD)",
   ],
   apps: [
     "Discord",
     "Edge for work",
     "Figma",
     "Ghostty with fish",
+    "Helium for personal browsing",
     "Helix for quick terminal edits",
     "OBS Studio",
     "Obsidian",
     "OrbStack",
     "Raycast",
-    "Safari for personal browsing",
     "Spotify",
     "Visual Studio Code",
   ],
   typography: [
     "Inter for sans-serif UI and body text",
-    "Paper Mono for code and monospace UI details",
+    "JetBrains Mono for code and monospace UI details",
     "DM Serif Display for expressive titles when needed",
   ],
   extensions: [
-    "Dance Keybindings",
     "Better Comments",
     "Fluent Product Icons",
     "GitLens",
-    "Min Theme",
     "Symbols",
     "TabOut",
+    "VSCode Neovim",
   ],
 };

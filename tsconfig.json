@@ -4,5 +4,13 @@
     "baseUrl": "."
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    ".astro",
+    ".next",
+    "dist",
+    "node_modules",
+    "output",
+    "prettier.config.js",
+    "test-results"
+  ]
 }

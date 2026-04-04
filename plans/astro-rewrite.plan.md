@@ -38,3 +38,17 @@ Rewrite the site from Next.js to Astro with React islands where interactivity is
 - Completed: adaptive contrast selection for project initials on marble avatars
 - Completed: talk row layout refresh and OSS section label update
 - Completed: deduped talks list and inline Watch/Slides CTA treatment
+- Completed: Astro 6 runtime alignment
+- Completed: Tailwind 4 installation and Tailwind-first styling rewrite
+- Completed: header/nav and underline parity fixes after the Tailwind pass
+- Completed: inner-page intro simplification for Projects, Talks, and Uses
+- Completed: collapsed About, Projects, and Talks into a single-page navigation structure
+- Completed: homepage section navigation visibly tracks the selected section, including the bottom-of-page Talks case
+
+## Current Pass
+
+1. Pin the repo to a Node runtime compatible with Astro 6.
+2. Upgrade Astro and first-party integrations to their current major versions.
+3. Install Tailwind 4 through Astro's official Vite-based setup.
+4. Replace the current global-CSS-heavy page styling with Tailwind-first templates and keep only the small amount of global CSS that still belongs there.
+5. Re-run build, e2e, and browser screenshot verification in `chrome-beta`.
