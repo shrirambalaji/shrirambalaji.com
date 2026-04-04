@@ -114,3 +114,36 @@ test("core pages render and navigation works", async ({ page }) => {
   ).toBeVisible();
   await expect(usesNav).toHaveAttribute("aria-current", "page");
 });
+
+test("site respects prefers-color-scheme", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+
+  await expect(page.locator("body")).toHaveCSS(
+    "background-color",
+    "rgb(17, 17, 24)"
+  );
+  await expect(
+    page.getByRole("banner").getByRole("link", { name: "Shriram Balaji" })
+  ).toHaveCSS("color", "rgb(255, 255, 255)");
+  await expect(
+    page.locator("#about").getByText("Senior Software Engineer").first()
+  ).toHaveCSS("color", "rgb(219, 219, 230)");
+
+  const firstWritingLink = page.locator("#writing a").first();
+  await firstWritingLink.hover();
+  await expect(
+    firstWritingLink.locator(".hover-inline-title").first()
+  ).toHaveCSS("color", "rgb(199, 210, 254)");
+  await expect(
+    firstWritingLink.locator(".hover-inline-title").first()
+  ).toHaveCSS("text-decoration-color", "rgb(199, 210, 254)");
+
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.reload();
+
+  await expect(page.locator("body")).toHaveCSS(
+    "background-color",
+    "rgb(252, 252, 250)"
+  );
+});

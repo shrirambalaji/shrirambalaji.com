@@ -14,7 +14,7 @@ type Props = {
 export function MobileNav({ currentPath, items }: Props) {
   const [open, setOpen] = useState(false);
   const linkClasses =
-    "flex items-center justify-between py-[0.15rem] text-base tracking-[-0.01em] text-muted transition-colors duration-150 hover:text-ghostindigo-900";
+    "mobile-nav-link flex items-center justify-between py-[0.15rem] text-base tracking-[-0.01em] text-muted transition-colors duration-150";
 
   return (
     <>
@@ -29,7 +29,7 @@ export function MobileNav({ currentPath, items }: Props) {
       </button>
 
       <div
-        className={`fixed inset-0 z-40 bg-[rgba(252,252,250,0.96)] p-6 opacity-0 backdrop-blur-[24px] transition-opacity duration-150 min-[700px]:hidden ${
+        className={`mobile-nav-overlay fixed inset-0 z-40 p-6 opacity-0 backdrop-blur-[24px] transition-opacity duration-150 min-[700px]:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none"
         }`}
       >

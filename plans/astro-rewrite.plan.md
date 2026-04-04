@@ -53,6 +53,9 @@ Rewrite the site from Next.js to Astro with React islands where interactivity is
 - Completed: talk title and venue now share the same type size
 - Completed: added the Rootconf 2025 gossip protocols talk as the newest talk entry
 - Completed: writing title underline now matches the shared project/link hover treatment
+- Completed: light and dark themes now follow `prefers-color-scheme` using the production dark palette
+- Completed: intro/body copy rhythm loosened to a `1.6rem` line-height
+- Completed: dark-mode hover highlights now use `indigo-200` for text and underline accents
 
 ## Current Pass
 

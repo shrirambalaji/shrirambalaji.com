@@ -24,21 +24,19 @@ const blogDateFormatter = new Intl.DateTimeFormat("en-US", {
 const sectionLabelClass =
   "mb-[0.35rem] border-b border-rule pb-[0.35rem] text-[0.875rem] font-[460] tracking-[-0.00563rem] text-muted-soft";
 const bodyTextClass =
-  "m-0 text-[0.875rem] font-[460] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-800";
-const basicLinkClass =
-  "basic-link transition-colors duration-150 hover:text-ghostindigo-800";
+  "m-0 text-[0.875rem] font-[460] leading-[1.6rem] tracking-[-0.00563rem] text-ghostindigo-800";
+const basicLinkClass = "basic-link transition-colors duration-150";
 const detailLinkClass =
   "group -mx-2 flex items-start justify-between gap-4 rounded-2xl px-2 py-3 transition-colors duration-150 max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0";
 const detailCopyHeadingClass =
-  "m-0 text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150 group-hover:text-ghostindigo-700";
+  "m-0 hover-accent-text text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150";
 const detailCopyBodyClass =
   "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
 const writingDateClass =
   "mb-[0.38rem] text-[0.75rem] font-[500] leading-[1.1rem] tracking-[-0.01em] text-muted-soft";
-const writingTitleClass =
-  "m-0 inline underline decoration-transparent underline-offset-[0.24rem] [text-decoration-thickness:1px] transition-[text-decoration-color] duration-150 group-hover:decoration-[rgba(17,17,24,0.45)]";
+const writingTitleClass = "m-0 inline hover-inline-title";
 const writingArrowClass =
-  "inline-flex w-[0.8rem] shrink-0 justify-center text-ghostindigo-700 opacity-0 transition-opacity duration-150 group-hover:opacity-100";
+  "hover-accent-arrow inline-flex w-[0.8rem] shrink-0 justify-center text-ghostindigo-700 opacity-0 transition-opacity duration-150 group-hover:opacity-100";
 const writingTitleRowClass = "inline-flex items-center gap-[0.2rem]";
 ---
 
@@ -55,7 +53,7 @@ const writingTitleRowClass = "inline-flex items-center gap-[0.2rem]";
     />
 
     <div
-      class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:text-[0.875rem] [&_p]:font-[460] [&_p]:leading-[1.4rem] [&_p]:tracking-[-0.00563rem] [&_p]:text-ghostindigo-800"
+      class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:text-[0.875rem] [&_p]:font-[460] [&_p]:leading-[1.6rem] [&_p]:tracking-[-0.00563rem] [&_p]:text-ghostindigo-800"
     >
       <Intro />
     </div>

@@ -46,7 +46,7 @@ const rowClasses =
 const linkClasses = "group block min-w-0";
 const copyClasses = "grid min-w-0 gap-[0.02rem]";
 const titleClasses =
-  "m-0 inline-flex items-baseline gap-[0.2rem] text-[0.875rem] font-[460] leading-[1.6rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150 group-hover:text-ghostindigo-700";
+  "m-0 hover-accent-text inline-flex items-baseline gap-[0.2rem] text-[0.875rem] font-[460] leading-[1.6rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150";
 const descriptionClasses =
   "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
 const metaClasses =
@@ -95,11 +95,9 @@ const metaClasses =
             >
               <div class={copyClasses}>
                 <h2 class={titleClasses}>
-                  <span class="underline decoration-transparent underline-offset-[0.24rem] [text-decoration-thickness:1px] transition-[text-decoration-color] duration-150 group-hover:decoration-[rgba(17,17,24,0.45)]">
-                    {project.title}
-                  </span>
+                  <span class="hover-inline-title">{project.title}</span>
                   <span
-                    class="inline-block w-[0.8rem] text-center text-[0.9em] leading-none text-ghostindigo-700 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                    class="hover-accent-arrow inline-block w-[0.8rem] text-center text-[0.9em] leading-none text-ghostindigo-700 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
                     aria-hidden="true"
                   >
                     ↗

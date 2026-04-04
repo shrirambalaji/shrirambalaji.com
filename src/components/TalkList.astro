@@ -20,7 +20,7 @@ const eventDotClasses = "text-muted-soft";
 const actionClasses =
   "group grid grid-cols-[13px_auto_0.7rem] items-center gap-x-[0.45rem] text-[0.72rem] font-[460] leading-[1.1rem] tracking-[-0.003rem] text-muted";
 const actionLabelClasses =
-  "relative inline-block leading-[1.1rem] group-hover:text-ghostindigo-900 after:absolute after:left-0 after:right-0 after:bottom-[-0.08rem] after:h-px after:bg-transparent group-hover:after:bg-[rgba(17,17,24,0.45)]";
+  "talk-action-label hover-accent-text relative inline-block leading-[1.1rem] after:absolute after:left-0 after:right-0 after:bottom-[-0.08rem] after:h-px";
 const actionIconWrapClasses =
   "flex h-[13px] w-[13px] items-center justify-center text-muted transition-colors duration-150 ease-out";
 const actionIconClasses = "block h-[13px] w-[13px] shrink-0";
@@ -59,7 +59,7 @@ const slidesIconWrapClasses = `${actionIconWrapClasses} group-hover:text-yellow-
                 </span>
                 <span class={actionLabelClasses}>Watch</span>
                 <span
-                  class="inline-block w-[0.7rem] text-center text-[0.95em] leading-none text-ghostindigo-700 opacity-0 group-hover:opacity-100"
+                  class="hover-accent-arrow inline-block w-[0.7rem] text-center text-[0.95em] leading-none text-ghostindigo-700 opacity-0 group-hover:opacity-100"
                   aria-hidden="true"
                 >
                   ↗
@@ -82,7 +82,7 @@ const slidesIconWrapClasses = `${actionIconWrapClasses} group-hover:text-yellow-
                   </span>
                   <span class={actionLabelClasses}>{talk.secondaryLabel}</span>
                   <span
-                    class="inline-block w-[0.7rem] text-center text-[0.95em] leading-none text-ghostindigo-700 opacity-0 group-hover:opacity-100"
+                    class="hover-accent-arrow inline-block w-[0.7rem] text-center text-[0.95em] leading-none text-ghostindigo-700 opacity-0 group-hover:opacity-100"
                     aria-hidden="true"
                   >
                     ↗

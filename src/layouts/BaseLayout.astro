@@ -19,8 +19,7 @@ const pageTitle =
   title === siteMeta.title ? title : `${title} · ${siteMeta.title}`;
 const navLinkClasses =
   "site-nav-link text-sm font-medium tracking-[-0.00563rem]";
-const footerLinkClasses =
-  "footer-link transition-colors duration-150 hover:text-ghostindigo-900";
+const footerLinkClasses = "footer-link transition-colors duration-150";
 ---
 
 <!doctype html>
@@ -40,7 +39,7 @@ const footerLinkClasses =
     <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
   </head>
   <body
-    class="min-h-screen bg-white font-sans text-base leading-[1.25] text-ghostindigo-800"
+    class="min-h-screen bg-paper font-sans text-base leading-[1.25] text-ghostindigo-800"
   >
     <div
       class="mx-auto max-w-[36.375rem] px-6 pb-10 pt-4 md:px-4 md:pb-[3.25rem] md:pt-[2.9rem] xl:max-w-[44.5rem]"
@@ -51,7 +50,7 @@ const footerLinkClasses =
       >
         <div class="flex items-center justify-between gap-8 py-1">
           <a
-            class="text-sm font-[650] tracking-[-0.012em] text-ghostindigo-900"
+            class="site-title-link text-sm font-[650] tracking-[-0.012em] text-ghostindigo-900"
             href="/"
           >
             Shriram Balaji
@@ -108,7 +107,7 @@ const footerLinkClasses =
       <footer class="site-intro-fade site-intro-fade-footer pt-7">
         <div class="mb-5 h-px w-[3.125rem] bg-rule"></div>
         <p
-          class="m-0 text-[0.875rem] font-[460] leading-[1.4rem] tracking-[-0.00563rem] text-muted-soft"
+          class="m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted-soft"
         >
           <span>Find me on </span>
           {
