@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { uses } from "../data/site";
+---
+
+<BaseLayout currentPath="/uses" title="Uses">
+  <article class="article-stack">
+    <header class="article-header">
+      <h1>Uses</h1>
+      <p class="eyebrow">Hardware, software, typography, and the setup I use every day.</p>
+    </header>
+
+    <img
+      class="workstation-shot"
+      src="/images/workstation.webp"
+      alt="Shriram Balaji's workstation"
+      width="1200"
+      height="720"
+      loading="eager"
+      decoding="async"
+    />
+  </article>
+
+  <section class="list-section uses-grid">
+    <section>
+      <h2 class="section-label">Hardware</h2>
+      <ul class="bullet-list">
+        {uses.hardware.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-label">Applications</h2>
+      <ul class="bullet-list">
+        {uses.apps.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-label">Typography</h2>
+      <ul class="bullet-list">
+        {uses.typography.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-label">VS Code Extensions</h2>
+      <ul class="bullet-list">
+        {uses.extensions.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+  </section>
+</BaseLayout>

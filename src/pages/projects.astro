@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectList from "../components/ProjectList.astro";
+import { featuredProjects, openSourceContributions } from "../data/site";
+---
+
+<BaseLayout currentPath="/projects" title="Projects">
+  <article class="article-stack">
+    <header class="article-header">
+      <h1>Projects</h1>
+      <p class="eyebrow">Side projects, experiments, and a separate record of OSS contributions.</p>
+    </header>
+  </article>
+
+  <section class="list-section">
+    <h2 class="section-label">Own Projects</h2>
+    <ProjectList items={featuredProjects} />
+  </section>
+
+  <section class="list-section">
+    <h2 class="section-label">Open Source Contributions</h2>
+    <ProjectList items={openSourceContributions} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import Presentation from "@lucide/astro/icons/presentation";
+import TvMinimalPlay from "@lucide/astro/icons/tv-minimal-play";
+import type { Talk } from "../data/site";
+
+type Props = {
+  items: Talk[];
+};
+
+const { items } = Astro.props;
+---
+
+<ul class="detail-list">
+  {items.map((talk, index) => (
+    <li style={`--item-index:${index};`}>
+      <div class="detail-link is-static talk-detail-link">
+        <div class="detail-copy">
+          <div class="talk-heading-row">
+            <h2>{talk.title}</h2>
+            <span class="talk-event">{talk.event}</span>
+          </div>
+          <p>{talk.description}</p>
+          <div class="talk-links">
+            <a class="talk-action" href={talk.href} target="_blank" rel="noreferrer">
+              <TvMinimalPlay class="talk-action-icon" aria-hidden="true" size={14} strokeWidth={1.9} color="currentColor" />
+              <span>Watch</span>
+            </a>
+            {talk.secondaryHref ? (
+              <a class="talk-action" href={talk.secondaryHref} target="_blank" rel="noreferrer">
+                <Presentation class="talk-action-icon" aria-hidden="true" size={14} strokeWidth={1.9} />
+                <span>{talk.secondaryLabel}</span>
+              </a>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>

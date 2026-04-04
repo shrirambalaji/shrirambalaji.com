@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectList from "../components/ProjectList.astro";
+import TalkList from "../components/TalkList.astro";
+import Intro from "../content/intro.mdx";
+import {
+  featuredProjects,
+  openSourceContributions,
+  recentTalks,
+  socialLinks,
+  writingLinks,
+} from "../data/site";
+
+const homepageProjects = featuredProjects
+  .filter((project) => project.title !== "Advent of Code in Rust")
+  .slice(0, 4);
+---
+
+<BaseLayout currentPath="/" title="Shriram Balaji">
+  <article class="article-stack">
+    <img
+      class="avatar"
+      src="/images/avatar.jpeg"
+      alt="Shriram Balaji"
+      width="92"
+      height="92"
+      loading="eager"
+      decoding="async"
+    />
+
+    <div class="intro-prose">
+      <Intro />
+    </div>
+
+    <p>
+      Reach out on{" "}
+      {socialLinks.map((link, index) => (
+        <>
+          <a
+            class="basic-link"
+            href={link.href}
+            target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+            rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+          >
+            {link.label}
+          </a>
+          {index < socialLinks.length - 1 ? <span>, </span> : <span>.</span>}
+        </>
+      ))}
+    </p>
+  </article>
+
+  <section class="list-section">
+    <h2 class="section-label">Projects</h2>
+    <ProjectList items={homepageProjects} compact />
+    <ul class="detail-list">
+      <li>
+        <a class="detail-link detail-link-more" href="/projects">
+          <div class="detail-copy">
+            <h2>All projects</h2>
+            <p>Browse the full archive of side projects and open source work.</p>
+          </div>
+          <span aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="list-section">
+    <h2 class="section-label">Writing</h2>
+    <ul class="detail-list">
+      {writingLinks.map((item, index) => (
+        <li style={`--item-index:${index};`}>
+          <a class="detail-link" href={item.href} target="_blank" rel="noreferrer">
+            <div class="detail-copy">
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="list-section">
+    <h2 class="section-label">Recent Open Source Contributions</h2>
+    <ProjectList items={openSourceContributions} compact />
+  </section>
+
+  <section class="list-section">
+    <h2 class="section-label">Talks</h2>
+    <TalkList items={recentTalks} />
+    <ul class="detail-list">
+      <li style={`--item-index:${recentTalks.length};`}>
+        <a class="detail-link detail-link-more" href="/uses">
+          <div class="detail-copy">
+            <h2>Uses</h2>
+            <p>Hardware, software, typography, and the setup behind the work.</p>
+          </div>
+          <span aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

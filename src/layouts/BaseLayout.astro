@@ -1,0 +1,93 @@
+---
+import { MobileNav } from "../components/MobileNav";
+import { navItems, siteMeta, socialLinks } from "../data/site";
+import "../styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+  currentPath: string;
+};
+
+const {
+  title = siteMeta.title,
+  description = siteMeta.description,
+  currentPath,
+} = Astro.props;
+
+const pageTitle = title === siteMeta.title ? title : `${title} · ${siteMeta.title}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteMeta.url}${currentPath}`} />
+    <meta property="og:image" content={`${siteMeta.url}/og-image.png`} />
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicons/favicon-32x32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="scroll-blur scroll-blur-top" aria-hidden="true"></div>
+      <header class="site-header">
+        <div class="site-header-row">
+          <a class="site-title" href="/">Shriram Balaji</a>
+
+          <nav class="desktop-nav" aria-label="Primary">
+            <ul>
+              {navItems.map((item) => {
+                const active = !item.external && item.href === currentPath;
+                return (
+                  <li>
+                    <a
+                      href={item.href}
+                      class:list={{ "is-active": active }}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noreferrer" : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <MobileNav client:load currentPath={currentPath} items={navItems} />
+        </div>
+      </header>
+
+      <main class="page-content">
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-rule"></div>
+        <p>
+          <span>Find me on </span>
+          {socialLinks.map((link, index) => (
+            <>
+              <a href={link.href} target={link.href.startsWith("mailto:") ? undefined : "_blank"} rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}>
+                {link.label}
+              </a>
+              {index < socialLinks.length - 1 ? <span>, </span> : null}
+            </>
+          ))}
+          <span>. View source on </span>
+          <a href="https://github.com/shrirambalaji/shrirambalaji.com" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+          <span>.</span>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TalkList from "../components/TalkList.astro";
+import { recentTalks } from "../data/site";
+---
+
+<BaseLayout currentPath="/talks" title="Talks">
+  <article class="article-stack">
+    <header class="article-header">
+      <h1>Talks</h1>
+      <p class="eyebrow">Conference talks on systems, tooling, and frontend engineering.</p>
+    </header>
+  </article>
+
+  <section class="list-section">
+    <TalkList items={recentTalks} />
+  </section>
+</BaseLayout>

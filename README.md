@@ -1,27 +1,27 @@
 # shrirambalaji.com
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Deployment**: [Vercel](https://vercel.com)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Content**: Markdown using [MDX](https://mdxjs.com/) and [Next-MDX-Remote](https://github.com/hashicorp/next-mdx-remote)
+- **Framework**: [Astro](https://astro.build/) with [React](https://react.dev/) islands
+- **Deployment**: Static output
+- **Styling**: Hand-authored CSS
+- **Content**: Static content and local data modules
 
 ## Overview
 
 - `public/*` - static assets like images and favicons.
-- `src/util/*` - helpful utilities or code for external services
-- `src/content/*` - static markdown / MDX content powering the site
-- `src/pages/*` - static pages
-- `src/data/*` - data sources & fetcher functions for the site
-- `src/styles/*` - some global styles.
+- `src/pages/*` - Astro routes
+- `src/layouts/*` - shared page layouts
+- `src/components/*` - UI components and React islands
+- `src/data/*` - local content data
+- `src/styles/*` - global site styles
 
 ## Running Locally
 
-This application requires Node.js v16.13+.
+This application requires Node.js 20+.
 
 ```bash
 $ git clone https://github.com/shrirambalaji/shrirambalaji.com.git
 $ cd shrirambalaji.com
-$ pnpm
+$ pnpm install
 $ pnpm dev
 ```
 

@@ -1,0 +1,161 @@
+---
+import Avatar from "boring-avatars";
+import type { Project } from "../data/site";
+
+type Props = {
+  items: Project[];
+  compact?: boolean;
+};
+
+const { items, compact = false } = Astro.props;
+type PaletteStop = {
+  h: number;
+  s: number;
+  l: number;
+};
+
+const hashString = (value: string) =>
+  Array.from(value).reduce((hash, char) => {
+    return (hash * 31 + char.charCodeAt(0)) >>> 0;
+  }, 7);
+
+const hueFrom = (hash: number, offset: number) => (hash + offset) % 360;
+
+const paletteForProject = (name: string): PaletteStop[] => {
+  const hash = hashString(name);
+  const base = hueFrom(hash, 0);
+  const accent = hueFrom(hash, 97);
+  const third = hueFrom(hash, 181);
+  const fourth = hueFrom(hash, 263);
+
+  return [
+    { h: base, s: 72, l: 68 },
+    { h: accent, s: 64, l: 60 },
+    { h: third, s: 58, l: 78 },
+    { h: fourth, s: 70, l: 52 },
+    { h: hueFrom(hash, 38), s: 45, l: 92 },
+  ];
+};
+
+const initialForProject = (name: string) => {
+  const normalized = name.trim().replace(/^[^A-Za-z0-9]+/, "");
+  return (normalized[0] ?? "?").toUpperCase();
+};
+
+const formatStop = ({ h, s, l }: PaletteStop) => `hsl(${h} ${s}% ${l}%)`;
+
+const hslToRgb = ({ h, s, l }: PaletteStop) => {
+  const saturation = s / 100;
+  const lightness = l / 100;
+  const chroma = (1 - Math.abs(2 * lightness - 1)) * saturation;
+  const segment = h / 60;
+  const x = chroma * (1 - Math.abs((segment % 2) - 1));
+
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+
+  if (segment >= 0 && segment < 1) {
+    red = chroma;
+    green = x;
+  } else if (segment < 2) {
+    red = x;
+    green = chroma;
+  } else if (segment < 3) {
+    green = chroma;
+    blue = x;
+  } else if (segment < 4) {
+    green = x;
+    blue = chroma;
+  } else if (segment < 5) {
+    red = x;
+    blue = chroma;
+  } else {
+    red = chroma;
+    blue = x;
+  }
+
+  const match = lightness - chroma / 2;
+  return [red + match, green + match, blue + match];
+};
+
+const relativeLuminance = (stop: PaletteStop) => {
+  const [red, green, blue] = hslToRgb(stop).map((channel) => {
+    if (channel <= 0.03928) {
+      return channel / 12.92;
+    }
+
+    return ((channel + 0.055) / 1.055) ** 2.4;
+  });
+
+  return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+};
+
+const initialColorForProject = (palette: PaletteStop[]) => {
+  const withLuminance = palette.map((stop) => ({
+    stop,
+    luminance: relativeLuminance(stop),
+  }));
+  const averageLuminance =
+    withLuminance.reduce((sum, entry) => sum + entry.luminance, 0) / withLuminance.length;
+
+  return averageLuminance < 0.58
+    ? "rgba(255, 255, 255, 0.96)"
+    : "rgba(17, 17, 24, 0.92)";
+};
+---
+
+<ul class:list={["detail-list", "project-list", compact && "project-list-compact"]}>
+  {items.map((project, index) => {
+    const palette = paletteForProject(project.title);
+    const initialColor = initialColorForProject(palette);
+
+    return (
+      <li style={`--item-index:${index};`}>
+        <a class="detail-link project-link" href={project.href} target="_blank" rel="noreferrer">
+          <div class="detail-leading">
+            <div class="project-icon-frame" aria-hidden="true">
+              {project.icon ? (
+                <img
+                  class="project-icon-image"
+                  src={project.icon}
+                  alt=""
+                  width="28"
+                  height="28"
+                  decoding="async"
+                />
+              ) : (
+                <>
+                  <Avatar
+                    variant="marble"
+                    size={28}
+                    name={project.title}
+                    colors={palette.map(formatStop)}
+                    className="project-boring-avatar"
+                  />
+                  <span class="project-icon-initial" style={`--project-initial-color:${initialColor};`}>
+                    {initialForProject(project.title)}
+                  </span>
+                </>
+              )}
+            </div>
+
+            <div class="detail-copy">
+              <h2 class="project-title-inline">
+                <span class="project-title-text">{project.title}</span>
+                <span class="project-title-arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p>{project.description}</p>
+              {!compact ? (
+                <p class="meta-line">
+                  {project.tags.join(" · ")}
+                  {project.note ? ` · ${project.note}` : ""}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </a>
+      </li>
+    );
+  })}
+</ul>

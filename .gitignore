@@ -14,6 +14,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -36,6 +37,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+/.astro
+/output
+/test-results
 
 .idea
 
