@@ -1,3 +1,9 @@
+export type NavItem = {
+  href: string;
+  label: string;
+  external?: boolean;
+};
+
 export const siteMeta = {
   title: "Shriram Balaji",
   description:
@@ -5,12 +11,12 @@ export const siteMeta = {
   url: "https://shrirambalaji.com",
 };
 
-export const navItems = [
+export const navItems: NavItem[] = [
   { href: "/#about", label: "About" },
   { href: "/#projects", label: "Projects" },
+  { href: "/#writing", label: "Writing" },
   { href: "/#talks", label: "Talks" },
   { href: "/uses", label: "Uses" },
-  { href: "https://blog.shrirambalaji.com", label: "Blog", external: true },
 ];
 
 export const socialLinks = [
@@ -18,15 +24,6 @@ export const socialLinks = [
   { href: "https://x.com/shrirambalaji", label: "X" },
   { href: "https://www.linkedin.com/in/shrirambalaji/", label: "LinkedIn" },
   { href: "mailto:hello@shrirambalaji.com", label: "Email" },
-];
-
-export const writingLinks = [
-  {
-    title: "Blog",
-    description:
-      "Notes and essays on software engineering, systems, and developer tools.",
-    href: "https://blog.shrirambalaji.com",
-  },
 ];
 
 export type Project = {
@@ -140,6 +137,13 @@ export type Talk = {
 };
 
 export const talks: Talk[] = [
+  {
+    title: "Rumour has it: Gossip Protocols for Eventual Consistency",
+    event: "Rootconf 2025",
+    description:
+      "An introduction to gossip protocols and how eventual consistency emerges from probabilistic communication.",
+    href: "https://www.youtube.com/watch?v=gHlwPfWzseo",
+  },
   {
     title: "Rust Unlinked",
     event: "Rust Tokyo 2024",

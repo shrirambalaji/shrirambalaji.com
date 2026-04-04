@@ -3,17 +3,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectList from "../components/ProjectList.astro";
 import TalkList from "../components/TalkList.astro";
 import Intro from "../content/intro.mdx";
+import { getRecentBlogPosts } from "../lib/blog-rss";
 import {
   featuredProjects,
   openSourceContributions,
   recentTalks,
   socialLinks,
-  writingLinks,
 } from "../data/site";
 
 const homepageProjects = featuredProjects
   .filter((project) => project.title !== "Advent of Code in Rust")
   .slice(0, 4);
+const writingLinks = await getRecentBlogPosts(4);
+const blogDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
 const sectionLabelClass =
   "mb-[0.35rem] border-b border-rule pb-[0.35rem] text-[0.875rem] font-[460] tracking-[-0.00563rem] text-muted-soft";
 const bodyTextClass =
@@ -26,6 +33,13 @@ const detailCopyHeadingClass =
   "m-0 text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150 group-hover:text-ghostindigo-700";
 const detailCopyBodyClass =
   "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
+const writingDateClass =
+  "mb-[0.38rem] text-[0.75rem] font-[500] leading-[1.1rem] tracking-[-0.01em] text-muted-soft";
+const writingTitleClass =
+  "m-0 inline underline decoration-transparent underline-offset-[0.24rem] [text-decoration-thickness:1px] transition-[text-decoration-color] duration-150 group-hover:decoration-[rgba(17,17,24,0.45)]";
+const writingArrowClass =
+  "inline-flex w-[0.8rem] shrink-0 justify-center text-ghostindigo-700 opacity-0 transition-opacity duration-150 group-hover:opacity-100";
+const writingTitleRowClass = "inline-flex items-center gap-[0.2rem]";
 ---
 
 <BaseLayout currentPath="/" title="Shriram Balaji">
@@ -66,30 +80,19 @@ const detailCopyBodyClass =
     </p>
   </article>
 
-  <section id="projects" class="grid scroll-mt-24 gap-[0.35rem]">
-    <h2 class={sectionLabelClass}>Projects</h2>
-    <ProjectList items={homepageProjects} compact />
-    <ul class="detail-list m-0 list-none p-0">
-      <li>
-        <a
-          class={detailLinkClass}
-          href="https://github.com/shrirambalaji?tab=repositories"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div class="min-w-0">
-            <h2 class={detailCopyHeadingClass}>All projects</h2>
-            <p class={detailCopyBodyClass}>
-              Browse the full archive on GitHub.
-            </p>
-          </div>
-          <span class="text-ghostindigo-700" aria-hidden="true">↗</span>
-        </a>
-      </li>
-    </ul>
+  <section id="projects" class="grid scroll-mt-24 gap-7">
+    <div class="grid gap-[0.35rem]">
+      <h2 class={sectionLabelClass}>Projects</h2>
+      <ProjectList items={homepageProjects} compact />
+    </div>
+
+    <div class="grid gap-[0.35rem]">
+      <h2 class={sectionLabelClass}>Recent Open Source Contributions</h2>
+      <ProjectList items={openSourceContributions} compact />
+    </div>
   </section>
 
-  <section class="grid gap-[0.35rem]">
+  <section id="writing" class="grid gap-[0.35rem]">
     <h2 class={sectionLabelClass}>Writing</h2>
     <ul class="detail-list m-0 list-none p-0">
       {
@@ -102,22 +105,43 @@ const detailCopyBodyClass =
               rel="noreferrer"
             >
               <div class="min-w-0">
-                <h2 class={detailCopyHeadingClass}>{item.title}</h2>
+                <p class={writingDateClass}>
+                  {blogDateFormatter.format(new Date(item.publishedTime))}
+                </p>
+                <h2 class={detailCopyHeadingClass}>
+                  <span class={writingTitleRowClass}>
+                    <span class={writingTitleClass}>{item.title}</span>
+                    <span class={writingArrowClass} aria-hidden="true">
+                      ↗
+                    </span>
+                  </span>
+                </h2>
                 <p class={detailCopyBodyClass}>{item.description}</p>
               </div>
-              <span class="text-ghostindigo-700" aria-hidden="true">
-                ↗
-              </span>
             </a>
           </li>
         ))
       }
+      <li>
+        <a
+          class={detailLinkClass}
+          href="https://blog.shrirambalaji.com/posts"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="min-w-0">
+            <h2 class={detailCopyHeadingClass}>
+              <span class={writingTitleRowClass}>
+                <span class={writingTitleClass}
+                  >Browse the full archive of posts</span
+                >
+                <span class={writingArrowClass} aria-hidden="true">↗</span>
+              </span>
+            </h2>
+          </div>
+        </a>
+      </li>
     </ul>
-  </section>
-
-  <section class="grid gap-[0.35rem]">
-    <h2 class={sectionLabelClass}>Recent Open Source Contributions</h2>
-    <ProjectList items={openSourceContributions} compact />
   </section>
 
   <section id="talks" class="grid scroll-mt-24 gap-[0.35rem]">

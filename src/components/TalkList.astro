@@ -10,14 +10,13 @@ type Props = {
 const { items } = Astro.props;
 const listClasses = "detail-list m-0 list-none p-0";
 const itemClasses = "py-3";
-const headingRowClasses =
-  "grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-3 max-md:grid-cols-1 max-md:gap-y-[0.08rem]";
 const titleClasses =
-  "m-0 min-w-0 text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900";
+  "m-0 min-w-0 flex flex-wrap items-baseline gap-x-[0.35rem] gap-y-[0.08rem] text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900";
 const descriptionClasses =
   "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
 const eventClasses =
-  "justify-self-end text-right text-[0.72rem] font-[460] leading-[1.1rem] tracking-[-0.003rem] text-muted-soft max-md:justify-self-start max-md:text-left";
+  "text-[0.875rem] font-[460] leading-[1.4rem] tracking-[-0.00563rem] text-muted-soft";
+const eventDotClasses = "text-muted-soft";
 const actionClasses =
   "group grid grid-cols-[13px_auto_0.7rem] items-center gap-x-[0.45rem] text-[0.72rem] font-[460] leading-[1.1rem] tracking-[-0.003rem] text-muted";
 const actionLabelClasses =
@@ -35,10 +34,13 @@ const slidesIconWrapClasses = `${actionIconWrapClasses} group-hover:text-yellow-
       <li style={`--item-index:${index};`}>
         <div class={itemClasses}>
           <div class="min-w-0 w-full">
-            <div class={headingRowClasses}>
-              <h2 class={titleClasses}>{talk.title}</h2>
+            <h2 class={titleClasses}>
+              <span>{talk.title}</span>
+              <span class={eventDotClasses} aria-hidden="true">
+                ·
+              </span>
               <span class={eventClasses}>{talk.event}</span>
-            </div>
+            </h2>
             <p class={descriptionClasses}>{talk.description}</p>
             <div class="mt-[0.45rem] grid auto-cols-max grid-flow-col justify-start gap-x-[0.9rem] gap-y-2 max-md:mt-[0.38rem] max-md:gap-x-3">
               <a

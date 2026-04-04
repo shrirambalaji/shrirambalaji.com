@@ -44,6 +44,15 @@ Rewrite the site from Next.js to Astro with React islands where interactivity is
 - Completed: inner-page intro simplification for Projects, Talks, and Uses
 - Completed: collapsed About, Projects, and Talks into a single-page navigation structure
 - Completed: homepage section navigation visibly tracks the selected section, including the bottom-of-page Talks case
+- Completed: grouped recent open source contributions into the Projects section
+- Completed: Writing section now renders the latest blog posts from the RSS feed in newest-first order
+- Completed: navigation order now mirrors the homepage sections, with Writing included and Uses moved to the end
+- Completed: writing entries now show editorial date labels, with an All posts archive link
+- Completed: removed the Blog nav item and the redundant All projects GitHub link
+- Completed: talk title and venue now render inline, separated by a middot
+- Completed: talk title and venue now share the same type size
+- Completed: added the Rootconf 2025 gossip protocols talk as the newest talk entry
+- Completed: writing title underline now matches the shared project/link hover treatment
 
 ## Current Pass
 

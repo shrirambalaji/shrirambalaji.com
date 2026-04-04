@@ -75,10 +75,14 @@ const footerLinkClasses =
                     <li>
                       <a
                         href={item.href}
-                        class:list={[
-                          navLinkClasses,
-                        ]}
-                        aria-current={active ? (section === "uses" ? "page" : "location") : undefined}
+                        class:list={[navLinkClasses]}
+                        aria-current={
+                          active
+                            ? section === "uses"
+                              ? "page"
+                              : "location"
+                            : undefined
+                        }
                         data-nav-link={section ? "true" : undefined}
                         data-section={section}
                         target={item.external ? "_blank" : undefined}
@@ -174,19 +178,36 @@ const footerLinkClasses =
           return;
         }
 
-        const sections = ["about", "projects", "talks"]
+        const sectionIds = ["about", "projects", "writing", "talks"];
+        const sections = sectionIds
           .map((id) => document.getElementById(id))
           .filter(Boolean);
+        const sectionsById = new Map(
+          sections.map((section) => [section.id, section])
+        );
 
         const resolveActiveSection = () => {
           const lastSection = sections.at(-1);
+          const hashTarget = window.location.hash.replace(/^#/, "");
+          const hashedSection = sectionsById.get(hashTarget);
           const scrolledToBottom =
             window.innerHeight + window.scrollY >=
             document.documentElement.scrollHeight - 4;
 
-          if (scrolledToBottom && lastSection) {
-            setActive(lastSection.id);
-            return;
+          if (scrolledToBottom) {
+            if (hashedSection) {
+              const rect = hashedSection.getBoundingClientRect();
+
+              if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                setActive(hashedSection.id);
+                return;
+              }
+            }
+
+            if (lastSection) {
+              setActive(lastSection.id);
+              return;
+            }
           }
 
           let active = "about";
