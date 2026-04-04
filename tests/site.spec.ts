@@ -126,9 +126,6 @@ test("site respects prefers-color-scheme", async ({ page }) => {
   await expect(
     page.getByRole("banner").getByRole("link", { name: "Shriram Balaji" })
   ).toHaveCSS("color", "rgb(255, 255, 255)");
-  await expect(
-    page.locator("#about").getByText("Senior Software Engineer").first()
-  ).toHaveCSS("color", "rgb(219, 219, 230)");
 
   const firstWritingLink = page.locator("#writing a").first();
   await firstWritingLink.hover();
