@@ -11,12 +11,13 @@ const { items } = Astro.props;
 type TalkAction = Talk["actions"][number];
 const listClasses = "detail-list m-0 list-none p-0";
 const itemClasses = "py-3";
+const copyClasses = "grid min-w-0 gap-[0.2rem]";
 const titleClasses =
-  "m-0 min-w-0 text-[0.875rem] font-[500] leading-[1.5rem] tracking-[-0.00563rem] text-ghostindigo-900";
+  "m-0 min-w-0 text-[0.9375rem] font-[500] leading-[1.6rem] tracking-[-0.003em] text-ghostindigo-900 md:text-[0.875rem] md:leading-[1.5rem] md:tracking-[-0.00563rem]";
 const descriptionClasses =
-  "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
+  "m-0 text-pretty text-[0.9375rem] font-[460] leading-[1.6rem] tracking-[-0.003em] text-muted md:text-[0.875rem] md:leading-[1.5rem] md:tracking-[-0.00563rem]";
 const eventClasses =
-  "text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted-soft";
+  "text-[0.9375rem] font-[460] leading-[1.6rem] tracking-[-0.003em] text-muted-soft md:text-[0.875rem] md:leading-[1.5rem] md:tracking-[-0.00563rem]";
 const eventDotClasses = "inline-block text-[1rem] leading-none text-muted-soft";
 const actionClasses =
   "group inline-grid grid-cols-[13px_auto] items-center gap-x-[0.45rem] text-[0.72rem] font-[460] leading-[1.1rem] tracking-[-0.003rem] text-muted";
@@ -37,14 +38,16 @@ const actionArrowClasses =
       <li style={`--item-index:${index};`}>
         <div class={itemClasses}>
           <div class="w-full min-w-0">
-            <h2 class={titleClasses}>
-              <span>{talk.title}</span>
-              <span aria-hidden="true" class={`${eventDotClasses} mx-[0.18rem]`}>
-                ·
-              </span>
-              <span class={eventClasses}>{talk.event}</span>
-            </h2>
-            <p class={descriptionClasses}>{talk.description}</p>
+            <div class={copyClasses}>
+              <h2 class={titleClasses}>
+                <span>{talk.title}</span>
+                <span aria-hidden="true" class={`${eventDotClasses} mx-[0.18rem]`}>
+                  ·
+                </span>
+                <span class={eventClasses}>{talk.event}</span>
+              </h2>
+              <p class={descriptionClasses}>{talk.description}</p>
+            </div>
             <div class="mt-[0.45rem] grid auto-cols-max grid-flow-col justify-start gap-x-[0.9rem] gap-y-2 max-md:mt-[0.38rem] max-md:gap-x-3">
               {talk.actions.map((action: TalkAction) => (
                 <a
