@@ -1,17 +1,31 @@
 import { expect, test } from "@playwright/test";
+
 import { getRecentBlogPosts } from "../src/lib/blog-rss";
+
+const PROJECTS_HASH_RE = /\/#projects$/;
+const WRITING_HASH_RE = /\/#writing$/;
+const TALKS_HASH_RE = /\/#talks$/;
+const TALK_TITLE_RE =
+  /Rumour has it: Gossip Protocols for Eventual Consistency\s*·\s*Rootconf 2025/;
+const SKY_CLASS_RE = /group-hover:text-sky-400/;
+const PAPER_MONO_RE = /Paper Mono/;
+const NON_EMPTY_RE = /.+/;
+const BLUR_RE = /blur/;
 
 test("core pages render and navigation works", async ({ page }) => {
   const latestBlogPosts = await getRecentBlogPosts(4);
   const [latestBlogPost] = latestBlogPosts;
-  const latestBlogPostDate = new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(latestBlogPost!.publishedTime));
 
-  expect(latestBlogPost).toBeTruthy();
+  if (!latestBlogPost) {
+    throw new Error("Expected at least one blog post from the RSS feed.");
+  }
+
+  const latestBlogPostDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+    year: "numeric",
+  }).format(new Date(latestBlogPost.publishedTime));
 
   await page.goto("/");
   const desktopNav = page.getByRole("navigation", { name: "Primary" });
@@ -21,9 +35,9 @@ test("core pages render and navigation works", async ({ page }) => {
   const talksNav = desktopNav.getByRole("link", { name: "Talks" });
   const usesNav = desktopNav.getByRole("link", { name: "Uses" });
   const projectsHeading = page.locator("#projects").getByRole("heading", {
+    exact: true,
     level: 2,
     name: "Projects",
-    exact: true,
   });
   const ossHeading = page.locator("#projects").getByRole("heading", {
     level: 2,
@@ -39,7 +53,7 @@ test("core pages render and navigation works", async ({ page }) => {
   await expect(aboutNav).toHaveAttribute("aria-current", "location");
 
   await projectsNav.click();
-  await expect(page).toHaveURL(/\/#projects$/);
+  await expect(page).toHaveURL(PROJECTS_HASH_RE);
   await expect(projectsHeading).toBeVisible();
   await expect(ossHeading).toBeVisible();
   await expect(
@@ -58,7 +72,7 @@ test("core pages render and navigation works", async ({ page }) => {
     hasText: "std_features",
   });
   await expect(rustCodeToken).toBeVisible();
-  await expect(rustCodeToken).toHaveCSS("font-family", /Paper Mono/);
+  await expect(rustCodeToken).toHaveCSS("font-family", PAPER_MONO_RE);
   await expect(rustCodeToken).toHaveCSS("font-size", "14.5px");
   await expect(
     page.locator("#projects").getByRole("link", { name: "All projects" })
@@ -67,7 +81,7 @@ test("core pages render and navigation works", async ({ page }) => {
     page.locator('img[src="/images/projects/linkerland-mark.svg"]').first()
   ).toBeVisible();
   await expect(
-    writingSection.getByRole("link", { name: latestBlogPost!.title })
+    writingSection.getByRole("link", { name: latestBlogPost.title })
   ).toBeVisible();
   await expect(writingSection.getByText(latestBlogPostDate)).toBeVisible();
   await expect(
@@ -76,7 +90,7 @@ test("core pages render and navigation works", async ({ page }) => {
       .first()
   ).toBeVisible();
   await expect(projectsNav).toHaveAttribute("aria-current", "location");
-  await expect(aboutNav).not.toHaveAttribute("aria-current", /.+/);
+  await expect(aboutNav).not.toHaveAttribute("aria-current", NON_EMPTY_RE);
 
   const [ossBox, writingBox] = await Promise.all([
     ossHeading.boundingBox(),
@@ -86,28 +100,26 @@ test("core pages render and navigation works", async ({ page }) => {
   expect(ossBox?.y).toBeLessThan(writingBox?.y ?? Number.POSITIVE_INFINITY);
 
   await writingNav.click();
-  await expect(page).toHaveURL(/\/#writing$/);
+  await expect(page).toHaveURL(WRITING_HASH_RE);
   await expect(
     writingSection.getByRole("heading", {
+      exact: true,
       level: 2,
       name: "Writing",
-      exact: true,
     })
   ).toBeVisible();
   await expect(
-    writingSection.getByRole("link", { name: latestBlogPost!.title })
+    writingSection.getByRole("link", { name: latestBlogPost.title })
   ).toBeVisible();
   await expect(writingNav).toHaveAttribute("aria-current", "location");
 
   await page.goto("/#writing");
-  await expect(page).toHaveURL(/\/#writing$/);
+  await expect(page).toHaveURL(WRITING_HASH_RE);
   await expect(writingNav).toHaveAttribute("aria-current", "location");
 
   await talksNav.click();
-  await expect(page).toHaveURL(/\/#talks$/);
-  await expect(page.locator("#talks ul h2").first()).toHaveText(
-    /Rumour has it: Gossip Protocols for Eventual Consistency\s*·\s*Rootconf 2025/
-  );
+  await expect(page).toHaveURL(TALKS_HASH_RE);
+  await expect(page.locator("#talks ul h2").first()).toHaveText(TALK_TITLE_RE);
   await expect(page.locator("#talks ul h2").first()).toHaveCSS(
     "line-height",
     "24px"
@@ -117,7 +129,7 @@ test("core pages render and navigation works", async ({ page }) => {
   await expect(firstSlidesLink).toBeVisible();
   await firstSlidesLink.hover();
   await expect(firstSlidesLink.locator("span").first()).toHaveClass(
-    /group-hover:text-sky-400/
+    SKY_CLASS_RE
   );
   await expect(
     page.getByRole("link", { name: "Watch" }).first()
@@ -167,7 +179,9 @@ test("site respects prefers-color-scheme", async ({ page }) => {
   );
 });
 
-test("homepage uses the slower first-load animation timing", async ({ page }) => {
+test("homepage uses the slower first-load animation timing", async ({
+  page,
+}) => {
   await page.goto("/");
 
   await expect(page.locator("body")).toHaveAttribute("data-page", "/");
@@ -186,7 +200,7 @@ test("homepage uses the slower first-load animation timing", async ({ page }) =>
 });
 
 test("mobile menu overlays the viewport cleanly", async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+  await page.setViewportSize({ height: 844, width: 390 });
   await page.goto("/");
 
   await page.getByRole("banner").getByRole("button", { name: "Menu" }).click();
@@ -194,7 +208,7 @@ test("mobile menu overlays the viewport cleanly", async ({ page }) => {
   const overlay = page.locator(".mobile-nav-overlay");
   await expect(overlay).toHaveCSS("position", "fixed");
   await expect(overlay).toHaveCSS("z-index", "50");
-  await expect(overlay).toHaveCSS("backdrop-filter", /blur/);
+  await expect(overlay).toHaveCSS("backdrop-filter", BLUR_RE);
   await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
   await expect(
     page.getByRole("navigation", { name: "Mobile navigation" })

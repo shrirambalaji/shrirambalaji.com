@@ -1,18 +1,14 @@
 ---
-import { Navigation } from "../components/Navigation";
-import {
-  navItems,
-  siteMeta,
-  socialLinks,
-  type SocialLink,
-} from "../lib/site";
+import { Navigation } from "../components/navigation";
+import { navItems, siteMeta, socialLinks } from '../lib/site';
+import type { SocialLink } from '../lib/site';
 import "../styles/global.css";
 
-type Props = {
+interface Props {
   title?: string;
   description?: string;
   currentPath: string;
-};
+}
 
 const {
   title = siteMeta.title,
@@ -28,18 +24,18 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${siteMeta.url}${currentPath}`} />
-    <meta property="og:image" content={`${siteMeta.url}/og-image.png`} />
-    <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
-    <link rel="icon" href="/favicons/favicon-32x32.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+    <meta name="description" content={description}>
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={`${siteMeta.url}${currentPath}`}>
+    <meta property="og:image" content={`${siteMeta.url}/og-image.png`}>
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
   </head>
   <body
     data-page={currentPath}
@@ -61,13 +57,10 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
           </a>
 
           <Navigation client:load currentPath={currentPath} items={navItems} />
-
         </div>
       </header>
 
-      <main class="page-content grid gap-9">
-        <slot />
-      </main>
+      <main class="page-content grid gap-9"><slot /></main>
 
       <footer class="site-intro-fade site-intro-fade-footer pt-7">
         <div class="mb-5 h-px w-12.5 bg-rule"></div>
@@ -75,8 +68,7 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
           class="m-0 text-[0.875rem] font-[460] leading-6 tracking-[-0.00563rem] text-muted-soft"
         >
           <span>Find me on </span>
-          {
-            socialLinks.map((link: SocialLink, index: number) => (
+          {socialLinks.map((link: SocialLink, index: number) => (
               <>
                 <a
                   class={footerLinkClasses}
@@ -92,8 +84,7 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
                 </a>
                 {index < socialLinks.length - 1 ? <span>, </span> : null}
               </>
-            ))
-          }
+            ))}
           <span>. View source on </span>
           <a
             class={footerLinkClasses}

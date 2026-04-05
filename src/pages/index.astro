@@ -1,15 +1,11 @@
 ---
 import { getEntry, render } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Projects from "../components/Projects.astro";
-import Talks from "../components/Talks.astro";
+import Projects from "../components/projects.astro";
+import Talks from "../components/talks.astro";
+import BaseLayout from "../layouts/base-layout.astro";
 import { getRecentBlogPosts } from "../lib/blog-rss";
-import {
-  featuredProjects,
-  openSourceContributions,
-  recentTalks,
-  type Project,
-} from "../lib/site";
+import { featuredProjects, openSourceContributions, recentTalks } from '../lib/site';
+import type { Project } from '../lib/site';
 
 const introEntry = await getEntry("home", "intro");
 
@@ -23,10 +19,10 @@ const homepageProjects = featuredProjects
   .slice(0, 4);
 const writingLinks = await getRecentBlogPosts(4);
 const blogDateFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "short",
   day: "numeric",
-  year: "numeric",
+  month: "short",
   timeZone: "UTC",
+  year: "numeric",
 });
 const sectionLabelClass =
   "mb-[0.35rem] border-b border-rule pb-[0.35rem] text-[0.875rem] font-[460] tracking-[-0.00563rem] text-muted-soft";
@@ -56,7 +52,7 @@ const writingCtaArrowClass =
       height="92"
       loading="eager"
       decoding="async"
-    />
+    >
 
     <div
       class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:text-pretty [&_p]:text-[0.875rem] [&_p]:font-[460] [&_p]:leading-[1.6rem] [&_p]:tracking-[-0.00563rem] [&_p]:text-ghostindigo-800"
@@ -80,8 +76,7 @@ const writingCtaArrowClass =
   <section id="writing" class="grid gap-[0.35rem]">
     <h2 class={sectionLabelClass}>Writing</h2>
     <ul class="detail-list m-0 list-none p-0">
-      {
-        writingLinks.map((item, index) => (
+      {writingLinks.map((item, index) => (
           <li style={`--item-index:${index};`}>
             <a
               class={detailLinkClass}
@@ -105,8 +100,7 @@ const writingCtaArrowClass =
               </div>
             </a>
           </li>
-        ))
-      }
+        ))}
       <li>
         <a
           class={detailLinkClass}

@@ -14,7 +14,10 @@
   "social": [
     { "href": "https://github.com/shrirambalaji", "label": "GitHub" },
     { "href": "https://x.com/shrirambalaji", "label": "X" },
-    { "href": "https://www.linkedin.com/in/shrirambalaji/", "label": "LinkedIn" },
+    {
+      "href": "https://www.linkedin.com/in/shrirambalaji/",
+      "label": "LinkedIn"
+    },
     { "href": "mailto:hello@shrirambalaji.com", "label": "Email" }
   ]
 }

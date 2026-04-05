@@ -34,7 +34,6 @@
 }
 
 :root {
-  color-scheme: light;
   --surface-overlay: rgba(252, 252, 250, 0.96);
   --mobile-nav-overlay-bg: rgba(252, 252, 250, 0.84);
   --surface-blur-top: rgba(255, 255, 255, 0.95);
@@ -48,11 +47,11 @@
   --plain-link-underline: rgba(17, 17, 24, 0.2);
   --plain-link-underline-hover: rgba(17, 17, 24, 0.55);
   --interactive-underline: rgba(17, 17, 24, 0.45);
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color-scheme: dark;
     --color-paper: #111118;
     --color-paper-strong: #111118;
     --color-rule: rgba(234, 234, 240, 0.12);
@@ -75,6 +74,7 @@
     --plain-link-underline: rgba(219, 219, 230, 0.24);
     --plain-link-underline-hover: rgb(199, 210, 254);
     --interactive-underline: rgb(199, 210, 254);
+    color-scheme: dark;
   }
 }
 
@@ -92,8 +92,8 @@ html {
 }
 
 body {
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -117,8 +117,8 @@ code:not(pre code) {
 .intro-prose a {
   color: var(--color-ghostindigo-900);
   text-decoration-line: underline;
-  text-decoration-color: var(--intro-link-underline);
   text-decoration-thickness: 1px;
+  text-decoration-color: var(--intro-link-underline);
   text-underline-offset: 0.22rem;
   transition:
     color 160ms ease,
@@ -144,12 +144,12 @@ code:not(pre code) {
 }
 
 .site-nav-link::after {
-  content: "";
   position: absolute;
-  left: 0;
   right: 0;
   bottom: -0.18rem;
+  left: 0;
   height: 1px;
+  content: "";
   background: transparent;
   transition: background 160ms ease;
 }
@@ -170,12 +170,12 @@ code:not(pre code) {
 
 .basic-link::before,
 .footer-link::before {
-  content: "";
   position: absolute;
-  left: 0;
   right: 0;
   bottom: -0.075rem;
+  left: 0;
   height: 1px;
+  content: "";
   background: var(--plain-link-underline);
   transition: background 160ms ease;
 }
@@ -195,8 +195,8 @@ code:not(pre code) {
 
 .hover-inline-title {
   text-decoration-line: underline;
-  text-decoration-color: transparent;
   text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
   text-underline-offset: 0.24rem;
   transition: text-decoration-color 150ms ease;
 }
@@ -256,8 +256,6 @@ body[data-page="/"] .site-intro-fade-footer {
 }
 
 .scroll-blur {
-  user-select: none;
-  pointer-events: none;
   --blur-height: min(96px, 4rem);
   position: sticky;
   top: 0;
@@ -266,21 +264,23 @@ body[data-page="/"] .site-intro-fade-footer {
   height: var(--blur-height);
   margin-bottom: calc(-1 * var(--blur-height));
   margin-left: calc(50% - 50vw);
+  pointer-events: none;
+  user-select: none;
   opacity: 1;
-  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0));
+  backdrop-filter: blur(5px);
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 50%,
     rgba(0, 0, 0, 0)
   );
+  mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0));
 }
 
 .scroll-blur::after {
-  content: "";
   position: absolute;
   inset: 0;
+  content: "";
   background: linear-gradient(
     to bottom,
     var(--surface-blur-top),

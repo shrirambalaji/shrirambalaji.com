@@ -1,0 +1,149 @@
+---
+import Avatar from "boring-avatars";
+import type { Project } from "../lib/site";
+
+interface Props {
+  items: Project[];
+  compact?: boolean;
+}
+
+const { items, compact = false } = Astro.props;
+
+interface PaletteStop {
+  h: number;
+  s: number;
+  l: number;
+}
+
+const hashString = (value: string) => {
+  let hash = 7;
+
+  for (const char of value) {
+    const nextHash = hash * 31 + (char.codePointAt(0) ?? 0);
+    hash = Math.abs(Math.trunc(nextHash));
+  }
+
+  return hash;
+};
+
+const hueFrom = (hash: number, offset: number) => (hash + offset) % 360;
+
+const paletteForProject = (name: string): PaletteStop[] => {
+  const hash = hashString(name);
+  const base = hueFrom(hash, 0);
+  const accent = hueFrom(hash, 97);
+  const third = hueFrom(hash, 181);
+  const fourth = hueFrom(hash, 263);
+
+  return [
+    { h: base, l: 68, s: 72 },
+    { h: accent, l: 60, s: 64 },
+    { h: third, l: 78, s: 58 },
+    { h: fourth, l: 52, s: 70 },
+    { h: hueFrom(hash, 38), l: 92, s: 45 },
+  ];
+};
+
+const formatStop = ({ h, s, l }: PaletteStop) => `hsl(${h} ${s}% ${l}%)`;
+
+const listClasses = "detail-list m-0 list-none p-0";
+const rowClasses =
+  "-mx-2 grid grid-cols-[0.95rem_minmax(0,1fr)] items-start gap-x-[0.8rem] px-2 py-3 max-md:mx-0 max-md:px-0";
+const linkClasses = "group block min-w-0";
+const copyClasses = "grid min-w-0 gap-[0.02rem]";
+const titleClasses =
+  "m-0 hover-accent-text inline-flex items-baseline gap-[0.2rem] text-[0.875rem] font-[460] leading-[1.6rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150";
+const descriptionClasses =
+  "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
+const metaClasses =
+  "mt-[0.2rem] text-[0.8125rem] leading-[1.15rem] text-muted-soft";
+const inlineCodeClasses =
+  "font-mono text-[0.90625rem] font-[560] leading-[1.5rem] tracking-[-0.01em] text-ghostindigo-900";
+
+const parseInlineCode = (value: string) =>
+  value.split(/(`[^`]+`)/g).map((part) => {
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return {
+        type: "code" as const,
+        value: part.slice(1, -1),
+      };
+    }
+
+    return {
+      type: "text" as const,
+      value: part,
+    };
+  });
+---
+
+<ul class={listClasses}>
+  {items.map((project, index) => {
+      const palette = paletteForProject(project.title);
+
+      return (
+        <li style={`--item-index:${index};`}>
+          <div class={rowClasses}>
+            <div
+              class="relative mt-[0.36rem] h-[0.95rem] w-[0.95rem] overflow-hidden rounded-full self-start"
+              aria-hidden="true"
+            >
+              {project.icon ? (
+                <img
+                  class="h-full w-full rounded-full object-cover"
+                  src={project.icon}
+                  alt=""
+                  width="28"
+                  height="28"
+                  decoding="async"
+                />
+              ) : (
+                <>
+                  <Avatar
+                    variant="marble"
+                    size={28}
+                    name={project.title}
+                    colors={palette.map(formatStop)}
+                    className="project-boring-avatar"
+                  />
+                </>
+              )}
+            </div>
+
+            <a
+              class={linkClasses}
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div class={copyClasses}>
+                <h2 class={titleClasses}>
+                  <span class="hover-inline-title">{project.title}</span>
+                  <span
+                    class="hover-accent-arrow inline-block w-[0.8rem] text-center text-[0.9em] leading-none text-ghostindigo-700 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                    aria-hidden="true"
+                  >
+                    ↗
+                  </span>
+                </h2>
+                <p class={descriptionClasses}>
+                  {parseInlineCode(project.description).map((part) =>
+                    part.type === "code" ? (
+                      <code class={inlineCodeClasses}>{part.value}</code>
+                    ) : (
+                      part.value
+                    )
+                  )}
+                </p>
+                {!compact ? (
+                  <p class={metaClasses}>
+                    {project.tags.join(" · ")}
+                    {project.note ? ` · ${project.note}` : ""}
+                  </p>
+                ) : null}
+              </div>
+            </a>
+          </div>
+        </li>
+      );
+    })}
+</ul>

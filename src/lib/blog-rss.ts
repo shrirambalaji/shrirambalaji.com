@@ -1,12 +1,12 @@
 import { XMLParser } from "fast-xml-parser";
 
-export type BlogPost = {
+export interface BlogPost {
   title: string;
   href: string;
   description: string;
   publishedAt: string;
   publishedTime: number;
-};
+}
 
 const BLOG_RSS_URL = "https://blog.shrirambalaji.com/rss.xml";
 
@@ -19,24 +19,24 @@ const parser = new XMLParser({
 
 const stripMarkup = (value: string) =>
   value
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
+    .replaceAll(/<[^>]+>/g, " ")
+    .replaceAll(/\s+/g, " ")
     .trim();
 
-type FeedItem = {
+interface FeedItem {
   title?: string;
   link?: string;
   description?: string;
   pubDate?: string;
-};
+}
 
-type ParsedFeed = {
+interface ParsedFeed {
   rss?: {
     channel?: {
       item?: FeedItem | FeedItem[];
     };
   };
-};
+}
 
 const asArray = <T>(value?: T | T[]): T[] => {
   if (!value) {
@@ -59,11 +59,11 @@ export const parseBlogFeed = (xml: string): BlogPost[] => {
       const publishedTime = new Date(publishedAt).getTime();
 
       return {
-        title,
-        href,
         description,
+        href,
         publishedAt,
         publishedTime,
+        title,
       };
     })
     .filter(
@@ -72,7 +72,7 @@ export const parseBlogFeed = (xml: string): BlogPost[] => {
         post.href.length > 0 &&
         Number.isFinite(post.publishedTime)
     )
-    .sort((left, right) => right.publishedTime - left.publishedTime);
+    .toSorted((left, right) => right.publishedTime - left.publishedTime);
 };
 
 export const getRecentBlogPosts = async (limit = 4): Promise<BlogPost[]> => {

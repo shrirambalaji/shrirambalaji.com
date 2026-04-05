@@ -1,4 +1,5 @@
-import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 const siteEntry = await getEntry("site", "config");
 const usesEntry = await getEntry("uses", "setup");
@@ -21,16 +22,20 @@ export type Project = ProjectEntry["data"] & { id: ProjectEntry["id"] };
 export type Talk = TalkEntry["data"] & { id: TalkEntry["id"] };
 export type Uses = CollectionEntry<"uses">["data"];
 
-export const projects: Project[] = (await getCollection("projects"))
-  .sort((left: ProjectEntry, right: ProjectEntry) => {
-    return left.data.order - right.data.order;
-  })
+const projectEntries = await getCollection("projects");
+const talkEntries = await getCollection("talks");
+
+export const projects: Project[] = projectEntries
+  .toSorted(
+    (left: ProjectEntry, right: ProjectEntry) =>
+      left.data.order - right.data.order
+  )
   .map(({ id, data }: ProjectEntry): Project => ({ id, ...data }));
 
-export const talks: Talk[] = (await getCollection("talks"))
-  .sort((left: TalkEntry, right: TalkEntry) => {
-    return left.data.order - right.data.order;
-  })
+export const talks: Talk[] = talkEntries
+  .toSorted(
+    (left: TalkEntry, right: TalkEntry) => left.data.order - right.data.order
+  )
   .map(({ id, data }: TalkEntry): Talk => ({ id, ...data }));
 
 export const siteSettings = siteEntry.data;
