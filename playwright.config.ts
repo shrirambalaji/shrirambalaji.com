@@ -10,7 +10,7 @@ export default defineConfig({
   webServer: {
     command: "pnpm dev --host 127.0.0.1 --port 4321",
     port: 4321,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120000,
   },
   projects: [

@@ -1,0 +1,8 @@
+{
+  "title": "hex-rgb",
+  "description": "A Rust CLI for converting hexadecimal color values to RGB.",
+  "href": "https://github.com/shrirambalaji/cli-hex-rgb",
+  "tags": ["Rust", "CLI"],
+  "kind": "project",
+  "order": 80
+}

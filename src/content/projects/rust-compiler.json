@@ -1,0 +1,8 @@
+{
+  "title": "Rust Compiler",
+  "description": "Added `std_features` to the Rust bootstrap flow, shipped in Rust 1.83.",
+  "href": "https://github.com/rust-lang/rust/pull/131315",
+  "tags": ["Open source", "Rust", "Compiler"],
+  "kind": "oss",
+  "order": 40
+}

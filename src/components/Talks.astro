@@ -1,13 +1,14 @@
 ---
 import Presentation from "@lucide/astro/icons/presentation";
 import TvMinimalPlay from "@lucide/astro/icons/tv-minimal-play";
-import type { Talk } from "../data/site";
+import type { Talk } from "../lib/site";
 
 type Props = {
   items: Talk[];
 };
 
 const { items } = Astro.props;
+type TalkAction = Talk["actions"][number];
 const listClasses = "detail-list m-0 list-none p-0";
 const itemClasses = "py-3";
 const titleClasses =
@@ -46,50 +47,45 @@ const actionArrowClasses =
             </h2>
             <p class={descriptionClasses}>{talk.description}</p>
             <div class="mt-[0.45rem] grid auto-cols-max grid-flow-col justify-start gap-x-[0.9rem] gap-y-2 max-md:mt-[0.38rem] max-md:gap-x-3">
-              <a
-                class={actionClasses}
-                href={talk.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class={watchIconWrapClasses} aria-hidden="true">
-                  <TvMinimalPlay
-                    aria-hidden="true"
-                    size={13}
-                    stroke-width={2}
-                    class={actionIconClasses}
-                  />
-                </span>
-                <span class={actionTextRowClasses}>
-                  <span class={actionLabelClasses}>Watch</span>
-                  <span class={actionArrowClasses} aria-hidden="true">
-                    ↗
-                  </span>
-                </span>
-              </a>
-              {talk.secondaryHref ? (
+              {talk.actions.map((action: TalkAction) => (
                 <a
                   class={actionClasses}
-                  href={talk.secondaryHref}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={action.href}
+                  target={action.href.startsWith("/") ? undefined : "_blank"}
+                  rel={action.href.startsWith("/") ? undefined : "noreferrer"}
                 >
-                  <span class={slidesIconWrapClasses} aria-hidden="true">
-                    <Presentation
-                      aria-hidden="true"
-                      size={13}
-                      stroke-width={2}
-                      class={actionIconClasses}
-                    />
+                  <span
+                    class={
+                      action.icon === "watch"
+                        ? watchIconWrapClasses
+                        : slidesIconWrapClasses
+                    }
+                    aria-hidden="true"
+                  >
+                    {action.icon === "watch" ? (
+                      <TvMinimalPlay
+                        aria-hidden="true"
+                        size={13}
+                        stroke-width={2}
+                        class={actionIconClasses}
+                      />
+                    ) : (
+                      <Presentation
+                        aria-hidden="true"
+                        size={13}
+                        stroke-width={2}
+                        class={actionIconClasses}
+                      />
+                    )}
                   </span>
                   <span class={actionTextRowClasses}>
-                    <span class={actionLabelClasses}>{talk.secondaryLabel}</span>
+                    <span class={actionLabelClasses}>{action.label}</span>
                     <span class={actionArrowClasses} aria-hidden="true">
                       ↗
                     </span>
                   </span>
                 </a>
-              ) : null}
+              ))}
             </div>
           </div>
         </div>

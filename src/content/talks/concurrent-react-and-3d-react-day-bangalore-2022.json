@@ -1,0 +1,13 @@
+{
+  "title": "Concurrent React and 3D",
+  "event": "React Day Bangalore 2022",
+  "description": "An introduction to the building blocks of 3D, WebGL, react-three-fiber, and React 18 concurrency.",
+  "actions": [
+    {
+      "href": "https://www.youtube.com/watch?v=1fF_socjZNU",
+      "label": "Watch",
+      "icon": "watch"
+    }
+  ],
+  "order": 40
+}

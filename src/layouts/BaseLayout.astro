@@ -1,6 +1,11 @@
 ---
-import { MobileNav } from "../components/MobileNav";
-import { navItems, siteMeta, socialLinks } from "../data/site";
+import { Navigation } from "../components/Navigation";
+import {
+  navItems,
+  siteMeta,
+  socialLinks,
+  type SocialLink,
+} from "../lib/site";
 import "../styles/global.css";
 
 type Props = {
@@ -17,8 +22,6 @@ const {
 
 const pageTitle =
   title === siteMeta.title ? title : `${title} · ${siteMeta.title}`;
-const navLinkClasses =
-  "site-nav-link text-sm font-medium tracking-[-0.00563rem]";
 const footerLinkClasses = "footer-link transition-colors duration-150";
 ---
 
@@ -40,10 +43,10 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
   </head>
   <body
     data-page={currentPath}
-    class="min-h-screen bg-paper font-sans text-base leading-[1.25] text-ghostindigo-800"
+    class="min-h-screen bg-paper font-sans text-base leading-tight text-ghostindigo-800"
   >
     <div
-      class="mx-auto max-w-[36.375rem] px-6 pb-10 pt-4 md:px-4 md:pb-[3.25rem] md:pt-[2.9rem] xl:max-w-[44.5rem]"
+      class="mx-auto max-w-145.5 px-6 pb-10 pt-4 md:px-4 md:pb-13 md:pt-[2.9rem] xl:max-w-178"
     >
       <div class="scroll-blur" aria-hidden="true"></div>
       <header
@@ -54,50 +57,11 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
             class="site-title-link text-sm font-[650] tracking-[-0.012em] text-ghostindigo-900"
             href="/"
           >
-            Shriram Balaji
+            {siteMeta.title}
           </a>
 
-          <nav class="hidden min-[700px]:block" aria-label="Primary">
-            <ul class="m-0 flex list-none items-center gap-[1.35rem] p-0">
-              {
-                navItems.map((item) => {
-                  const active =
-                    !item.external &&
-                    ((currentPath === "/" && item.href === "/#about") ||
-                      (currentPath === "/uses" && item.href === "/uses"));
-                  const section =
-                    item.href === "/uses"
-                      ? "uses"
-                      : item.href.startsWith("/#")
-                        ? item.href.slice(2)
-                        : undefined;
-                  return (
-                    <li>
-                      <a
-                        href={item.href}
-                        class:list={[navLinkClasses]}
-                        aria-current={
-                          active
-                            ? section === "uses"
-                              ? "page"
-                              : "location"
-                            : undefined
-                        }
-                        data-nav-link={section ? "true" : undefined}
-                        data-section={section}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noreferrer" : undefined}
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-          </nav>
+          <Navigation client:load currentPath={currentPath} items={navItems} />
 
-          <MobileNav client:load currentPath={currentPath} items={navItems} />
         </div>
       </header>
 
@@ -106,13 +70,13 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
       </main>
 
       <footer class="site-intro-fade site-intro-fade-footer pt-7">
-        <div class="mb-5 h-px w-[3.125rem] bg-rule"></div>
+        <div class="mb-5 h-px w-12.5 bg-rule"></div>
         <p
-          class="m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted-soft"
+          class="m-0 text-[0.875rem] font-[460] leading-6 tracking-[-0.00563rem] text-muted-soft"
         >
           <span>Find me on </span>
           {
-            socialLinks.map((link, index) => (
+            socialLinks.map((link: SocialLink, index: number) => (
               <>
                 <a
                   class={footerLinkClasses}
@@ -143,99 +107,5 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
         </p>
       </footer>
     </div>
-    <script is:inline>
-      (() => {
-        const links = Array.from(
-          document.querySelectorAll("[data-nav-link='true']")
-        );
-
-        if (links.length === 0) {
-          return;
-        }
-
-        const setActive = (section) => {
-          for (const link of links) {
-            const target = link.getAttribute("data-section");
-            if (!target) continue;
-
-            if (target === section) {
-              link.setAttribute(
-                "aria-current",
-                target === "uses" ? "page" : "location"
-              );
-            } else {
-              link.removeAttribute("aria-current");
-            }
-          }
-        };
-
-        if (window.location.pathname === "/uses") {
-          setActive("uses");
-          return;
-        }
-
-        if (window.location.pathname !== "/") {
-          return;
-        }
-
-        const sectionIds = ["about", "projects", "writing", "talks"];
-        const sections = sectionIds
-          .map((id) => document.getElementById(id))
-          .filter(Boolean);
-        const sectionsById = new Map(
-          sections.map((section) => [section.id, section])
-        );
-
-        const resolveActiveSection = () => {
-          const lastSection = sections.at(-1);
-          const hashTarget = window.location.hash.replace(/^#/, "");
-          const hashedSection = sectionsById.get(hashTarget);
-          const scrolledToBottom =
-            window.innerHeight + window.scrollY >=
-            document.documentElement.scrollHeight - 4;
-
-          if (scrolledToBottom) {
-            if (hashedSection) {
-              const rect = hashedSection.getBoundingClientRect();
-
-              if (rect.bottom > 0 && rect.top < window.innerHeight) {
-                setActive(hashedSection.id);
-                return;
-              }
-            }
-
-            if (lastSection) {
-              setActive(lastSection.id);
-              return;
-            }
-          }
-
-          let active = "about";
-          const offset = 140;
-
-          for (const section of sections) {
-            if (section.getBoundingClientRect().top <= offset) {
-              active = section.id;
-            }
-          }
-
-          setActive(active);
-        };
-
-        let ticking = false;
-        const onScroll = () => {
-          if (ticking) return;
-          ticking = true;
-          requestAnimationFrame(() => {
-            resolveActiveSection();
-            ticking = false;
-          });
-        };
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("hashchange", resolveActiveSection);
-        resolveActiveSection();
-      })();
-    </script>
   </body>
 </html>

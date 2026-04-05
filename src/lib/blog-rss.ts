@@ -1,3 +1,5 @@
+import { XMLParser } from "fast-xml-parser";
+
 export type BlogPost = {
   title: string;
   href: string;
@@ -8,41 +10,52 @@ export type BlogPost = {
 
 const BLOG_RSS_URL = "https://blog.shrirambalaji.com/rss.xml";
 
-const htmlEntityMap: Record<string, string> = {
-  "&amp;": "&",
-  "&lt;": "<",
-  "&gt;": ">",
-  "&quot;": '"',
-  "&apos;": "'",
-  "&#39;": "'",
-};
-
-const decodeHtmlEntities = (value: string) =>
-  value.replace(
-    /&(amp|lt|gt|quot|apos|#39);/g,
-    (entity) => htmlEntityMap[entity] ?? entity
-  );
+const parser = new XMLParser({
+  ignoreAttributes: true,
+  parseTagValue: false,
+  processEntities: true,
+  trimValues: true,
+});
 
 const stripMarkup = (value: string) =>
-  decodeHtmlEntities(value)
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+  value
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
-const getTagValue = (input: string, tag: string) => {
-  const match = input.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`, "i"));
-  return match?.[1]?.trim() ?? "";
+type FeedItem = {
+  title?: string;
+  link?: string;
+  description?: string;
+  pubDate?: string;
 };
 
-export const parseBlogFeed = (xml: string): BlogPost[] =>
-  [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)]
-    .map((match) => {
-      const item = match[1];
-      const title = stripMarkup(getTagValue(item, "title"));
-      const href = stripMarkup(getTagValue(item, "link"));
-      const description = stripMarkup(getTagValue(item, "description"));
-      const publishedAt = stripMarkup(getTagValue(item, "pubDate"));
+type ParsedFeed = {
+  rss?: {
+    channel?: {
+      item?: FeedItem | FeedItem[];
+    };
+  };
+};
+
+const asArray = <T>(value?: T | T[]): T[] => {
+  if (!value) {
+    return [];
+  }
+
+  return Array.isArray(value) ? value : [value];
+};
+
+export const parseBlogFeed = (xml: string): BlogPost[] => {
+  const feed = parser.parse(xml) as ParsedFeed;
+  const items = asArray(feed.rss?.channel?.item);
+
+  return items
+    .map((item) => {
+      const title = stripMarkup(item.title ?? "");
+      const href = stripMarkup(item.link ?? "");
+      const description = stripMarkup(item.description ?? "");
+      const publishedAt = stripMarkup(item.pubDate ?? "");
       const publishedTime = new Date(publishedAt).getTime();
 
       return {
@@ -60,6 +73,7 @@ export const parseBlogFeed = (xml: string): BlogPost[] =>
         Number.isFinite(post.publishedTime)
     )
     .sort((left, right) => right.publishedTime - left.publishedTime);
+};
 
 export const getRecentBlogPosts = async (limit = 4): Promise<BlogPost[]> => {
   const response = await fetch(BLOG_RSS_URL, {

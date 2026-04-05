@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { uses } from "../data/site";
+import { uses } from "../lib/site";
 
 const sectionLabelClass =
   "mb-[0.35rem] border-b border-rule pb-[0.35rem] text-[0.875rem] font-[460] tracking-[-0.00563rem] text-muted-soft";
@@ -9,32 +9,32 @@ const bulletItemClass =
 ---
 
 <BaseLayout currentPath="/uses" title="Uses">
-  <section class="grid gap-8 pt-[2px]">
+  <section class="grid gap-8 pt-0.5">
     <section>
       <h2 class={sectionLabelClass}>Hardware</h2>
       <ul class="grid gap-2 pt-[0.35rem]">
-        {uses.hardware.map((item) => <li class={bulletItemClass}>{item}</li>)}
+        {uses.hardware.map((item: string) => <li class={bulletItemClass}>{item}</li>)}
       </ul>
     </section>
 
     <section>
       <h2 class={sectionLabelClass}>Applications</h2>
       <ul class="grid gap-2 pt-[0.35rem]">
-        {uses.apps.map((item) => <li class={bulletItemClass}>{item}</li>)}
+        {uses.apps.map((item: string) => <li class={bulletItemClass}>{item}</li>)}
       </ul>
     </section>
 
     <section>
       <h2 class={sectionLabelClass}>Typography</h2>
       <ul class="grid gap-2 pt-[0.35rem]">
-        {uses.typography.map((item) => <li class={bulletItemClass}>{item}</li>)}
+        {uses.typography.map((item: string) => <li class={bulletItemClass}>{item}</li>)}
       </ul>
     </section>
 
     <section>
       <h2 class={sectionLabelClass}>VS Code Extensions</h2>
       <ul class="grid gap-2 pt-[0.35rem]">
-        {uses.extensions.map((item) => <li class={bulletItemClass}>{item}</li>)}
+        {uses.extensions.map((item: string) => <li class={bulletItemClass}>{item}</li>)}
       </ul>
     </section>
   </section>

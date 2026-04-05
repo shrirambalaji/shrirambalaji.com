@@ -1,0 +1,18 @@
+{
+  "title": "Rust Unlinked",
+  "event": "Rust Tokyo 2024",
+  "description": "A journey through the rust compiler, symbol resolution, linkers, static libraries, and the ELF format.",
+  "actions": [
+    {
+      "href": "https://www.youtube.com/watch?v=I0JvqbRCI2U",
+      "label": "Watch",
+      "icon": "watch"
+    },
+    {
+      "href": "/slides/rust-unlinked.pdf",
+      "label": "Slides",
+      "icon": "slides"
+    }
+  ],
+  "order": 20
+}

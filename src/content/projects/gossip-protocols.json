@@ -1,0 +1,8 @@
+{
+  "title": "gossip-protocols",
+  "description": "Experiments with gossip-style communication and distributed protocol behavior in Rust.",
+  "href": "https://github.com/shrirambalaji/gossip-protocols",
+  "tags": ["Rust", "Distributed Systems"],
+  "kind": "project",
+  "order": 20
+}

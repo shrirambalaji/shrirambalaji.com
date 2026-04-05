@@ -1,0 +1,8 @@
+{
+  "title": "netlify-rusty-bunny",
+  "description": "A smart-bookmark experiment built with Rust and Netlify.",
+  "href": "https://github.com/shrirambalaji/netlify-rusty-bunny",
+  "tags": ["Rust", "Web"],
+  "kind": "project",
+  "order": 90
+}

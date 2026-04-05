@@ -1,0 +1,8 @@
+{
+  "title": "Advent of Code in Rust",
+  "description": "My Advent of Code solutions from 2020, written while learning Rust more seriously.",
+  "href": "https://github.com/shrirambalaji/rust-advent-of-code-2020",
+  "tags": ["Rust"],
+  "kind": "project",
+  "order": 70
+}

@@ -1,17 +1,25 @@
 ---
+import { getEntry, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectList from "../components/ProjectList.astro";
-import TalkList from "../components/TalkList.astro";
-import Intro from "../content/intro.mdx";
+import Projects from "../components/Projects.astro";
+import Talks from "../components/Talks.astro";
 import { getRecentBlogPosts } from "../lib/blog-rss";
 import {
   featuredProjects,
   openSourceContributions,
   recentTalks,
-} from "../data/site";
+  type Project,
+} from "../lib/site";
 
+const introEntry = await getEntry("home", "intro");
+
+if (!introEntry) {
+  throw new Error("Missing homepage intro content entry.");
+}
+
+const { Content: Intro } = await render(introEntry);
 const homepageProjects = featuredProjects
-  .filter((project) => project.title !== "Advent of Code in Rust")
+  .filter((project: Project) => project.title !== "Advent of Code in Rust")
   .slice(0, 4);
 const writingLinks = await getRecentBlogPosts(4);
 const blogDateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -38,10 +46,10 @@ const writingCtaArrowClass =
   "inline-flex w-[0.8rem] shrink-0 justify-center text-ghostindigo-700 transition-transform duration-150 group-hover:translate-x-[0.12rem]";
 ---
 
-<BaseLayout currentPath="/" title="Shriram Balaji">
+<BaseLayout currentPath="/">
   <article id="about" class="grid max-w-[70ch] scroll-mt-24 gap-[0.85rem]">
     <img
-      class="h-[5.75rem] w-[5.75rem] rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] object-cover shadow-soft"
+      class="h-23 w-23 rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] object-cover shadow-soft"
       src="/images/avatar.jpeg"
       alt="Shriram Balaji"
       width="92"
@@ -60,12 +68,12 @@ const writingCtaArrowClass =
   <section id="projects" class="grid scroll-mt-24 gap-7">
     <div class="grid gap-[0.35rem]">
       <h2 class={sectionLabelClass}>Projects</h2>
-      <ProjectList items={homepageProjects} compact />
+      <Projects items={homepageProjects} compact />
     </div>
 
     <div class="grid gap-[0.35rem]">
       <h2 class={sectionLabelClass}>Recent Open Source Contributions</h2>
-      <ProjectList items={openSourceContributions} compact />
+      <Projects items={openSourceContributions} compact />
     </div>
   </section>
 
@@ -121,6 +129,6 @@ const writingCtaArrowClass =
 
   <section id="talks" class="grid scroll-mt-24 gap-[0.35rem]">
     <h2 class={sectionLabelClass}>Talks</h2>
-    <TalkList items={recentTalks} />
+    <Talks items={recentTalks} />
   </section>
 </BaseLayout>
