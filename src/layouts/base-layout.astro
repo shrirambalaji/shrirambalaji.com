@@ -1,7 +1,6 @@
 ---
 import { Navigation } from "../components/navigation";
-import { navItems, siteMeta, socialLinks } from '../lib/site';
-import type { SocialLink } from '../lib/site';
+import { navItems, siteMeta } from '../lib/site';
 import "../styles/global.css";
 
 interface Props {
@@ -42,7 +41,7 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
     class="min-h-screen bg-paper font-sans text-base leading-tight text-ghostindigo-800"
   >
     <div
-      class="mx-auto max-w-145.5 px-6 pb-10 pt-4 md:px-4 md:pb-13 md:pt-[2.9rem] xl:max-w-178"
+      class="mx-auto max-w-145.5 px-4 pb-10 pt-4 md:px-4 md:pb-13 md:pt-[2.9rem] xl:max-w-178"
     >
       <div class="scroll-blur" aria-hidden="true"></div>
       <header
@@ -67,25 +66,7 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
         <p
           class="m-0 text-[0.875rem] font-[460] leading-6 tracking-[-0.00563rem] text-muted-soft"
         >
-          <span>Find me on </span>
-          {socialLinks.map((link: SocialLink, index: number) => (
-              <>
-                <a
-                  class={footerLinkClasses}
-                  href={link.href}
-                  target={
-                    link.href.startsWith("mailto:") ? undefined : "_blank"
-                  }
-                  rel={
-                    link.href.startsWith("mailto:") ? undefined : "noreferrer"
-                  }
-                >
-                  {link.label}
-                </a>
-                {index < socialLinks.length - 1 ? <span>, </span> : null}
-              </>
-            ))}
-          <span>. View source on </span>
+          <span>View source on </span>
           <a
             class={footerLinkClasses}
             href="https://github.com/shrirambalaji/shrirambalaji.com"

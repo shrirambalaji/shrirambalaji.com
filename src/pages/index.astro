@@ -4,8 +4,8 @@ import Projects from "../components/projects.astro";
 import Talks from "../components/talks.astro";
 import BaseLayout from "../layouts/base-layout.astro";
 import { getRecentBlogPosts } from "../lib/blog-rss";
-import { featuredProjects, openSourceContributions, recentTalks } from '../lib/site';
-import type { Project } from '../lib/site';
+import { featuredProjects, openSourceContributions, recentTalks, socialLinks } from '../lib/site';
+import type { Project, SocialLink } from '../lib/site';
 
 const introEntry = await getEntry("home", "intro");
 
@@ -29,9 +29,10 @@ const sectionLabelClass =
 const detailLinkClass =
   "group -mx-2 flex items-start justify-between gap-4 rounded-2xl px-2 py-3 transition-colors duration-150 max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0";
 const detailCopyHeadingClass =
-  "m-0 hover-accent-text text-[0.875rem] font-[500] leading-[1.4rem] tracking-[-0.00563rem] text-ghostindigo-900 transition-colors duration-150";
+  "m-0 hover-accent-text text-[0.9375rem] font-[500] leading-[1.55rem] tracking-[-0.003em] text-ghostindigo-900 transition-colors duration-150 md:text-[0.875rem] md:leading-[1.4rem] md:tracking-[-0.00563rem]";
 const detailCopyBodyClass =
-  "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
+  "m-0 text-pretty text-[0.9375rem] font-[460] leading-[1.6rem] tracking-[-0.003em] text-muted md:text-[0.875rem] md:leading-[1.5rem] md:tracking-[-0.00563rem]";
+const detailCopyClasses = "grid min-w-0 gap-[0.2rem]";
 const writingDateClass =
   "mb-[0.38rem] text-[0.75rem] font-[500] leading-[1.1rem] tracking-[-0.01em] text-muted-soft";
 const writingTitleClass = "m-0 inline hover-inline-title";
@@ -43,7 +44,7 @@ const writingCtaArrowClass =
 ---
 
 <BaseLayout currentPath="/">
-  <article id="about" class="grid max-w-[70ch] scroll-mt-24 gap-[0.85rem]">
+  <article id="about" class="grid max-w-none scroll-mt-24 gap-[0.85rem] md:max-w-[70ch]">
     <img
       class="h-23 w-23 rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] object-cover shadow-soft"
       src="/images/avatar.jpeg"
@@ -55,10 +56,28 @@ const writingCtaArrowClass =
     >
 
     <div
-      class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:text-pretty [&_p]:text-[0.875rem] [&_p]:font-[460] [&_p]:leading-[1.6rem] [&_p]:tracking-[-0.00563rem] [&_p]:text-ghostindigo-800"
+      class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:max-w-none [&_p]:text-pretty [&_p]:text-[0.9375rem] [&_p]:font-[460] [&_p]:leading-[1.68rem] [&_p]:tracking-normal [&_p]:text-ghostindigo-800 md:[&_p]:text-[0.875rem] md:[&_p]:leading-[1.6rem] md:[&_p]:tracking-[-0.00563rem]"
     >
       <Intro />
     </div>
+
+    <p class="m-0 text-[0.9375rem] font-[460] leading-[1.68rem] tracking-normal text-ghostindigo-800 md:text-[0.875rem] md:leading-[1.6rem] md:tracking-[-0.00563rem]">
+      <span>Find me on </span>
+      {socialLinks.map((link: SocialLink, index: number) => (
+          <>
+            <a
+              class="basic-link transition-colors duration-150"
+              href={link.href}
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+            >
+              {link.label}
+            </a>
+            {index < socialLinks.length - 1 ? <span>, </span> : null}
+          </>
+        ))}
+      <span>.</span>
+    </p>
   </article>
 
   <section id="projects" class="grid scroll-mt-24 gap-7">
@@ -88,15 +107,17 @@ const writingCtaArrowClass =
                 <p class={writingDateClass}>
                   {blogDateFormatter.format(new Date(item.publishedTime))}
                 </p>
-                <h2 class={detailCopyHeadingClass}>
-                  <span class={writingTitleRowClass}>
-                    <span class={writingTitleClass}>{item.title}</span>
-                    <span class={writingArrowClass} aria-hidden="true">
-                      ↗
+                <div class={detailCopyClasses}>
+                  <h2 class={detailCopyHeadingClass}>
+                    <span class={writingTitleRowClass}>
+                      <span class={writingTitleClass}>{item.title}</span>
+                      <span class={writingArrowClass} aria-hidden="true">
+                        ↗
+                      </span>
                     </span>
-                  </span>
-                </h2>
-                <p class={detailCopyBodyClass}>{item.description}</p>
+                  </h2>
+                  <p class={detailCopyBodyClass}>{item.description}</p>
+                </div>
               </div>
             </a>
           </li>

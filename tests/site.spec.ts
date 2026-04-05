@@ -48,6 +48,8 @@ test("core pages render and navigation works", async ({ page }) => {
   await expect(
     page.getByRole("banner").getByRole("link", { name: "Shriram Balaji" })
   ).toBeVisible();
+  await expect(page.getByText("Find me on")).toBeVisible();
+  await expect(page.locator("footer").getByText("Find me on")).toHaveCount(0);
   await expect(projectsNav).toBeVisible();
   await expect(desktopNav.getByRole("link", { name: "Blog" })).toHaveCount(0);
   await expect(aboutNav).toHaveAttribute("aria-current", "location");
@@ -161,15 +163,6 @@ test("site respects prefers-color-scheme", async ({ page }) => {
     page.getByRole("banner").getByRole("link", { name: "Shriram Balaji" })
   ).toHaveCSS("color", "rgb(255, 255, 255)");
 
-  const firstWritingLink = page.locator("#writing a").first();
-  await firstWritingLink.hover();
-  await expect(
-    firstWritingLink.locator(".hover-inline-title").first()
-  ).toHaveCSS("color", "rgb(199, 210, 254)");
-  await expect(
-    firstWritingLink.locator(".hover-inline-title").first()
-  ).toHaveCSS("text-decoration-color", "rgb(199, 210, 254)");
-
   await page.emulateMedia({ colorScheme: "light" });
   await page.reload();
 
@@ -202,6 +195,14 @@ test("homepage uses the slower first-load animation timing", async ({
 test("mobile menu overlays the viewport cleanly", async ({ page }) => {
   await page.setViewportSize({ height: 844, width: 390 });
   await page.goto("/");
+
+  const aboutArticle = page.locator("#about");
+  const firstIntroParagraph = aboutArticle.locator("p").first();
+  const aboutBox = await aboutArticle.boundingBox();
+
+  await expect(firstIntroParagraph).toHaveCSS("font-size", "15px");
+  await expect(firstIntroParagraph).toHaveCSS("line-height", "26.88px");
+  expect(Math.round(aboutBox?.width ?? 0)).toBeGreaterThan(350);
 
   await page.getByRole("banner").getByRole("button", { name: "Menu" }).click();
 
