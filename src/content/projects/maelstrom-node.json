@@ -1,0 +1,8 @@
+{
+  "title": "maelstrom-node",
+  "description": "A Maelstrom-based distributed systems workbench built on top of a forked Rust node implementation.",
+  "href": "https://github.com/shrirambalaji/maelstrom-node",
+  "tags": ["Rust", "Distributed Systems", "Maelstrom"],
+  "kind": "project",
+  "order": 30
+}

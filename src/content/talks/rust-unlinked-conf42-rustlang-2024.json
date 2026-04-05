@@ -1,0 +1,13 @@
+{
+  "title": "Rust Unlinked",
+  "event": "Conf42 Rustlang 2024",
+  "description": "A second run of the linker talk, focused on how linking works in Rust programs on Unix-like systems.",
+  "actions": [
+    {
+      "href": "https://www.youtube.com/watch?v=2xs6eGgGvog",
+      "label": "Watch",
+      "icon": "watch"
+    }
+  ],
+  "order": 30
+}

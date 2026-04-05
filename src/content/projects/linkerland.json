@@ -1,0 +1,9 @@
+{
+  "title": "linkerland",
+  "description": "a tiny workbench for parsing, visualizing & analyzing linker map files.",
+  "href": "https://github.com/shrirambalaji/linkerland",
+  "tags": ["Rust", "Linkers"],
+  "icon": "/images/projects/linkerland-mark.svg",
+  "kind": "project",
+  "order": 10
+}

@@ -1,0 +1,39 @@
+{
+  "hardware": [
+    "AirPods Pro (2nd generation)",
+    "Audio-Technica ATR2100x USB microphone",
+    "Keychron K4 with hot-swappable Gateron Red switches",
+    "LG 27-inch 4K UHD monitor",
+    "Flowlyf wooden monitor arm",
+    "Logitech Brio 500 webcam",
+    "Logitech MX Master 3S",
+    "MacBook Pro 14-inch (M1 Pro, 16GB RAM, 512GB SSD)"
+  ],
+  "apps": [
+    "Codex",
+    "Discord",
+    "Figma",
+    "Ghostty with fish",
+    "Helium for personal browsing",
+    "Neovim for quick terminal edits",
+    "OBS Studio",
+    "Obsidian",
+    "OrbStack",
+    "Raycast",
+    "Spotify",
+    "Visual Studio Code"
+  ],
+  "typography": [
+    "Inter for sans-serif UI and body text",
+    "JetBrains Mono for code and monospace UI details",
+    "DM Serif Display for expressive titles when needed"
+  ],
+  "extensions": [
+    "Better Comments",
+    "Fluent Product Icons",
+    "Gitless",
+    "Symbols",
+    "TabOut",
+    "VSCode Neovim"
+  ]
+}

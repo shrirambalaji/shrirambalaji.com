@@ -1,0 +1,9 @@
+{
+  "title": "Cast Bucket",
+  "description": "An unfinished experiment in building a podcast app with a universal React Native stack.",
+  "href": "https://github.com/cast-bucket/cast-bucket",
+  "tags": ["React Native", "TypeScript"],
+  "note": "Unfinished experiment",
+  "kind": "project",
+  "order": 100
+}

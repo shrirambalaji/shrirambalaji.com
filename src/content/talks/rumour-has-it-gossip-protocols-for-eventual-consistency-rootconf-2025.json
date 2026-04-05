@@ -1,0 +1,18 @@
+{
+  "title": "Rumour has it: Gossip Protocols for Eventual Consistency",
+  "event": "Rootconf 2025",
+  "description": "Gossip protocols in Rust, and using Maelstrom & Jepsen to verify toy distributed systems.",
+  "actions": [
+    {
+      "href": "https://www.youtube.com/watch?v=gHlwPfWzseo",
+      "label": "Watch",
+      "icon": "watch"
+    },
+    {
+      "href": "https://www.figma.com/slides/ukEG84Foftwz2aHKt1ZTJu/Rumour-has-it---Understanding-Gossip-Protocols-for-Eventual-Consistency",
+      "label": "Slides",
+      "icon": "slides"
+    }
+  ],
+  "order": 10
+}

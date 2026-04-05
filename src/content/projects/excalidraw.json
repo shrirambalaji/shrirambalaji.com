@@ -1,0 +1,8 @@
+{
+  "title": "Excalidraw",
+  "description": "Fixes in Excalidraw around browser storage, CSP handling, and selection restore behavior.",
+  "href": "https://github.com/excalidraw/excalidraw/pulls?q=is%3Apr+author%3Ashrirambalaji",
+  "tags": ["Open source", "TypeScript", "React"],
+  "kind": "oss",
+  "order": 50
+}

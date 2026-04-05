@@ -1,0 +1,102 @@
+---
+import { Navigation } from "../components/navigation";
+import { navItems, siteMeta, socialLinks } from '../lib/site';
+import type { SocialLink } from '../lib/site';
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPath: string;
+}
+
+const {
+  title = siteMeta.title,
+  description = siteMeta.description,
+  currentPath,
+} = Astro.props;
+
+const pageTitle =
+  title === siteMeta.title ? title : `${title} · ${siteMeta.title}`;
+const footerLinkClasses = "footer-link transition-colors duration-150";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{pageTitle}</title>
+    <meta name="description" content={description}>
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={`${siteMeta.url}${currentPath}`}>
+    <meta property="og:image" content={`${siteMeta.url}/og-image.png`}>
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
+  </head>
+  <body
+    data-page={currentPath}
+    class="min-h-screen bg-paper font-sans text-base leading-tight text-ghostindigo-800"
+  >
+    <div
+      class="mx-auto max-w-145.5 px-6 pb-10 pt-4 md:px-4 md:pb-13 md:pt-[2.9rem] xl:max-w-178"
+    >
+      <div class="scroll-blur" aria-hidden="true"></div>
+      <header
+        class="site-intro-fade site-intro-fade-header sticky top-0 z-20 bg-transparent py-[0.65rem]"
+      >
+        <div class="flex items-center justify-between gap-8 py-1">
+          <a
+            class="site-title-link text-sm font-[650] tracking-[-0.012em] text-ghostindigo-900"
+            href="/"
+          >
+            {siteMeta.title}
+          </a>
+
+          <Navigation client:load currentPath={currentPath} items={navItems} />
+        </div>
+      </header>
+
+      <main class="page-content grid gap-9"><slot /></main>
+
+      <footer class="site-intro-fade site-intro-fade-footer pt-7">
+        <div class="mb-5 h-px w-12.5 bg-rule"></div>
+        <p
+          class="m-0 text-[0.875rem] font-[460] leading-6 tracking-[-0.00563rem] text-muted-soft"
+        >
+          <span>Find me on </span>
+          {socialLinks.map((link: SocialLink, index: number) => (
+              <>
+                <a
+                  class={footerLinkClasses}
+                  href={link.href}
+                  target={
+                    link.href.startsWith("mailto:") ? undefined : "_blank"
+                  }
+                  rel={
+                    link.href.startsWith("mailto:") ? undefined : "noreferrer"
+                  }
+                >
+                  {link.label}
+                </a>
+                {index < socialLinks.length - 1 ? <span>, </span> : null}
+              </>
+            ))}
+          <span>. View source on </span>
+          <a
+            class={footerLinkClasses}
+            href="https://github.com/shrirambalaji/shrirambalaji.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+          <span>.</span>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Shriram Balaji",
+    "description": "Senior software engineer building distributed systems, developer tools, and polished side projects.",
+    "url": "https://shrirambalaji.com"
+  },
+  "nav": [
+    { "href": "/#about", "label": "About" },
+    { "href": "/#projects", "label": "Projects" },
+    { "href": "/#writing", "label": "Writing" },
+    { "href": "/#talks", "label": "Talks" },
+    { "href": "/uses", "label": "Uses" }
+  ],
+  "social": [
+    { "href": "https://github.com/shrirambalaji", "label": "GitHub" },
+    { "href": "https://x.com/shrirambalaji", "label": "X" },
+    {
+      "href": "https://www.linkedin.com/in/shrirambalaji/",
+      "label": "LinkedIn"
+    },
+    { "href": "mailto:hello@shrirambalaji.com", "label": "Email" }
+  ]
+}
