@@ -60,6 +60,26 @@ Rewrite the site from Next.js to Astro with React islands where interactivity is
 - Completed: adjusted the `/uses` lead section down slightly for optical alignment with the homepage photo
 - Completed: uses page now reflects Codex, Neovim, and Gitless instead of Edge, Helix, and GitLens
 - Completed: homepage first-load animation timing now runs slightly slower than the inner pages
+- Completed: mobile menu overlay now portals to the document root and uses a subtle blurred background treatment
+- Completed: mobile menu sheet fill was reduced and the Navigate/Close row was nudged down for better visual alignment
+- Completed: talk titles now use a `1.5rem` line-height and keep the venue inline on the same text row
+- Completed: Watch icon hover uses a softer rose accent in the talks section
+- Completed: talk title middot was enlarged slightly and Slides now uses a softer sky-blue hover accent
+- Completed: writing CTA now reads `Read all posts` instead of sounding archival
+- Completed: the `Read all posts` CTA now uses an always-visible right arrow instead of the hover-only external arrow
+- Completed: the Rust OSS entry now links to PR `131315`, and backticked inline tokens render in Paper Mono
+- Completed: inline backticked tokens now render slightly larger for better monospace emphasis
+- Completed: OSS contribution descriptions were tightened, and inline code was reduced to `14.5px`
+- Completed: Excalidraw OSS copy now reflects the actual authored PRs around persistence, CSP, and selection restore
+- Completed: homepage contact line now says `Find me on` instead of `Reach out on`
+- Completed: removed the duplicated homepage contact line and kept the footer as the single contact surface
+- Completed: talk action arrows now use the same tighter text-to-arrow spacing pattern as other site links
+- Completed: Rootconf talk copy now mentions Rust, Maelstrom, and Jepsen, and the `Read all posts` arrow now nudges right on hover
+- Completed: Excalidraw OSS copy was toned down to describe the work as small fixes
+- Completed: Rootconf talk description now uses the shorter Maelstrom & Jepsen wording
+- Completed: WRY OSS copy was toned down to describe the work as small fixes
+- Completed: Excalidraw and WRY OSS copy now use the cleaner `Fixes in ...` phrasing
+- Completed: the Rootconf gossip talk now includes its slides link
 
 ## Current Pass
 

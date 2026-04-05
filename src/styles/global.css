@@ -36,6 +36,7 @@
 :root {
   color-scheme: light;
   --surface-overlay: rgba(252, 252, 250, 0.96);
+  --mobile-nav-overlay-bg: rgba(252, 252, 250, 0.84);
   --surface-blur-top: rgba(255, 255, 255, 0.95);
   --selection-bg: hsl(234, 100%, 90%);
   --hover-accent-text: rgb(59, 59, 84);
@@ -62,6 +63,7 @@
     --color-ghostindigo-900: #ffffff;
     --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.35);
     --surface-overlay: rgba(17, 17, 24, 0.96);
+    --mobile-nav-overlay-bg: rgba(17, 17, 24, 0.82);
     --surface-blur-top: rgba(17, 17, 24, 0.94);
     --selection-bg: rgba(54, 58, 99, 0.25);
     --hover-accent-text: rgb(199, 210, 254);
@@ -106,6 +108,10 @@ a {
 img {
   display: block;
   max-width: 100%;
+}
+
+code:not(pre code) {
+  font-family: var(--font-mono);
 }
 
 .intro-prose a {
@@ -209,7 +215,7 @@ img {
 }
 
 .mobile-nav-overlay {
-  background: var(--surface-overlay);
+  background: var(--mobile-nav-overlay-bg);
 }
 
 @keyframes fade-up-in {

@@ -51,6 +51,23 @@ const descriptionClasses =
   "m-0 text-[0.875rem] font-[460] leading-[1.5rem] tracking-[-0.00563rem] text-muted";
 const metaClasses =
   "mt-[0.2rem] text-[0.8125rem] leading-[1.15rem] text-muted-soft";
+const inlineCodeClasses =
+  "font-mono text-[0.90625rem] font-[560] leading-[1.5rem] tracking-[-0.01em] text-ghostindigo-900";
+
+const parseInlineCode = (value: string) =>
+  value.split(/(`[^`]+`)/g).map((part) => {
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return {
+        type: "code" as const,
+        value: part.slice(1, -1),
+      };
+    }
+
+    return {
+      type: "text" as const,
+      value: part,
+    };
+  });
 ---
 
 <ul class={listClasses}>
@@ -103,7 +120,15 @@ const metaClasses =
                     ↗
                   </span>
                 </h2>
-                <p class={descriptionClasses}>{project.description}</p>
+                <p class={descriptionClasses}>
+                  {parseInlineCode(project.description).map((part) =>
+                    part.type === "code" ? (
+                      <code class={inlineCodeClasses}>{part.value}</code>
+                    ) : (
+                      part.value
+                    )
+                  )}
+                </p>
                 {!compact ? (
                   <p class={metaClasses}>
                     {project.tags.join(" · ")}

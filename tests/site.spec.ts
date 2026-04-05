@@ -49,6 +49,18 @@ test("core pages render and navigation works", async ({ page }) => {
       .first()
   ).toBeVisible();
   await expect(
+    page
+      .locator("#projects")
+      .locator('a[href="https://github.com/rust-lang/rust/pull/131315"]')
+      .first()
+  ).toBeVisible();
+  const rustCodeToken = page.locator("#projects code", {
+    hasText: "std_features",
+  });
+  await expect(rustCodeToken).toBeVisible();
+  await expect(rustCodeToken).toHaveCSS("font-family", /Paper Mono/);
+  await expect(rustCodeToken).toHaveCSS("font-size", "14.5px");
+  await expect(
     page.locator("#projects").getByRole("link", { name: "All projects" })
   ).toHaveCount(0);
   await expect(
@@ -96,7 +108,17 @@ test("core pages render and navigation works", async ({ page }) => {
   await expect(page.locator("#talks ul h2").first()).toHaveText(
     /Rumour has it: Gossip Protocols for Eventual Consistency\s*·\s*Rootconf 2025/
   );
+  await expect(page.locator("#talks ul h2").first()).toHaveCSS(
+    "line-height",
+    "24px"
+  );
   await expect(page.getByRole("link", { name: "Watch" }).first()).toBeVisible();
+  const firstSlidesLink = page.getByRole("link", { name: "Slides" }).first();
+  await expect(firstSlidesLink).toBeVisible();
+  await firstSlidesLink.hover();
+  await expect(firstSlidesLink.locator("span").first()).toHaveClass(
+    /group-hover:text-sky-400/
+  );
   await expect(
     page.getByRole("link", { name: "Watch" }).first()
   ).toHaveAttribute("href", "https://www.youtube.com/watch?v=gHlwPfWzseo");
@@ -161,4 +183,32 @@ test("homepage uses the slower first-load animation timing", async ({ page }) =>
     "animation-duration",
     "0.68s"
   );
+});
+
+test("mobile menu overlays the viewport cleanly", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  await page.getByRole("banner").getByRole("button", { name: "Menu" }).click();
+
+  const overlay = page.locator(".mobile-nav-overlay");
+  await expect(overlay).toHaveCSS("position", "fixed");
+  await expect(overlay).toHaveCSS("z-index", "50");
+  await expect(overlay).toHaveCSS("backdrop-filter", /blur/);
+  await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+  await expect(
+    page.getByRole("navigation", { name: "Mobile navigation" })
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Close" })).toBeVisible();
+  await expect(
+    page
+      .getByRole("navigation", { name: "Mobile navigation" })
+      .getByRole("link", { name: "About" })
+  ).toBeVisible();
+
+  const box = await overlay.boundingBox();
+  expect(box?.x).toBe(0);
+  expect(box?.y).toBe(0);
+  expect(Math.round(box?.width ?? 0)).toBe(390);
+  expect(Math.round(box?.height ?? 0)).toBe(844);
 });

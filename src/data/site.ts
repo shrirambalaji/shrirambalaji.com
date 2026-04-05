@@ -65,15 +65,15 @@ export const projects: Project[] = [
   {
     title: "Rust Compiler",
     description:
-      "Contributed std_features support for the Rust compiler bootstrap flow, which shipped in Rust 1.83.",
-    href: "https://github.com/rust-lang/rust",
+      "Added `std_features` to the Rust bootstrap flow, shipped in Rust 1.83.",
+    href: "https://github.com/rust-lang/rust/pull/131315",
     tags: ["Open source", "Rust", "Compiler"],
     kind: "oss",
   },
   {
     title: "Excalidraw",
     description:
-      "Contributed to the hand-drawn virtual whiteboard used for diagramming and collaborative sketching.",
+      "Fixes in Excalidraw around browser storage, CSP handling, and selection restore behavior.",
     href: "https://github.com/excalidraw/excalidraw/pulls?q=is%3Apr+author%3Ashrirambalaji",
     tags: ["Open source", "TypeScript", "React"],
     kind: "oss",
@@ -81,7 +81,7 @@ export const projects: Project[] = [
   {
     title: "WRY",
     description:
-      "Contributed to the cross-platform WebView rendering library used across desktop applications.",
+      "Fixes in the cross-platform WebView layer used in desktop apps.",
     href: "https://github.com/tauri-apps/wry/pulls?q=is%3Apr+author%3Ashrirambalaji",
     tags: ["Open source", "Rust"],
     kind: "oss",
@@ -141,8 +141,11 @@ export const talks: Talk[] = [
     title: "Rumour has it: Gossip Protocols for Eventual Consistency",
     event: "Rootconf 2025",
     description:
-      "An introduction to gossip protocols and how eventual consistency emerges from probabilistic communication.",
+      "Gossip protocols in Rust, and using Maelstrom & Jepsen to verify toy distributed systems.",
     href: "https://www.youtube.com/watch?v=gHlwPfWzseo",
+    secondaryHref:
+      "https://www.figma.com/slides/ukEG84Foftwz2aHKt1ZTJu/Rumour-has-it---Understanding-Gossip-Protocols-for-Eventual-Consistency",
+    secondaryLabel: "Slides",
   },
   {
     title: "Rust Unlinked",
