@@ -144,3 +144,21 @@ test("site respects prefers-color-scheme", async ({ page }) => {
     "rgb(252, 252, 250)"
   );
 });
+
+test("homepage uses the slower first-load animation timing", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator("body")).toHaveAttribute("data-page", "/");
+  await expect(page.locator("header.site-intro-fade")).toHaveCSS(
+    "animation-duration",
+    "0.76s"
+  );
+  await expect(page.locator("main.page-content > article").first()).toHaveCSS(
+    "animation-duration",
+    "0.76s"
+  );
+  await expect(page.locator("#projects .detail-list > li").first()).toHaveCSS(
+    "animation-duration",
+    "0.68s"
+  );
+});

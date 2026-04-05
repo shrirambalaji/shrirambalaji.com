@@ -229,12 +229,24 @@ img {
   animation: fade-up-in 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+body[data-page="/"] .site-intro-fade {
+  animation-duration: 760ms;
+}
+
 .site-intro-fade-header {
   animation-delay: 20ms;
 }
 
+body[data-page="/"] .site-intro-fade-header {
+  animation-delay: 40ms;
+}
+
 .site-intro-fade-footer {
   animation-delay: 340ms;
+}
+
+body[data-page="/"] .site-intro-fade-footer {
+  animation-delay: 460ms;
 }
 
 .scroll-blur {
@@ -275,20 +287,40 @@ img {
   animation: fade-up-in 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+body[data-page="/"] .page-content > * {
+  animation-duration: 760ms;
+}
+
 .page-content > *:nth-child(1) {
   animation-delay: 40ms;
+}
+
+body[data-page="/"] .page-content > *:nth-child(1) {
+  animation-delay: 70ms;
 }
 
 .page-content > *:nth-child(2) {
   animation-delay: 120ms;
 }
 
+body[data-page="/"] .page-content > *:nth-child(2) {
+  animation-delay: 180ms;
+}
+
 .page-content > *:nth-child(3) {
   animation-delay: 200ms;
 }
 
+body[data-page="/"] .page-content > *:nth-child(3) {
+  animation-delay: 290ms;
+}
+
 .page-content > *:nth-child(4) {
   animation-delay: 280ms;
+}
+
+body[data-page="/"] .page-content > *:nth-child(4) {
+  animation-delay: 400ms;
 }
 
 .detail-list > li {
@@ -296,6 +328,11 @@ img {
   opacity: 0;
   animation: fade-up-in 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: calc(180ms + var(--item-index, 0) * 55ms);
+}
+
+body[data-page="/"] .detail-list > li {
+  animation-duration: 680ms;
+  animation-delay: calc(240ms + var(--item-index, 0) * 70ms);
 }
 
 .detail-list > li:last-child {

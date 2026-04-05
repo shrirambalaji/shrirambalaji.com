@@ -186,12 +186,12 @@ export const uses = {
     "MacBook Pro 14-inch (M1 Pro, 16GB RAM, 512GB SSD)",
   ],
   apps: [
+    "Codex",
     "Discord",
-    "Edge for work",
     "Figma",
     "Ghostty with fish",
     "Helium for personal browsing",
-    "Helix for quick terminal edits",
+    "Neovim for quick terminal edits",
     "OBS Studio",
     "Obsidian",
     "OrbStack",
@@ -207,7 +207,7 @@ export const uses = {
   extensions: [
     "Better Comments",
     "Fluent Product Icons",
-    "GitLens",
+    "Gitless",
     "Symbols",
     "TabOut",
     "VSCode Neovim",

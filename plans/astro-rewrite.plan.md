@@ -56,6 +56,10 @@ Rewrite the site from Next.js to Astro with React islands where interactivity is
 - Completed: light and dark themes now follow `prefers-color-scheme` using the production dark palette
 - Completed: intro/body copy rhythm loosened to a `1.6rem` line-height
 - Completed: dark-mode hover highlights now use `indigo-200` for text and underline accents
+- Completed: intro paragraphs now use `text-wrap: pretty`
+- Completed: adjusted the `/uses` lead section down slightly for optical alignment with the homepage photo
+- Completed: uses page now reflects Codex, Neovim, and Gitless instead of Edge, Helix, and GitLens
+- Completed: homepage first-load animation timing now runs slightly slower than the inner pages
 
 ## Current Pass
 
