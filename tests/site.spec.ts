@@ -6,6 +6,8 @@ const PROJECTS_HASH_RE = /\/#projects$/;
 const WRITING_HASH_RE = /\/#writing$/;
 const TALKS_HASH_RE = /\/#talks$/;
 const TALK_TITLE_RE =
+  /Unstoppable Events: Building Reliable Event-Driven Systems in Rust\s*·\s*Rust India Conference 2026/;
+const ROOTCONF_TALK_TITLE_RE =
   /Rumour has it: Gossip Protocols for Eventual Consistency\s*·\s*Rootconf 2025/;
 const SKY_CLASS_RE = /group-hover:text-sky-400/;
 const PAPER_MONO_RE = /Paper Mono/;
@@ -122,6 +124,9 @@ test("core pages render and navigation works", async ({ page }) => {
   await talksNav.click();
   await expect(page).toHaveURL(TALKS_HASH_RE);
   await expect(page.locator("#talks ul h2").first()).toHaveText(TALK_TITLE_RE);
+  await expect(page.locator("#talks ul h2").nth(1)).toHaveText(
+    ROOTCONF_TALK_TITLE_RE
+  );
   await expect(page.locator("#talks ul h2").first()).toHaveCSS(
     "line-height",
     "24px"
@@ -129,13 +134,17 @@ test("core pages render and navigation works", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Watch" }).first()).toBeVisible();
   const firstSlidesLink = page.getByRole("link", { name: "Slides" }).first();
   await expect(firstSlidesLink).toBeVisible();
+  await expect(firstSlidesLink).toHaveAttribute(
+    "href",
+    "/slides/a-series-of-unstoppable-events.pdf"
+  );
   await firstSlidesLink.hover();
   await expect(firstSlidesLink.locator("span").first()).toHaveClass(
     SKY_CLASS_RE
   );
   await expect(
     page.getByRole("link", { name: "Watch" }).first()
-  ).toHaveAttribute("href", "https://www.youtube.com/watch?v=gHlwPfWzseo");
+  ).toHaveAttribute("href", "https://www.youtube.com/watch?v=CtjfotvkJGo");
   await expect(talksNav).toHaveAttribute("aria-current", "location");
 
   await page.goto("/");
@@ -226,4 +235,21 @@ test("mobile menu overlays the viewport cleanly", async ({ page }) => {
   expect(box?.y).toBe(0);
   expect(Math.round(box?.width ?? 0)).toBe(390);
   expect(Math.round(box?.height ?? 0)).toBe(844);
+});
+
+test("talk titles fit on mobile", async ({ page }) => {
+  await page.setViewportSize({ height: 844, width: 390 });
+  await page.goto("/#talks");
+
+  const talksSection = page.locator("#talks");
+  const firstTalkTitle = talksSection.locator("ul h2").first();
+  const firstWatchLink = talksSection
+    .locator('a[href="https://www.youtube.com/watch?v=CtjfotvkJGo"]')
+    .first();
+
+  await expect(firstTalkTitle).toHaveText(TALK_TITLE_RE);
+  await expect(firstWatchLink).toBeVisible();
+
+  const titleBox = await firstTalkTitle.boundingBox();
+  expect(Math.round(titleBox?.width ?? 0)).toBeLessThanOrEqual(390);
 });

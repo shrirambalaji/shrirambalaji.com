@@ -1,0 +1,18 @@
+{
+  "title": "Unstoppable Events: Building Reliable Event-Driven Systems in Rust",
+  "event": "Rust India Conference 2026",
+  "description": "A talk on building reliable event-driven systems in Rust, with a focus on delivery guarantees, failure modes, and system boundaries.",
+  "actions": [
+    {
+      "href": "https://www.youtube.com/watch?v=CtjfotvkJGo",
+      "label": "Watch",
+      "icon": "watch"
+    },
+    {
+      "href": "/slides/a-series-of-unstoppable-events.pdf",
+      "label": "Slides",
+      "icon": "slides"
+    }
+  ],
+  "order": 5
+}
