@@ -38,6 +38,7 @@ Make `shrirambalaji.com` a clear, accurate canonical source for Shriram Balaji's
 - 2026-07-11: Added a typed `ProfilePage` + `Person` + `WebSite` graph and a canonical homepage URL. The person entity links GitHub, X, and LinkedIn and describes the visible Microsoft role.
 - 2026-07-11: Found and removed a stale hand-written sitemap that advertised two dead routes. `robots.txt` now points to Astro's generated sitemap index.
 - 2026-07-11: Verified the rendered graph in the local browser. Type checking, lint, production build, and all end-to-end tests pass.
+- 2026-07-11: Replaced the original close-up avatar with the user-selected 853 × 1280 portrait. The homepage crop keeps the face centered while the `Person.image` URL exposes the full portrait.
 
 ## External rollout checklist
 

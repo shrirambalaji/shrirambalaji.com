@@ -52,15 +52,20 @@ const homepageStructuredData = serializeStructuredData(
 
 <BaseLayout currentPath="/" structuredData={homepageStructuredData}>
   <article id="about" class="grid max-w-none scroll-mt-24 gap-[0.85rem] md:max-w-[70ch]">
-    <img
-      class="h-23 w-23 rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] object-cover shadow-soft"
-      src="/images/avatar.jpeg"
-      alt="Shriram Balaji"
-      width="92"
-      height="92"
-      loading="eager"
-      decoding="async"
+    <div
+      class="relative h-23 w-23 overflow-hidden rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] shadow-soft"
     >
+      <img
+        class="absolute left-1/2 top-[-0.55rem] h-auto -translate-x-1/2"
+        style="width: 165%; max-width: none;"
+        src="/images/shriram-balaji.jpg"
+        alt="Shriram Balaji"
+        width="853"
+        height="1280"
+        loading="eager"
+        decoding="async"
+      >
+    </div>
 
     <div
       class="intro-prose grid gap-[0.7rem] [&_p]:m-0 [&_p]:max-w-none [&_p]:text-pretty [&_p]:text-[0.9375rem] [&_p]:font-[460] [&_p]:leading-[1.68rem] [&_p]:tracking-normal [&_p]:text-ghostindigo-800 md:[&_p]:text-[0.875rem] md:[&_p]:leading-[1.6rem] md:[&_p]:tracking-[-0.00563rem]"
