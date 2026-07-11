@@ -10,6 +10,16 @@ const home = defineCollection({
 const site = defineCollection({
   loader: glob({ base: "./src/content/site", pattern: "**/*.json" }),
   schema: z.object({
+    identity: z.object({
+      alternateName: z.string(),
+      image: z.string(),
+      jobTitle: z.string(),
+      sameAs: z.array(z.url()),
+      worksFor: z.object({
+        name: z.string(),
+        url: z.url(),
+      }),
+    }),
     meta: z.object({
       description: z.string(),
       title: z.string(),

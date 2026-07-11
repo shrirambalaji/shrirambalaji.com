@@ -12,7 +12,7 @@ if (!usesEntry) {
   throw new Error("Missing uses content entry.");
 }
 
-type SiteSettings = CollectionEntry<"site">["data"];
+export type SiteSettings = CollectionEntry<"site">["data"];
 export type NavItem = SiteSettings["nav"][number];
 export type SocialLink = SiteSettings["social"][number];
 export type SiteMeta = SiteSettings["meta"];

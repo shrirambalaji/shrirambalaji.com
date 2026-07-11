@@ -4,8 +4,12 @@ import Projects from "../components/projects.astro";
 import Talks from "../components/talks.astro";
 import BaseLayout from "../layouts/base-layout.astro";
 import { getRecentBlogPosts } from "../lib/blog-rss";
-import { featuredProjects, openSourceContributions, recentTalks, socialLinks } from '../lib/site';
+import { featuredProjects, openSourceContributions, recentTalks, siteSettings, socialLinks } from '../lib/site';
 import type { Project, SocialLink } from '../lib/site';
+import {
+  createHomepageStructuredData,
+  serializeStructuredData,
+} from "../lib/structured-data";
 
 const introEntry = await getEntry("home", "intro");
 
@@ -41,9 +45,12 @@ const writingArrowClass =
 const writingTitleRowClass = "inline-flex items-center gap-[0.2rem]";
 const writingCtaArrowClass =
   "inline-flex w-[0.8rem] shrink-0 justify-center text-ghostindigo-700 transition-transform duration-150 group-hover:translate-x-[0.12rem]";
+const homepageStructuredData = serializeStructuredData(
+  createHomepageStructuredData(siteSettings)
+);
 ---
 
-<BaseLayout currentPath="/">
+<BaseLayout currentPath="/" structuredData={homepageStructuredData}>
   <article id="about" class="grid max-w-none scroll-mt-24 gap-[0.85rem] md:max-w-[70ch]">
     <img
       class="h-23 w-23 rounded-[0.9rem] border border-[rgba(59,59,84,0.14)] object-cover shadow-soft"
