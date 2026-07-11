@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://shrirambalaji.com/sitemap.xml
+Sitemap: https://shrirambalaji.com/sitemap-index.xml

@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   currentPath: string;
+  structuredData?: string;
 }
 
 const {
   title = siteMeta.title,
   description = siteMeta.description,
   currentPath,
+  structuredData,
 } = Astro.props;
 
 const pageTitle =
@@ -29,9 +31,14 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
     <meta name="description" content={description}>
     <meta property="og:title" content={pageTitle}>
     <meta property="og:description" content={description}>
+    <meta property="og:site_name" content={siteMeta.title}>
     <meta property="og:type" content="website">
     <meta property="og:url" content={`${siteMeta.url}${currentPath}`}>
     <meta property="og:image" content={`${siteMeta.url}/og-image.png`}>
+    <link rel="canonical" href={`${siteMeta.url}${currentPath}`}>
+    {structuredData && (
+      <script is:inline type="application/ld+json" set:html={structuredData} />
+    )}
     <link rel="icon" href="/favicons/favicon.ico" sizes="any">
     <link rel="icon" href="/favicons/favicon-32x32.png" type="image/png">
     <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">

@@ -14,6 +14,67 @@ const PAPER_MONO_RE = /Paper Mono/;
 const NON_EMPTY_RE = /.+/;
 const BLUR_RE = /blur/;
 
+test("homepage publishes canonical person structured data", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://shrirambalaji.com/"
+  );
+
+  const jsonLd = await page
+    .locator('script[type="application/ld+json"]')
+    .textContent();
+  expect(jsonLd).not.toBeNull();
+
+  const structuredData = JSON.parse(jsonLd ?? "{}") as {
+    "@context": string;
+    "@graph": Record<string, unknown>[];
+  };
+  expect(structuredData["@context"]).toBe("https://schema.org");
+
+  const person = structuredData["@graph"].find(
+    (entity) => entity["@type"] === "Person"
+  );
+  const profilePage = structuredData["@graph"].find(
+    (entity) => entity["@type"] === "ProfilePage"
+  );
+
+  expect(profilePage).toMatchObject({
+    "@id": "https://shrirambalaji.com/#profile",
+    mainEntity: { "@id": "https://shrirambalaji.com/#person" },
+    url: "https://shrirambalaji.com",
+  });
+  expect(person).toMatchObject({
+    "@id": "https://shrirambalaji.com/#person",
+    alternateName: "shrirambalaji",
+    image: "https://shrirambalaji.com/images/avatar.jpeg",
+    jobTitle: "Senior Software Engineer",
+    name: "Shriram Balaji",
+    sameAs: [
+      "https://github.com/shrirambalaji",
+      "https://x.com/shrirambalaji",
+      "https://www.linkedin.com/in/shrirambalaji/",
+    ],
+    worksFor: {
+      "@type": "Organization",
+      name: "Microsoft",
+      url: "https://www.microsoft.com/",
+    },
+  });
+});
+
+test("robots metadata points at the generated sitemap", async ({ request }) => {
+  const robotsResponse = await request.get("/robots.txt");
+
+  expect(robotsResponse.ok()).toBe(true);
+  expect(await robotsResponse.text()).toContain(
+    "Sitemap: https://shrirambalaji.com/sitemap-index.xml"
+  );
+});
+
 test("core pages render and navigation works", async ({ page }) => {
   const latestBlogPosts = await getRecentBlogPosts(4);
   const [latestBlogPost] = latestBlogPosts;

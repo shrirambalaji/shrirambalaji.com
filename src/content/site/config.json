@@ -4,6 +4,20 @@
     "description": "Senior software engineer building distributed systems, developer tools, and polished side projects.",
     "url": "https://shrirambalaji.com"
   },
+  "identity": {
+    "alternateName": "shrirambalaji",
+    "image": "/images/avatar.jpeg",
+    "jobTitle": "Senior Software Engineer",
+    "sameAs": [
+      "https://github.com/shrirambalaji",
+      "https://x.com/shrirambalaji",
+      "https://www.linkedin.com/in/shrirambalaji/"
+    ],
+    "worksFor": {
+      "name": "Microsoft",
+      "url": "https://www.microsoft.com/"
+    }
+  },
   "nav": [
     { "href": "/#about", "label": "About" },
     { "href": "/#projects", "label": "Projects" },
