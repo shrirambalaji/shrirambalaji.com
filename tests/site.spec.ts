@@ -50,7 +50,7 @@ test("homepage publishes canonical person structured data", async ({
   expect(person).toMatchObject({
     "@id": "https://shrirambalaji.com/#person",
     alternateName: "shrirambalaji",
-    image: "https://shrirambalaji.com/images/avatar.jpeg",
+    image: "https://shrirambalaji.com/images/shriram-balaji.jpg",
     jobTitle: "Senior Software Engineer",
     name: "Shriram Balaji",
     sameAs: [
