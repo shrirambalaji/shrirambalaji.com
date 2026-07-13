@@ -177,7 +177,7 @@ test("core pages render and navigation works", async ({ page }) => {
   ).not.toHaveAttribute("target", NON_EMPTY_RE);
   await expect(writingSection.getByText(latestBlogPostDate)).toBeVisible();
   await expect(
-    writingSection.locator('a[href="/writing"]').first()
+    writingSection.locator('a[href="/writing/posts"]').first()
   ).toBeVisible();
   await expect(projectsNav).toHaveAttribute("aria-current", "location");
   await expect(aboutNav).not.toHaveAttribute("aria-current", NON_EMPTY_RE);
