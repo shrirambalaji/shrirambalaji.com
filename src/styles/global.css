@@ -93,6 +93,10 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
+  font-feature-settings:
+    "calt" 1,
+    "tnum" 1,
+    "ss03" 1;
   text-rendering: optimizeLegibility;
 }
 

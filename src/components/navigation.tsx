@@ -372,7 +372,7 @@ const MobileNav = ({ currentPath, items }: Props) => {
           : "pointer-events-none opacity-0"
       }`}
     >
-      <div className="mx-auto flex min-h-screen w-full max-w-145.5 flex-col px-6 pt-4 pb-10 md:px-4 md:pt-[2.9rem] md:pb-13">
+      <div className="mx-auto flex min-h-screen w-full max-w-[46.5rem] flex-col px-6 pt-4 pb-10 md:px-4 md:pt-[2.9rem] md:pb-13">
         <div className="mt-0.5 mb-7 flex items-center justify-between py-[0.65rem] font-medium text-muted-soft text-sm">
           <span>Navigate</span>
           <button

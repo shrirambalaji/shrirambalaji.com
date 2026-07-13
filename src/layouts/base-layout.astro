@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const pageTitle =
-  title === siteMeta.title ? title : `${title} · ${siteMeta.title}`;
+  title === siteMeta.title ? siteMeta.seoTitle : `${title} · ${siteMeta.title}`;
 const footerLinkClasses = "footer-link transition-colors duration-150";
 ---
 
@@ -48,7 +48,7 @@ const footerLinkClasses = "footer-link transition-colors duration-150";
     class="min-h-screen bg-paper font-sans text-base leading-tight text-ghostindigo-800"
   >
     <div
-      class="mx-auto max-w-145.5 px-4 pb-10 pt-4 md:px-4 md:pb-13 md:pt-[2.9rem] xl:max-w-178"
+      class="mx-auto max-w-[46.5rem] px-4 pb-10 pt-4 md:px-4 md:pb-13 md:pt-[2.9rem]"
     >
       <div class="scroll-blur" aria-hidden="true"></div>
       <header

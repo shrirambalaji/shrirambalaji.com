@@ -1,1 +1,17 @@
-{}
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/writing/rss.xml",
+      "destination": "https://blog.shrirambalaji.com/rss.xml"
+    },
+    {
+      "source": "/writing",
+      "destination": "https://blog.shrirambalaji.com/writing"
+    },
+    {
+      "source": "/writing/:path*",
+      "destination": "https://blog.shrirambalaji.com/writing/:path*"
+    }
+  ]
+}
