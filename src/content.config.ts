@@ -22,6 +22,7 @@ const site = defineCollection({
     }),
     meta: z.object({
       description: z.string(),
+      seoTitle: z.string(),
       title: z.string(),
       url: z.url(),
     }),

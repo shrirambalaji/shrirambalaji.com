@@ -9,6 +9,11 @@ export interface BlogPost {
 }
 
 const BLOG_RSS_URL = "https://blog.shrirambalaji.com/rss.xml";
+const BLOG_HOSTS = new Set([
+  "blog.shrirambalaji.com",
+  "shrirambalaji.com",
+  "www.shrirambalaji.com",
+]);
 
 const parser = new XMLParser({
   ignoreAttributes: true,
@@ -38,6 +43,29 @@ interface ParsedFeed {
   };
 }
 
+export const toWritingPath = (value: string): string => {
+  const url = new URL(value, BLOG_RSS_URL);
+
+  if (!BLOG_HOSTS.has(url.hostname)) {
+    return "";
+  }
+
+  const path = url.pathname.replace(/\/$/, "");
+  if (path === "/writing" || path.startsWith("/writing/")) {
+    return `${path}${url.search}${url.hash}`;
+  }
+
+  if (path === "/posts") {
+    return "/writing/posts";
+  }
+
+  if (path.startsWith("/posts/")) {
+    return `/writing/posts/${path.slice("/posts/".length)}${url.search}${url.hash}`;
+  }
+
+  return "";
+};
+
 const asArray = <T>(value?: T | T[]): T[] => {
   if (!value) {
     return [];
@@ -53,7 +81,7 @@ export const parseBlogFeed = (xml: string): BlogPost[] => {
   return items
     .map((item) => {
       const title = stripMarkup(item.title ?? "");
-      const href = stripMarkup(item.link ?? "");
+      const href = toWritingPath(stripMarkup(item.link ?? ""));
       const description = stripMarkup(item.description ?? "");
       const publishedAt = stripMarkup(item.pubDate ?? "");
       const publishedTime = new Date(publishedAt).getTime();

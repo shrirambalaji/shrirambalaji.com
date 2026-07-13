@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { getRecentBlogPosts } from "../src/lib/blog-rss";
+import { getRecentBlogPosts, toWritingPath } from "../src/lib/blog-rss";
 
 const PROJECTS_HASH_RE = /\/#projects$/;
 const WRITING_HASH_RE = /\/#writing$/;
@@ -14,6 +14,20 @@ const PAPER_MONO_RE = /Paper Mono/;
 const NON_EMPTY_RE = /.+/;
 const BLUR_RE = /blur/;
 
+test("blog URLs are normalized to the same-origin writing path", () => {
+  expect(
+    toWritingPath(
+      "https://blog.shrirambalaji.com/posts/resolving-rust-symbols/"
+    )
+  ).toBe("/writing/posts/resolving-rust-symbols");
+  expect(
+    toWritingPath(
+      "https://www.shrirambalaji.com/writing/posts/resolving-rust-symbols/"
+    )
+  ).toBe("/writing/posts/resolving-rust-symbols");
+  expect(toWritingPath("https://example.com/posts/untrusted")).toBe("");
+});
+
 test("homepage publishes canonical person structured data", async ({
   page,
 }) => {
@@ -21,8 +35,18 @@ test("homepage publishes canonical person structured data", async ({
 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://shrirambalaji.com/"
+    "https://www.shrirambalaji.com/"
   );
+  await expect(page).toHaveTitle(
+    "Shriram Balaji, Software Engineer at Microsoft"
+  );
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    "Shriram Balaji is a Senior Software Engineer at Microsoft building distributed systems for the Microsoft 365 Data & Compute Platform."
+  );
+  await expect(
+    page.getByText("I’m Shriram Balaji", { exact: false })
+  ).toBeVisible();
 
   const jsonLd = await page
     .locator('script[type="application/ld+json"]')
@@ -43,14 +67,14 @@ test("homepage publishes canonical person structured data", async ({
   );
 
   expect(profilePage).toMatchObject({
-    "@id": "https://shrirambalaji.com/#profile",
-    mainEntity: { "@id": "https://shrirambalaji.com/#person" },
-    url: "https://shrirambalaji.com",
+    "@id": "https://www.shrirambalaji.com/#profile",
+    mainEntity: { "@id": "https://www.shrirambalaji.com/#person" },
+    url: "https://www.shrirambalaji.com",
   });
   expect(person).toMatchObject({
-    "@id": "https://shrirambalaji.com/#person",
+    "@id": "https://www.shrirambalaji.com/#person",
     alternateName: "shrirambalaji",
-    image: "https://shrirambalaji.com/images/shriram-balaji.jpg",
+    image: "https://www.shrirambalaji.com/images/shriram-balaji.jpg",
     jobTitle: "Senior Software Engineer",
     name: "Shriram Balaji",
     sameAs: [
@@ -71,7 +95,7 @@ test("robots metadata points at the generated sitemap", async ({ request }) => {
 
   expect(robotsResponse.ok()).toBe(true);
   expect(await robotsResponse.text()).toContain(
-    "Sitemap: https://shrirambalaji.com/sitemap-index.xml"
+    "Sitemap: https://www.shrirambalaji.com/sitemap-index.xml"
   );
 });
 
@@ -147,12 +171,13 @@ test("core pages render and navigation works", async ({ page }) => {
   ).toBeVisible();
   await expect(
     writingSection.getByRole("link", { name: latestBlogPost.title })
-  ).toBeVisible();
+  ).toHaveAttribute("href", latestBlogPost.href);
+  await expect(
+    writingSection.getByRole("link", { name: latestBlogPost.title })
+  ).not.toHaveAttribute("target", NON_EMPTY_RE);
   await expect(writingSection.getByText(latestBlogPostDate)).toBeVisible();
   await expect(
-    writingSection
-      .locator('a[href="https://blog.shrirambalaji.com/posts"]')
-      .first()
+    writingSection.locator('a[href="/writing"]').first()
   ).toBeVisible();
   await expect(projectsNav).toHaveAttribute("aria-current", "location");
   await expect(aboutNav).not.toHaveAttribute("aria-current", NON_EMPTY_RE);
