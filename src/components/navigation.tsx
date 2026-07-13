@@ -54,7 +54,7 @@ const isScrolledToBottom = () =>
 
 const getOffsetVisibleSectionId = (
   sections: HTMLElement[],
-  offset: number
+  offset: number,
 ): string | null => {
   for (const section of [...sections].toReversed()) {
     const rect = section.getBoundingClientRect();
@@ -70,7 +70,7 @@ const getOffsetVisibleSectionId = (
 const getPendingSectionId = (
   pendingSectionId: string | null,
   sectionsById: Map<string, HTMLElement>,
-  offset: number
+  offset: number,
 ) => {
   if (!pendingSectionId) {
     return null;
@@ -92,7 +92,7 @@ const getPendingSectionId = (
 
 const getHashedSectionId = (
   sectionsById: Map<string, HTMLElement>,
-  offset: number
+  offset: number,
 ) => {
   const hashTarget = getHashTarget();
   const hashedSection = sectionsById.get(hashTarget);
@@ -117,12 +117,12 @@ const getResolvedActiveSection = (
   sections: HTMLElement[],
   sectionsById: Map<string, HTMLElement>,
   pendingSectionId: string | null,
-  offset: number
+  offset: number,
 ) => {
   const pendingSection = getPendingSectionId(
     pendingSectionId,
     sectionsById,
-    offset
+    offset,
   );
 
   if (pendingSection) {
@@ -157,7 +157,7 @@ const getResolvedActiveSection = (
 
 const DesktopNav = ({ currentPath, items }: Props) => {
   const [activeSection, setActiveSection] = useState<string | null>(() =>
-    getInitialActiveSection(currentPath)
+    getInitialActiveSection(currentPath),
   );
   const pendingSectionRef = useRef<string | null>(null);
   const navLinkClasses =
@@ -167,7 +167,7 @@ const DesktopNav = ({ currentPath, items }: Props) => {
       items
         .filter((item) => item.href.startsWith("/#"))
         .map((item) => item.href.slice(2)),
-    [items]
+    [items],
   );
   const handleDesktopNavClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
     const { section } = event.currentTarget.dataset;
@@ -218,7 +218,7 @@ const DesktopNav = ({ currentPath, items }: Props) => {
       }
 
       const sectionsById = new Map(
-        sections.map((section) => [section.id, section] as const)
+        sections.map((section) => [section.id, section] as const),
       );
 
       const setHashSectionActive = () => {
@@ -238,7 +238,7 @@ const DesktopNav = ({ currentPath, items }: Props) => {
           sections,
           sectionsById,
           pendingSectionRef.current,
-          ACTIVE_SECTION_OFFSET
+          ACTIVE_SECTION_OFFSET,
         );
 
         setActiveSection(nextSection.activeSectionId);
@@ -373,7 +373,7 @@ const MobileNav = ({ currentPath, items }: Props) => {
       }`}
     >
       <div className="mx-auto flex min-h-screen w-full max-w-[46.5rem] flex-col px-6 pt-4 pb-10 md:px-4 md:pt-[2.9rem] md:pb-13">
-        <div className="mt-0.5 mb-7 flex items-center justify-between py-[0.65rem] font-medium text-muted-soft text-sm">
+        <div className="mobile-nav-header mt-0.5 mb-7 flex items-center justify-between py-[0.65rem] font-medium text-muted-soft text-sm">
           <span>Navigate</span>
           <button
             className="border-0 bg-transparent p-0 font-medium text-ghostindigo-800 text-sm tracking-[-0.00563rem]"
@@ -392,7 +392,7 @@ const MobileNav = ({ currentPath, items }: Props) => {
                 ((currentPath === "/" && item.href === "/#about") ||
                   (currentPath === "/uses" && item.href === "/uses"));
               return (
-                <li key={item.href}>
+                <li className="mobile-nav-item" key={item.href}>
                   <a
                     className={`${linkClasses} ${active ? "text-ghostindigo-900" : ""}`}
                     href={resolveNavHref(item.href)}

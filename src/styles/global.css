@@ -47,6 +47,7 @@
   --plain-link-underline: rgba(17, 17, 24, 0.2);
   --plain-link-underline-hover: rgba(17, 17, 24, 0.55);
   --interactive-underline: rgba(17, 17, 24, 0.45);
+  --ease-out-ui: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;
 }
 
@@ -220,6 +221,47 @@ code:not(pre code) {
 
 .mobile-nav-overlay {
   background: var(--mobile-nav-overlay-bg);
+  transition-timing-function: var(--ease-out-ui);
+}
+
+.mobile-nav-header,
+.mobile-nav-item {
+  opacity: 0;
+  transform: translateY(7px);
+  animation: mobile-nav-enter 210ms var(--ease-out-ui) forwards;
+}
+
+.mobile-nav-header {
+  transform: translateY(6px);
+  animation-duration: 190ms;
+  animation-delay: 20ms;
+}
+
+.mobile-nav-item:nth-child(1) {
+  animation-delay: 45ms;
+}
+
+.mobile-nav-item:nth-child(2) {
+  animation-delay: 65ms;
+}
+
+.mobile-nav-item:nth-child(3) {
+  animation-delay: 85ms;
+}
+
+.mobile-nav-item:nth-child(4) {
+  animation-delay: 105ms;
+}
+
+.mobile-nav-item:nth-child(5) {
+  animation-delay: 125ms;
+}
+
+@keyframes mobile-nav-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fade-up-in {
@@ -357,6 +399,13 @@ body[data-page="/"] .detail-list > li {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .mobile-nav-header,
+  .mobile-nav-item {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
   .site-intro-fade,
   .page-content > *,
   .detail-list > li {
